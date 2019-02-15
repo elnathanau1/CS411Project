@@ -49,4 +49,16 @@ python manage.py runserver
 
 2. In the browser, go to (http://127.0.0.1:8000/dash/)
 
-## Django
+## Django Commands
+Relevant commands necessary for development:
+
+```
+# Run the server
+python manage.py runserver
+
+# Make migration (after change to model)
+python manage.py makemigrations spotifyapp_1
+
+# Migrate (call after makemigration)
+python manage.py migrate
+```
