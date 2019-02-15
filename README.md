@@ -1,20 +1,52 @@
 # CS411Project
 
-## Deadlines
-### Stage 0: Group Formation
-Due: Noon, Jan 31, 2019
+## Installation
+[PostgreSQL](https://www.postgresql.org/download/)
 
-### Stage 1: Functional Description and ER Design
-Due: Noon, Feb. 7th, 2019
+(note: For pgAdmin4 installation, will ask for a deafult password. I used "password". Use this unless you want to change settings.py in /django/spotifyapp/)
 
-### Stage 2: Development Plan
-Due: Noon, Feb. 14st, 2019
+[Python](https://www.python.org/downloads/)
 
-### Stage 3: Setup Development Environment
-Due: Noon, Feb. 21th, 2019
+[Git Bash](https://git-scm.com/downloads)
 
-### Stage 4: Initial Demo and its requirements
-Due: Mar. 27h to Mar. 30th,  2019
+[pip](https://pip.pypa.io/en/stable/installing/)
 
-### Stage 5: Final Demo and Report
-Due: Apr. 17th to Apr. 19th, 2019
+After those have been installed, run this in terminal:
+
+```
+pip install -r requirements.txt
+```
+
+## Project Set Up
+1. Load pgAdmin4 using: (http://127.0.0.1:65274/browser/)
+2. Go to the toolbar, and under 'Tools', click on the Query Tool
+3. Type this into the box and press fn + f5
+
+```
+CREATE DATABASE spotify_app;
+```
+
+4. In terminal, cd to /django/spotifyapp
+5. Type this into terminal to set up admin user:
+
+```
+python manage.py createsuperuse
+```
+
+6. Type this into terminal to create tables within database:
+
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+
+## Running Project
+1. In terminal, type in:
+
+```
+python manage.py runserver
+```
+
+2. In the browser, go to (http://127.0.0.1:8000/dash/)
+
+## Django
