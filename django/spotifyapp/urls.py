@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from spotifyapp_1.views import dash, connect, login, group
+from spotifyapp_1.views import dash, connect, login, group, connecting
 
 admin.autodiscover()
 
@@ -26,4 +26,6 @@ urlpatterns = [
     url(r'^connect/', connect , name = 'connect'),
     url(r'^dash/', dash, name = 'dash'),
     url(r'^group/', group, name = 'group'),
+    url(r'^connecting/', connecting, name = 'connecting'),
+    url(r'^spotifyReturn/', connect, name = 'spotifyReturn'),
 ]
