@@ -19,15 +19,12 @@ def dash(request):
     return render(request, 'dash.html', context)
 
 def connect(request):
-    context = {}
+    sp_oauth = oauth2.SpotifyOAuth(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, scope=SCOPE, cache_path=CACHE)
+    auth_url = sp_oauth.get_authorize_url()
+    context = {"oauth_url" : auth_url}
     return render(request, 'connect.html', context)
 
 def connecting(request):
-    sp_oauth = oauth2.SpotifyOAuth(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, scope=SCOPE, cache_path=CACHE)
-    auth_url = sp_oauth.get_authorize_url()
-    webbrowser.open(auth_url, new=1, autoraise=True)
-    token_info = sp_oauth.get_cached_token()
-
     text = "<h1>Connecting...</h1>"
     return HttpResponse(text)
 
