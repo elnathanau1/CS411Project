@@ -30,7 +30,7 @@ CREATE DATABASE spotify_app;
 5. Type this into terminal to set up admin user:
 
 ```
-python manage.py createsuperuse
+python manage.py createsuperuser
 ```
 
 6. Type this into terminal to create tables within database:

@@ -5,7 +5,7 @@ from django.db import models
 
 # Create your models here.
 class User(models.Model):
-    username = models.CharField(max_length = 50)
+    username = models.CharField(primary_key = True, max_length = 30)
     spotify_user = models.CharField(max_length = 50)
     genres = HStoreField(null=True, blank=True)
 
