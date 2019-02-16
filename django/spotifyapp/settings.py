@@ -78,10 +78,11 @@ WSGI_APPLICATION = 'spotifyapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'spotify_app',
-        'USER': 'postgres',
-        'PASSWORD': 'password',
-        'HOST': '127.0.0.1',
+        'NAME': 'pfumdtdb',
+        'USER': 'pfumdtdb',
+        'PASSWORD': 'jg9ANW1hsTWbj3Ei4808fEvr3LTP1QCD',
+        # 'HOST': '127.0.0.1',
+        'HOST': 'baasu.db.elephantsql.com',
         'PORT': '5432',
     }
 }
