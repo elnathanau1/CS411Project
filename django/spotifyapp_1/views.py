@@ -19,8 +19,11 @@ def dash(request):
     return render(request, 'dash.html', context)
 
 def connect(request):
+    # Get Spotify authorization
     sp_oauth = oauth2.SpotifyOAuth(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, scope=SCOPE, cache_path=CACHE)
     auth_url = sp_oauth.get_authorize_url()
+
+    # Set context
     context = {"oauth_url" : auth_url}
     return render(request, 'connect.html', context)
 
