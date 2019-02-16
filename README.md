@@ -14,6 +14,7 @@
 Set up virtualenv by running:
 
 ```
+python -m virtualenv env
 source env/bin/activate
 ```
 
