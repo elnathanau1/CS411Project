@@ -21,7 +21,7 @@ from spotifyapp_1.views import dash, connect, login, group, connecting
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
     url(r'^login/', login, name = 'login'),
     url(r'^connect/', connect , name = 'connect'),
     url(r'^dash/', dash, name = 'dash'),
