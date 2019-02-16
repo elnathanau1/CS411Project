@@ -29,3 +29,5 @@ urlpatterns = [
     url(r'^connecting/', connecting, name = 'connecting'),
     url(r'^spotifyReturn/', connect, name = 'spotifyReturn'),
 ]
+
+# http://127.0.0.1:8000/connecting/?code=AQAyDkaVRmP_iXPT4lUkFxVgY0hcLCKqTPLNR8FwqokuEyW9ADByLwzRMAHL9MEZXDTaUH4zX6BCbXmtsgqLE78r5bimXdRaSiZkNTsUVCEGkBdDCIzzd0fojIPGjSSpVisL3DM7bWXrQ861q2R8Fn7y4LN348qby8U_E-b8sxdrcUfCFaJnwmHLOIYLKB1oJswRHtkjyKLlr2xMlvnsUPQTdl4Jv21fCShEvc2tciABxBzyCmIbK_9kSg
