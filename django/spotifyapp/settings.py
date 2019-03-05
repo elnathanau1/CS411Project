@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'spotifyapp.wsgi.application'
+WSGI_APPLICATION = 'django.spotifyapp.wsgi.application'
 
 
 # Database
