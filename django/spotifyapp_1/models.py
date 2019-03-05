@@ -13,6 +13,9 @@ class User(models.Model):
         db_table = 'users'
         managed = True
 
+    def __str__(self):
+        return self.spotify_id
+
 class Membership(models.Model):
     spotify_id = models.CharField(primary_key = True, max_length = 50)
     group_id = models.CharField(max_length = 20)
@@ -20,6 +23,9 @@ class Membership(models.Model):
     class Meta:
         db_table = 'membership'
         managed = True
+
+    def __str__(self):
+        return self.spotify_id
 
 class Group(models.Model):
     group_id = models.CharField(primary_key = True, max_length = 20)
@@ -29,6 +35,9 @@ class Group(models.Model):
     class Meta:
         db_table = 'groups'
         managed = True
+
+    def __str__(self):
+        return self.group_id
 
 class Suggestion(models.Model):
     group_id = models.CharField(max_length = 20)
@@ -56,6 +65,8 @@ class Song(models.Model):
         db_table = 'songs'
         managed = True
 
+    def __str__(self):
+        return self.song_id
 
 
 # User (user_id, name, genres)
