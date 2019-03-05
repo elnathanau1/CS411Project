@@ -56,8 +56,8 @@ def dash(request):
 
     # Save to database
     tempUser = User()
-    tempUser.username = "eau3"
-    tempUser.spotify_user = spotify_id
+    tempUser.spotify_id = spotify_id
+    tempUser.name = display_name
     tempUser.genres = genre_dict
     tempUser.save()
 
