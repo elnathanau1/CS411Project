@@ -1,1 +1,1 @@
-web: gunicorn django.spotifyapp.wsgi:application --log-file -
+web: gunicorn django.wsgi --log-file -
