@@ -10,7 +10,7 @@ import spotipy.oauth2 as oauth2
 
 CLIENT_ID = 'c7c0e5450e374d8581a809b81ad3cb43'
 CLIENT_SECRET = '9e40af53e60b4e77be9465a1beab1ffd'
-REDIRECT_URI = 'http://127.0.0.1:8000/dash/'
+REDIRECT_URI = 'https://cs411-spotify.herokuapp.com/dash/'
 CACHE = '.spotipyoauthcache'
 
 SCOPE = 'user-library-read, user-top-read, user-read-private, user-read-birthdate, user-read-email, playlist-read-private, playlist-modify-public'
