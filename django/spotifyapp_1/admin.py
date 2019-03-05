@@ -1,9 +1,9 @@
 from django.contrib import admin
-from models import *
+from spotifyapp_1 import models
 
 # Register your models here.
-admin.site.register(User)
-admin.site.register(Membership)
-admin.site.register(Group)
-admin.site.register(Suggestion)
-admin.site.register(Song)
+admin.site.register(models.User)
+admin.site.register(models.Membership)
+admin.site.register(models.Group)
+admin.site.register(models.Suggestion)
+admin.site.register(models.Song)
