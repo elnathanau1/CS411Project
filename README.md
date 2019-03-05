@@ -1,9 +1,12 @@
 # CS411Project
+[Project](https://https://cs411-spotify.herokuapp.com)
+
+# THIS README IS OUT OF DATE, WILL UPDATE LATER.
 
 ## Installation
 [PostgreSQL](https://www.postgresql.org/download/)
 
-(note: For pgAdmin4 installation, will ask for a deafult password. I used "password". Use this unless you want to change settings.py in /django/spotifyapp/)
+(note: For pgAdmin4 installation, will ask for a default password. I used "password". Use this unless you want to change settings.py in /django/spotifyapp/)
 
 [Python](https://www.python.org/downloads/)
 
@@ -86,6 +89,6 @@ python manage.py migrate
 ```
 
 ## Resources:
-[ElephantSQL](elephantsql.com)
+[Project](https://https://cs411-spotify.herokuapp.com)
 
 Currently this is where our database is located.
