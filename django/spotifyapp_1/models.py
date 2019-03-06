@@ -51,7 +51,7 @@ class Song(models.Model):
     #https://api.spotify.com/v1/artists/{id}/top-tracks
     song_id = models.CharField(primary_key = True, max_length = 50)
     artist_id = models.CharField(max_length = 100)
-    artist_name = models.CharField(max_lengh = 100)
+    artist_name = models.CharField(max_length = 100)
     genre = HStoreField(null=True, blank=True)
     popularity = models.IntegerField()
     name = models.CharField(max_length = 100)
