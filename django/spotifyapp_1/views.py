@@ -83,7 +83,11 @@ def connecting(request):
 
 
 def group(request):
-    context = {}
+    table = ""
+    for p in User.objects.raw('SELECT * FROM users'):
+        table += "<tr>\n<th>" + p + "</th>\n</tr>"
+        
+    context = {"inputTable" : table}
     return render(request, 'group.html', context)
 
 def login(request):
