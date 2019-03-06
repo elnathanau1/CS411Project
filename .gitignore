@@ -1,6 +1,8 @@
 env/
 django/spotifyapp/__pycache__/
 django/spotifyapp_1/__pycache__/
-django/spotifyapp_1/migrations/
+django/spotifyapp_1/migrations/*
 django/.spotipyoauthcache
 sandbox.py
+
+!django/spotifyapp_1/migrations/__init__.py
