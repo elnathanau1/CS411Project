@@ -55,12 +55,19 @@ def dash(request):
     for key in genre_dict:
         genre_dict[key] = genre_dict[key] / total_genres * 100.0
 
-    # Save to database
+    # Save to User to database
     tempUser = User()
     tempUser.spotify_id = spotify_id
     tempUser.name = display_name
     tempUser.genres = genre_dict
     tempUser.save()
+
+    # Get the top songs from the User's artists
+    # songs_to_add = set()
+    # for artist in artist_set:
+    #     tracks = spotify.artist_top_tracks(artist)
+
+
 
     # Set the context for variables in html
     context = {
