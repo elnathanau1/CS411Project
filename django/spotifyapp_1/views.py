@@ -85,6 +85,7 @@ def connecting(request):
 def group(request):
     table = ""
     for user in User.objects.raw('SELECT * FROM users'):
+        # Note: the HTML injections obviously don't work, but the SQL call does
         table += "<tr>\n<th>" + user.name + "</th>\n</tr>"
 
     context = {"inputTable" : table}
