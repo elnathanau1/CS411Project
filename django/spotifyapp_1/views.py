@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from spotifyapp_1.models import User
+from spotifyapp_1.models import *
 
 import webbrowser
 import spotipy
@@ -63,11 +63,57 @@ def dash(request):
     tempUser.save()
 
     # Get the top songs from the User's artists
-    # songs_to_add = set()
-    # for artist in artist_set:
-    #     tracks = spotify.artist_top_tracks(artist)
+    songs = {} # dict maps song_id to song_data (dict)
+    track_ids = [] # list of track ids
+    for artist in artist_set:
+        tracks = spotify.artist_top_tracks(artist)
+        for track in tracks['tracks']:
+            if track not in track_ids:
+                track_ids.append(track['id'])
+            song_data = {}
+            song_data['song_id'] = track['id']
+            song_data['name'] = track['name']
+            song_data['popularity'] = track['popularity']
+            song_data['genres'] = artist_genre[artist]
+            for a in track['artists']:
+                if a['id'] == artist:
+                    song_data['artist_name'] = a['name']
+                    song_data['artist_id'] = a['id']
+            songs[track['id']] = song_data
 
+    start = 0
+    features = {}
+    while start < len(track_ids):
+        if len(track_ids) - start < 50:
+            af = spotify.audio_features(tracks=track_ids[start : len(track_ids)])
+        else:
+            af = spotify.audio_features(tracks=track_ids[start : start+50])
+        for track in af:
+           feat_data = {}
+           feat_data['mode'] = track['mode']
+           feat_data['acousticness'] = track['acousticness']
+           feat_data['danceability'] = track['danceability']
+           feat_data['energy'] = track['energy']
+           features[track['id']] = feat_data
+        start += 50
 
+    # Use this to fill database
+    for id in songs:
+        tempSong = Song()
+        tempSong.song_id = songs[id]['song_id']
+        tempSong.name = songs[id]['name']
+        tempSong.popularity = songs[id]['popularity']
+        tempSong.genres = songs[id]['genres']
+        tempSong.artist_name = songs[id]['artist_name']
+        tempSong.artist_id = songs[id]['artist_id']
+        tempSong.mode = features[id]['mode']
+        tempSong.acousticness = features[id]['acousticness']
+        tempSong.danceability = features[id]['danceability']
+        tempSong.energy = features[id]['energy']
+        tempSong.save()
+
+        # print(songs[id]) # data from https://api.spotify.com/v1/artists/{id}/top-tracks
+        # print(features[id]) # data from https://api.spotify.com/v1/audio-features
 
     # Set the context for variables in html
     context = {

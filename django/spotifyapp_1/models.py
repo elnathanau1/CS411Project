@@ -14,7 +14,7 @@ class User(models.Model):
         managed = True
 
     def __str__(self):
-        return self.spotify_id
+        return (self.name + ", " + self.spotify_id)
 
 class Membership(models.Model):
     spotify_id = models.CharField(primary_key = True, max_length = 50)
@@ -67,7 +67,7 @@ class Song(models.Model):
         managed = True
 
     def __str__(self):
-        return self.song_id
+        return (self.name + ", " + self.song_id)
 
 
 # User (user_id, name, genres)
