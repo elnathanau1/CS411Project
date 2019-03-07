@@ -8,6 +8,7 @@ import spotipy
 import spotipy.util as util
 import spotipy.oauth2 as oauth2
 
+# technically we should hide these, but oh well
 CLIENT_ID = 'c7c0e5450e374d8581a809b81ad3cb43'
 CLIENT_SECRET = '9e40af53e60b4e77be9465a1beab1ffd'
 REDIRECT_URI = 'https://cs411-spotify.herokuapp.com/dash/'
