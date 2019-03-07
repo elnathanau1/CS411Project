@@ -72,19 +72,22 @@ def dash(request):
     track_ids = [] # list of track ids
     for artist in artist_set:
         tracks = spotify.artist_top_tracks(artist)
+        count = 0
         for track in tracks['tracks']:
-            if track not in track_ids:
-                track_ids.append(track['id'])
-            song_data = {}
-            song_data['song_id'] = track['id']
-            song_data['name'] = track['name']
-            song_data['popularity'] = track['popularity']
-            song_data['genres'] = artist_genre[artist]
-            for a in track['artists']:
-                if a['id'] == artist:
-                    song_data['artist_name'] = a['name']
-                    song_data['artist_id'] = a['id']
-            songs[track['id']] = song_data
+            if count < 5:
+                if track not in track_ids:
+                    track_ids.append(track['id'])
+                song_data = {}
+                song_data['song_id'] = track['id']
+                song_data['name'] = track['name']
+                song_data['popularity'] = track['popularity']
+                song_data['genres'] = artist_genre[artist]
+                for a in track['artists']:
+                    if a['id'] == artist:
+                        song_data['artist_name'] = a['name']
+                        song_data['artist_id'] = a['id']
+                songs[track['id']] = song_data
+            count = count + 1
 
     start = 0
     features = {}
