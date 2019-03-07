@@ -1,94 +1,104 @@
 # CS411Project
-[Project](https://https://cs411-spotify.herokuapp.com)
+## Overview
+This repo is for the CS411 Final Project for SP19. It is an application that will suggest songs for groups of people based on the individuals' music preferences. Currently both the website and PostgreSQL database are hosted on Heroku.
 
-# THIS README IS OUT OF DATE, WILL UPDATE LATER.
+## Links
+[App](https://https://cs411-spotify.herokuapp.com)
 
-## Installation
-[PostgreSQL](https://www.postgresql.org/download/)
+[Google Doc](https://docs.google.com/document/d/1FZgSn6VcPV9DvcemfN2ge1MxUPTuL0UNmxrsfGNsPt0/edit)
 
-(note: For pgAdmin4 installation, will ask for a default password. I used "password". Use this unless you want to change settings.py in /django/spotifyapp/)
+[Project Page](https://wiki.illinois.edu/wiki/display/CS411SP19/temp1)
 
-[Python](https://www.python.org/downloads/)
+## Prereq
+[PostgreSQL](https://www.postgresql.org/download/), [Python](https://www.python.org/downloads/), [Git Bash](https://git-scm.com/downloads), [pip](https://pip.pypa.io/en/stable/installing/)
 
-[Git Bash](https://git-scm.com/downloads)
+## Developer Set Up
 
-[pip](https://pip.pypa.io/en/stable/installing/)
+### Heroku
+1. Create an account on [Heroku](https://heroku.com)
+2. Get added as a collaborator for the cs411-spotify project
 
-Set up virtualenv by running:
+### Virtual Environment
+1. Create the virtual environment (only need to be done once)
 
 ```
 python -m virtualenv env
+```
+
+2. Activate the environment (must be done for every new Bash window)
+
+```
 source env/bin/activate
 ```
 
-After those have been installed, run this in Bash:
+3. Install the requirements.txt (only must be done when new dependencies are added)
 
 ```
 pip install -r requirements.txt
 ```
 
-Deactivate the virtualenv at the end with:
+4. When done working, deactivate the virtualenv
 
 ```
 deactviate
 ```
 
-## Project Set Up
-1. Load pgAdmin4 using: (http://127.0.0.1:65274/browser/)
-2. On the Browser bar on the left, right click "Server" and click "Create -> Server"
-3. Type this information into the popup:
+### Git
+Automatic deployment of the ```prod``` branch is currently on. Any changes to the ```prod``` branch will be viewable on the [webpage](https://https://cs411-spotify.herokuapp.com) within a few minutes.
 
-- General Tab:
-    - Name: ```ElephantSQL```
-- Connection Tab:
-    - Host: ```baasu.db.elephantsql.com```
-    - Port: ```5432```
-    - Maintenance database: ```pfumdtdb```
-    - Username: ```pfumdtdb```
-    - Password: Ask Elnathan
-    - Save the password
-- Advanced Tab:
-    - Host address: ```baasu.db.elephantsql.com```
-
-
-4. In Git Bash, cd to /django/spotifyapp
-5. Type this into terminal to set up admin user:
+Basic commands:
+1. git clone - makes a copy of this repo in your directory
 
 ```
-python manage.py createsuperuser
+git clone https://github.com/elnathanau1/CS411Project.git
 ```
 
-6. Type this into terminal to create tables within database:
+2. git checkout - switches branches or restores working files
 
 ```
-python manage.py makemigrations
-python manage.py migrate
+# switching into master branch
+git checkout master
 ```
 
-## Running Project
-1. In terminal, type in:
+3. git pull - updates local files to most recent files in branch
 
 ```
-python manage.py runserver
+git pull
 ```
 
-2. In the browser, go to (http://127.0.0.1:8000/dash/)
-
-## Django Commands
-Relevant commands necessary for development:
+4. git status - tells you which files you have changed
 
 ```
-# Run the server
-python manage.py runserver
-
-# Make migration (after change to model)
-python manage.py makemigrations spotifyapp_1
-
-# Migrate (call after makemigration)
-python manage.py migrate
+git status
 ```
 
-## Resources:
-[Project](https://https://cs411-spotify.herokuapp.com)
+5. git add - Tells git which files you have changed within the repo
 
-Currently this is where our database is located.
+```
+# add all files that have been changed
+git add .
+```
+
+6. git commit - stages the changes added through ```git add```
+
+```
+git commit -m "INSERT COMMIT MESSAGE HERE"
+```
+
+7. git push - pushes your commit to the branch`
+
+```
+git push
+```
+
+8. git reset - reset local files to the last commit
+
+```
+git reset --hard HEAD
+```
+
+9. Pushing the ```master``` branch to ```prod``` - automatic deployment from ```prod```
+
+```
+git push origin master:prod
+```
