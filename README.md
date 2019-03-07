@@ -134,3 +134,7 @@ git push origin master:prod
 4. [/login](https://https://cs411-spotify.herokuapp.com/login) is no longer needed and can be used as a testing sandbox
     - Python code for this page is located at ```django/spotifyapp_1/views.py``` under ```login()```
     - HTML code for this page is located at ```django/spotifyapp_1/templates/login.html```
+
+## Resources
+- [Spotipy](https://spotipy.readthedocs.io/en/latest/#) - Python Spotify wrapper
+- [Django](https://docs.djangoproject.com/en/2.1/) - Python web framework
