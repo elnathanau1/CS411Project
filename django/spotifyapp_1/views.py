@@ -37,14 +37,16 @@ def dash(request):
     top_artists_short = spotify.current_user_top_artists(limit=25, time_range='short_term')
 
     # Process
+    artist_genre = {} #stores genres of artist
     artist_set = set()
     genre_dict = {}
     for list in [top_artists_long, top_artists_medium, top_artists_short]:
         for artist in list['items']:
             artist_id = artist['id']
             artist_set.add(artist_id)
-
+            artist_genre[artist_id] = []
             for genre in artist['genres']:
+                artist_genre[artist_id].append(genre)
                 if genre in genre_dict:
                     genre_dict[genre] += 1
                 else:
