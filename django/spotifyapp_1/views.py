@@ -136,7 +136,7 @@ def connecting(request):
     # Get Spotify authorization
     auth_url = sp_oauth.get_authorize_url()
 
-    webbrowser.open_new(auth_url)
+    webbrowser.open("https://" + auth_url)
     context = {}
     return render(request, 'connecting.html', context)
 
