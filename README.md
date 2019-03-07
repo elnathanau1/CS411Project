@@ -117,21 +117,21 @@ git push origin master:prod
 ```
 
 ## Site Navigation
-1. https://cs411-spotify.herokuapp.com is currently linked to the same page as [/connect](https://https://cs411-spotify.herokuapp.com/connect/)
+1. https://cs411-spotify.herokuapp.com is currently linked to the same page as [/connect](https://cs411-spotify.herokuapp.com/connect/)
     - This page allows the user to connect to Spotify, and will save their user and song info into the database
     - Python code for this page is located at ```django/spotifyapp_1/views.py``` under ```connect()```
     - HTML code for this page is located at ```django/spotifyapp_1/templates/connect.html```
 
-2. [/dash](https://https://cs411-spotify.herokuapp.com/dash) is the page that users are redirected to after connecting to Spotify
-    - BUG: this page breaks if not redirected here from [/connect](https://https://cs411-spotify.herokuapp.com/connect/)
+2. [/dash](https://cs411-spotify.herokuapp.com/dash) is the page that users are redirected to after connecting to Spotify
+    - BUG: this page breaks if not redirected here from [/connect](https://cs411-spotify.herokuapp.com/connect/)
     - Python code for this page is located at ```django/spotifyapp_1/views.py``` under ```dash()```
     - HTML code for this page is located at ```django/spotifyapp_1/templates/dash.html```
 
-3. [/admin](https://https://cs411-spotify.herokuapp.com/admin) is the admin page to view the data stored in our database
+3. [/admin](https://cs411-spotify.herokuapp.com/admin) is the admin page to view the data stored in our database
     - must be a superuser to be able to log in
     - additional functions can be registered under ```django/spotifyapp_1/admin.py```
 
-4. [/login](https://https://cs411-spotify.herokuapp.com/login) is no longer needed and can be used as a testing sandbox
+4. [/login](https://cs411-spotify.herokuapp.com/login) is no longer needed and can be used as a testing sandbox
     - Python code for this page is located at ```django/spotifyapp_1/views.py``` under ```login()```
     - HTML code for this page is located at ```django/spotifyapp_1/templates/login.html```
 
