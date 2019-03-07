@@ -1,5 +1,7 @@
-<html>
-  <h1>Welcome {{display_name}}!</h1>
+{% extends 'base.html' %}
 
-  <h2>Your Spotify ID is: {{spotify_id}}</h2>
-</html>
+{% block content %}
+<h1>Welcome {{display_name}}!</h1>
+
+<h2>Your Spotify ID is: {{spotify_id}}</h2>
+{% endblock %}
