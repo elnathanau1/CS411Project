@@ -105,7 +105,7 @@ def dash(request):
         tempSong.song_id = songs[id]['song_id']
         tempSong.name = songs[id]['name']
         tempSong.popularity = songs[id]['popularity']
-        tempSong.genres = songs[id]['genres']
+        tempSong.genre = songs[id]['genres']
         tempSong.artist_name = songs[id]['artist_name']
         tempSong.artist_id = songs[id]['artist_id']
         tempSong.mode = features[id]['mode']
