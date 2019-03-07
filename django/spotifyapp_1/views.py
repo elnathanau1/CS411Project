@@ -34,7 +34,7 @@ def dash(request):
     display_name = current_user['display_name']
     spotify_id = current_user['id']
 
-    if len(User.objects.raw('SELECT * FROM users WHERE spotify_id = ' + spotify_id)) > 0:
+    if len(User.objects.raw('SELECT * FROM users WHERE spotify_id = \"{0}\"'.format(spotify_id)) > 0:
 
         # Pull top artists
         top_artists_long = spotify.current_user_top_artists(limit=25, time_range='long_term')
