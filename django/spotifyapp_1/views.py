@@ -129,7 +129,7 @@ def dash(request):
 
 def connect(request):
     # Set context
-    context = {ROOT_URL + "/connecting" : connecting_url}
+    context = {"connecting_url" : ROOT_URL + "/connecting" }
     return render(request, 'connect.html', context)
 
 def connecting(request):
