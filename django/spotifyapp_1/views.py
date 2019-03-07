@@ -129,14 +129,14 @@ def dash(request):
 
 def connect(request):
     # Set context
-    context = {"connecting_url" : ROOT_URL + "/connecting" }
-    return render(request, 'connect.html', context)
 
-def connecting(request):
     # Get Spotify authorization
     auth_url = sp_oauth.get_authorize_url()
 
-    webbrowser.open("https://" + auth_url)
+    context = {"auth_url" : auth_url }
+    return render(request, 'connect.html', context)
+
+def connecting(request):
     context = {}
     return render(request, 'connecting.html', context)
 
