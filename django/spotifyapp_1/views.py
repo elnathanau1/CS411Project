@@ -15,6 +15,8 @@ REDIRECT_URI = 'https://cs411-spotify.herokuapp.com/dash/'
 # REDIRECT_URI = 'http://127.0.0.1:8000/dash/'
 CACHE = '.spotipyoauthcache'
 
+ROOT_URL = 'https://cs411-spotify.herokuapp.com'
+
 SCOPE = 'user-library-read, user-top-read, user-read-private, user-read-birthdate, user-read-email, playlist-read-private, playlist-modify-public'
 
 sp_oauth = oauth2.SpotifyOAuth(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, scope=SCOPE, cache_path=CACHE)
@@ -126,14 +128,15 @@ def dash(request):
     return render(request, 'dash.html', context)
 
 def connect(request):
-    # Get Spotify authorization
-    auth_url = sp_oauth.get_authorize_url()
-
     # Set context
-    context = {"oauth_url" : auth_url}
+    context = {ROOT_URL + "/connecting" : connecting_url}
     return render(request, 'connect.html', context)
 
 def connecting(request):
+    # Get Spotify authorization
+    auth_url = sp_oauth.get_authorize_url()
+
+    webbrowser.open_new(auth_url)
     context = {}
     return render(request, 'connecting.html', context)
 
