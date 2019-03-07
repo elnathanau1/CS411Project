@@ -3,7 +3,7 @@
 This repo is for the CS411 Final Project for SP19. It is an application that will suggest songs for groups of people based on the individuals' music preferences. Currently both the website and PostgreSQL database are hosted on Heroku.
 
 ## Links
-[App](https://https://cs411-spotify.herokuapp.com)
+[App](https://cs411-spotify.herokuapp.com)
 
 [Google Doc](https://docs.google.com/document/d/1FZgSn6VcPV9DvcemfN2ge1MxUPTuL0UNmxrsfGNsPt0/edit)
 
@@ -17,6 +17,7 @@ This repo is for the CS411 Final Project for SP19. It is an application that wil
 ### Heroku
 1. Create an account on [Heroku](https://heroku.com)
 2. Get added as a collaborator for the cs411-spotify project
+3. Get added as a superuser for the cs411-spotify project
 
 ### Virtual Environment
 1. Create the virtual environment (only need to be done once)
@@ -40,13 +41,24 @@ pip install -r requirements.txt
 4. When done working, deactivate the virtualenv
 
 ```
-deactviate
+deactivate
 ```
 
 ### Git
 Automatic deployment of the ```prod``` branch is currently on. Any changes to the ```prod``` branch will be viewable on the [webpage](https://https://cs411-spotify.herokuapp.com) within a few minutes.
 
-Basic commands:
+#### Making Changes:
+```
+git status
+git add .
+git commit -m "INSERT COMMIT MESSAGE"
+git push
+
+# if pushing to deploy
+git push origin master:prod
+```
+
+#### Basic Commands:
 1. git clone - makes a copy of this repo in your directory
 
 ```
@@ -85,7 +97,8 @@ git add .
 git commit -m "INSERT COMMIT MESSAGE HERE"
 ```
 
-7. git push - pushes your commit to the branch`
+7. git push - pushes your commit to the branch
+  - Run every time before starting work in case anyone else made changes
 
 ```
 git push
@@ -102,3 +115,22 @@ git reset --hard HEAD
 ```
 git push origin master:prod
 ```
+
+## Site Navigation
+1. https://cs411-spotify.herokuapp.com is currently linked to the same page as [/connect](https://https://cs411-spotify.herokuapp.com/connect/)
+  - This page allows the user to connect to Spotify, and will save their user and song info into the database
+  - Python code for this page is located at ```django/spotifyapp_1/views.py``` under ```connect()```
+  - HTML code for this page is located at ```django/spotifyapp_1/templates/connect.html```
+
+2. [/dash](https://https://cs411-spotify.herokuapp.com/dash) is the page that users are redirected to after connecting to Spotify
+  - BUG: this page breaks if not redirected here from [/connect](https://https://cs411-spotify.herokuapp.com/connect/)
+  - Python code for this page is located at ```django/spotifyapp_1/views.py``` under ```dash()```
+  - HTML code for this page is located at ```django/spotifyapp_1/templates/dash.html```
+
+3. [/admin](https://https://cs411-spotify.herokuapp.com/admin) is the admin page to view the data stored in our database
+  - must be a superuser to be able to log in
+  - additional functions can be registered under ```django/spotifyapp_1/admin.py```
+
+4. [/login](https://https://cs411-spotify.herokuapp.com/login) is no longer needed and can be used as a testing sandbox
+- Python code for this page is located at ```django/spotifyapp_1/views.py``` under ```login()```
+- HTML code for this page is located at ```django/spotifyapp_1/templates/login.html```
