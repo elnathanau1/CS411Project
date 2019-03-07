@@ -1,4 +1,5 @@
 from django.contrib.postgres.fields import HStoreField
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
 # HStoreField: https://docs.djangoproject.com/en/2.1/ref/contrib/postgres/fields/
@@ -52,7 +53,7 @@ class Song(models.Model):
     song_id = models.CharField(primary_key = True, max_length = 50)
     artist_id = models.CharField(max_length = 100)
     artist_name = models.CharField(max_length = 100)
-    genre = HStoreField(null=True, blank=True)
+    genre = ArrayField(models.CharField(max_length = 50))
     popularity = models.IntegerField()
     name = models.CharField(max_length = 100)
 
