@@ -1,8 +1,6 @@
 $(document).ready(function() {
-
     // AJAX GET
     $('.get-more').click(function(){
-
         $.ajax({
             type: "GET",
             url: "/ajax/more/",
