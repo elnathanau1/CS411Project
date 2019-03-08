@@ -2,7 +2,6 @@ $(document).ready(function() {
 
     // AJAX GET
     $('.get-more').click(function(){
-
         $.ajax({
             type: "GET",
             url: "/ajax/more/",
@@ -31,8 +30,6 @@ $(document).ready(function() {
         });
 
     });
-
-
 
     // CSRF code
     function getCookie(name) {
