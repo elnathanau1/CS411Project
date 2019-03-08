@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'spotifyapp_1',
     'django.contrib.postgres',
+    'jquery',
 ]
 
 MIDDLEWARE = [
