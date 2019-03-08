@@ -16,11 +16,16 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from spotifyapp_1.views import dash, connect, login, group, connecting
+from spotifyapp_1.views import *
+from spotifyapp_1.ajax import *
 
 admin.autodiscover()
 
 urlpatterns = [
+    # ajax
+    url(r'^ajax/more/$', ajax.more_todo),
+
+    # pages
     url(r'^admin/', admin.site.urls),
     url(r'^login/', login, name = 'login'),
     url(r'^connect/', connect , name = 'connect'),
