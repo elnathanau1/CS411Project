@@ -23,7 +23,7 @@ admin.autodiscover()
 
 urlpatterns = [
     # ajax
-    url(r'^ajax/more/$', more_todo),
+    url(r'^ajax/more/', more_todo),
 
     # pages
     url(r'^admin/', admin.site.urls),
