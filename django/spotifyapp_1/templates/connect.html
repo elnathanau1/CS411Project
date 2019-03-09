@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static from staticfiles %}
+{% load static %}
 
 {% block content %}
 <div class="container">
@@ -11,5 +11,5 @@
     <button class='btn get-more'>Button</button>
   </div>
 </div>
-<script src="CS411Project/django/staticfiles/Scripts/main.js"></script>
+<script src="{% static 'spotifyapp_1/main.js' %}"></script>
 {% endblock %}
