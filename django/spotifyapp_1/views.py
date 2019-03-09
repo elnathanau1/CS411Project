@@ -174,7 +174,12 @@ def more_todo(request):
 
 def top_artists_req(request):
     if request.is_ajax():
-        top_artists = ["song1", "song2", "song3", "song4", "song5", "song6", "song7"]
+        top_artists = []
+        top_artists_long = spotify.current_user_top_artists(limit=25, time_range='long_term')
+        
+        for artist in top_artists_long['items']:
+            top_artists.append(artist["name"])
+
         data = json.dumps(top_artists)
         return HttpResponse(data, content_type='application/json')
     else:
