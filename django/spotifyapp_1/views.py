@@ -23,7 +23,7 @@ SCOPE = 'user-library-read, user-top-read, user-read-private, user-read-birthdat
 
 sp_oauth = oauth2.SpotifyOAuth(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, scope=SCOPE, cache_path=CACHE)
 
-spotify = spotipy.Spotify()
+access_token = ""
 
 # Create your views here.
 def dash(request):
@@ -174,12 +174,16 @@ def more_todo(request):
 
 def top_artists_req(request):
     if request.is_ajax():
+        spotify = spotipy.Spotify(auth=access_token)
+
         top_artists = []
         top_artists_long = spotify.current_user_top_artists(limit=25, time_range='long_term')
-        
+        print(top_artists_long)
+
         for artist in top_artists_long['items']:
             top_artists.append(artist["name"])
 
+        print(top_artists)
         data = json.dumps(top_artists)
         return HttpResponse(data, content_type='application/json')
     else:
