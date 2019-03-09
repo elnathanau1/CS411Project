@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from spotifyapp_1.views import *
 from spotifyapp_1.ajax import *
@@ -35,3 +36,5 @@ urlpatterns = [
     url(r'^spotifyReturn/', connect, name = 'spotifyReturn'),
     url(r'^$', connect, name = 'default'),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
