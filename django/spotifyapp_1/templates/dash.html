@@ -1,7 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Welcome {{display_name}}!</h1>
+<div class="container">
+  <h1>Welcome {{display_name}}!</h1>
 
-<h2>Your Spotify ID is: {{spotify_id}}</h2>
+  <h2>Your Spotify ID is: {{spotify_id}}</h2>
+  <table style="width:100%">
+    <tr>
+      <th>Artist</th>
+    </tr>
+  </table>
+</div>
+
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'spotifyapp_1/dash.js' %}"></script>
 {% endblock %}
