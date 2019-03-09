@@ -18,13 +18,13 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from spotifyapp_1.views import *
-from spotifyapp_1.ajax import *
 
 admin.autodiscover()
 
 urlpatterns = [
     # ajax
     url(r'^ajax/more/', more_todo),
+    url(r'^ajax/top_artists/', top_artists_req),
 
     # pages
     url(r'^admin/', admin.site.urls),

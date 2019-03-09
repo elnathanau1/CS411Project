@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 
 from spotifyapp_1.models import *
 
@@ -7,6 +7,8 @@ import webbrowser
 import spotipy
 import spotipy.util as util
 import spotipy.oauth2 as oauth2
+
+import json
 
 # technically we should hide these, but oh well
 CLIENT_ID = 'c7c0e5450e374d8581a809b81ad3cb43'
@@ -19,7 +21,9 @@ ROOT_URL = 'https://cs411-spotify.herokuapp.com'
 
 SCOPE = 'user-library-read, user-top-read, user-read-private, user-read-birthdate, user-read-email, playlist-read-private, playlist-modify-public'
 
-sp_oauth = oauth2.SpotifyOAuth(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, scope=SCOPE, cache_path=None)
+sp_oauth = oauth2.SpotifyOAuth(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, scope=SCOPE, cache_path=CACHE)
+
+spotify = spotipy.Spotify()
 
 # Create your views here.
 def dash(request):
@@ -145,7 +149,6 @@ def connecting(request):
     context = {}
     return render(request, 'connecting.html', context)
 
-
 def group(request):
     table = ""
     for user in User.objects.raw('SELECT * FROM users'):
@@ -158,3 +161,21 @@ def group(request):
 def login(request):
     context = {}
     return render(request, 'login.html', context)
+
+# Button functions
+def more_todo(request):
+    if request.is_ajax():
+        # os.remove(CACHE)
+        todo_items = ['Mow Lawn', 'Buy Groceries',]
+        data = json.dumps(todo_items)
+        return HttpResponse(data, content_type='application/json')
+    else:
+        raise Http404
+
+def top_artists_req(request):
+    if request.is_ajax():
+        top_artists = ["song1", "song2", "song3", "song4", "song5", "song6", "song7"]
+        data = json.dumps(top_artists)
+        return HttpResponse(data, content_type='application/json')
+    else:
+        raise Http404

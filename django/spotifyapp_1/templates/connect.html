@@ -3,13 +3,8 @@
 
 {% block content %}
 <div class="container">
-  <div class="container">
-    <a href={{auth_url}} class="button">Connect to Spotify</a>
-    <ul>
-      <li>Take out trash</li>
-    </ul>
-    <button class='btn get-more'>Button</button>
-  </div>
+  <a href={{auth_url}} class="button">Connect to Spotify</a>
+  <button class='btn get-more'>Button</button>
 </div>
 <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
 <script src="{% static 'spotifyapp_1/main.js' %}"></script>
