@@ -135,6 +135,55 @@ git push origin master:prod
     - Python code for this page is located at ```django/spotifyapp_1/views.py``` under ```login()```
     - HTML code for this page is located at ```django/spotifyapp_1/templates/login.html```
 
+## Static Files
+Static files are stored in ```django/spotifyapp_1/static/spotifyapp_1/```. Feel free to add folders within this directory to reference your static files.
+
+### Example
+Files to examine: ```spotifyapp_1/views.py```, ```spotifyapp_1/dash.html```, ```spotifyapp_1/dash.js```, ```spotifyapp/urls.py```
+
+- ```views.py```: Python code for actions taken when pages are accessed. Connected to html files through ```urls.py```
+- ```dash.html```: Load the following tags to import the static folder, and use the correct format to locate the static files.
+
+```
+{% load static %}
+
+...
+
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'spotifyapp_1/dash.js' %}"></script>
+```
+
+- ```dash.js```: This file uses jquery and ajax to make changes to ```dash.html``` dynamically on the fly, without page load. Note that this file makes a GET request to ```/ajax/top_artists/```, which we connect to the function ```top_artists_req``` through ```urls.py```
+
+```
+// dash.js
+$(document).ready(function() {
+  //loaded immediately after page is done loading
+  $.ajax({
+    type: "GET",
+    url: "/ajax/top_artists/",
+    success: function(data) {
+      for(i = 0; i < data.length; i++){
+      // jQuery selector
+        $('#top_artist_table').append('<tr><th>'+data[i]+'</th></tr>')
+      }
+    }
+  });
+
+});
+```
+
+- ```urls.py```: Links calls to our website to the proper python functions within ```views.py```
+
+#### Ex: Adding top artists to the Dashboard page
+1. On page load, ```dash.js``` makes a GET request to ```/ajax/top_artists/```
+2. ```urls.py``` takes this request and routes it to ```top_artists_req(request)``` within ```views.py```
+3. ```top_artists_req``` checks that the request is from ajax, and then calls uses spotipy to get the users' top 25 artists.
+4. ```top_artists_req``` then packages that list into a json and sends a HttpResponse back to ```dash.js``` with the data.
+5. ```dash.js``` runs the function defined in ```success: function(data)```, using jquery to append a new table entry to the table defined by ```id=top_artist_table```
+
+
 ## Resources
 - [Spotipy](https://spotipy.readthedocs.io/en/latest/#) - Python Spotify wrapper
 - [Django](https://docs.djangoproject.com/en/2.1/) - Python web framework
+- [jquery](https://api.jquery.com/)
