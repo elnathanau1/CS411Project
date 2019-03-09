@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    alert("ready4");
     // AJAX GET
     $('.get-more').click(function(){
         $.ajax({
