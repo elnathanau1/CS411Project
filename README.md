@@ -144,7 +144,7 @@ Files to examine: ```spotifyapp_1/views.py```, ```spotifyapp_1/dash.html```, ```
 - ```views.py```: Python code for actions taken when pages are accessed. Connected to html files through ```urls.py```
 - ```dash.html```: Load the following tags to import the static folder, and use the correct format to locate the static files.
 
-```
+```html
 {% load static %}
 
 ...
@@ -155,7 +155,7 @@ Files to examine: ```spotifyapp_1/views.py```, ```spotifyapp_1/dash.html```, ```
 
 - ```dash.js```: This file uses jquery and ajax to make changes to ```dash.html``` dynamically on the fly, without page load. Note that this file makes a GET request to ```/ajax/top_artists/```, which we connect to the function ```top_artists_req``` through ```urls.py```
 
-```
+```javascript
 // dash.js
 $(document).ready(function() {
   //loaded immediately after page is done loading
