@@ -29,6 +29,12 @@ spotify = spotipy.Spotify()
 def dash(request):
     # Get the code from Spotify connection
     code = request.GET.get('code', '')
+
+    # auth safety check
+    if(code == ''){
+        return connect(request)
+    }
+    
     token_info = sp_oauth.get_access_token(code)
     access_token = token_info['access_token']
 
