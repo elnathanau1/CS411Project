@@ -23,7 +23,7 @@ admin.autodiscover()
 
 urlpatterns = [
     # ajax
-    url(r'^ajax/more/', more_todo),
+    url(r'^ajax/logout/', logout_req),
     url(r'^ajax/top_artists/', top_artists_req),
 
     # pages
