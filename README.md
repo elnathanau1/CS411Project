@@ -139,7 +139,7 @@ git push origin master:prod
 Static files are stored in ```django/spotifyapp_1/static/spotifyapp_1/```. Feel free to add folders within this directory to reference your static files.
 
 ### Example
-Files to examine: ```spotifyapp_1/views.py```, ```spotifyapp_1/dash.html```, ```spotifyapp_1/dash.js```, ```spotifyapp/urls.py```
+Files to examine: ```spotifyapp_1/views.py```, ```spotifyapp_1/dash.html```, ```spotifyapp_1/static/spotifyapp_1/dash.js```, ```spotifyapp/urls.py```
 
 - ```views.py```: Python code for actions taken when pages are accessed. Connected to html files through ```urls.py```
 - ```dash.html```: Load the following tags to import the static folder, and use the correct format to locate the static files.
