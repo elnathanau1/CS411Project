@@ -30,6 +30,8 @@ def dash(request):
     # Get the code from Spotify connection
     code = request.GET.get('code', '')
     token_info = sp_oauth.get_access_token(code)
+
+    global access_token
     access_token = token_info['access_token']
 
     # Get current user
