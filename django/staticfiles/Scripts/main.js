@@ -1,7 +1,9 @@
 $(document).ready(function() {
+    console.log("ready");
 
     // AJAX GET
     $('.get-more').click(function(){
+      console.log("ready2");
         $.ajax({
             type: "GET",
             url: "/ajax/more/",
