@@ -31,10 +31,9 @@ def dash(request):
     code = request.GET.get('code', '')
 
     # auth safety check
-    if(code == ''){
+    if(code == ''):
         return connect(request)
-    }
-    
+
     token_info = sp_oauth.get_access_token(code)
     access_token = token_info['access_token']
 
