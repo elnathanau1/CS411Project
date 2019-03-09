@@ -37,10 +37,11 @@ def dash(request):
     token_info = sp_oauth.get_access_token(code)
     access_token = token_info['access_token']
 
-    # Get current user
+    # set gloabl spotify var to be used in other functions
     global spotify
     spotify = spotipy.Spotify(auth=access_token)
 
+    # Get current user
     current_user = spotify.current_user()
     display_name = current_user['display_name']
     spotify_id = current_user['id']
@@ -170,10 +171,10 @@ def login(request):
     return render(request, 'login.html', context)
 
 # Button functions
-def more_todo(request):
+def logout_req(request):
     if request.is_ajax():
-        # os.remove(CACHE)
-        todo_items = ['Mow Lawn', 'Buy Groceries',]
+        os.remove(CACHE)
+        todo_items = []
         data = json.dumps(todo_items)
         return HttpResponse(data, content_type='application/json')
     else:
