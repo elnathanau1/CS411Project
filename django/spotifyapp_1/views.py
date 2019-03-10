@@ -214,7 +214,8 @@ def list_groups_req(request):
 
         for i in membership_query:
             group = Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(i.group_id))
-            list_groups.append(group.name)
+            for g in group:
+                list_groups.append(g.name)
 
         data = json.dumps(list_groups)
         return HttpResponse(data, content_type='application/json')
