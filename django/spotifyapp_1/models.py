@@ -18,8 +18,8 @@ class User(models.Model):
         return (self.name + ", " + self.spotify_id)
 
 class Membership(models.Model):
-    spotify_id = models.ForeignKey(User)
-    group_id = models.ForeignKey(Group)
+    spotify_id = models.ForeignKey(User, on_delete = models.CASCADE)
+    group_id = models.ForeignKey(Group, on_delete = models.CASCADE)
 
     class Meta:
         db_table = 'membership'
