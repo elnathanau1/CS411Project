@@ -213,11 +213,14 @@ def create_group_req(request):
 
         newGroup = Group()
         newGroup.group_id = new_id
-        newGroup.group_name = new_name
+        newGroup.name = new_name
         newGroup.member_count = 1
         newGroup.suggestions = []
         newGroup.save()
 
+        newMem = Membership()
+        newMem.spotify_id = spotify_id
+        newMem.group_id = new_id
 
         data = {'message': "id: {0}, name: {1} added".format(new_id, new_name)}
         return HttpResponse(json.dumps(data), content_type='application/json')
