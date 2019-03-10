@@ -184,9 +184,7 @@ $(document).ready(function() {
 
 ## Migrations
 To make changes to the database [NOTE: WILL WIPE DATA]
-
 0. If psql is not recognized, add to path ```export PATH=/Library/PostgreSQL/11/bin/:$PATH```
-
 1. ```heroku pg:psql -a cs411-spotify```
 2. Within psql, ```DROP TABLE groups, memberships, users, songs;```
 3. Run ```\dt;``` to confirm they have been deleted.
