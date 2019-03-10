@@ -25,6 +25,7 @@ urlpatterns = [
     # ajax
     url(r'^ajax/logout/', logout_req),
     url(r'^ajax/top_artists/', top_artists_req),
+    url(r'^ajax/create_group/', create_group_req),
 
     # pages
     url(r'^admin/', admin.site.urls),
