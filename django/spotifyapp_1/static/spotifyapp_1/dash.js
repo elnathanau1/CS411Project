@@ -14,6 +14,7 @@ $(document).ready(function() {
 
   // AJAX POST
   $('.create_group').click(function(){
+      console.log("clicked")
       $.ajax({
           type: "POST",
           url: "/ajax/create_group/",
