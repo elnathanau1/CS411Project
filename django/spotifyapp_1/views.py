@@ -236,8 +236,8 @@ def create_group_req(request):
         newGroup.save()
 
         newMem = Membership()
-        newMem.spotify_id = current_user
-        newMem.group_id = newGroup
+        newMem.spotify_id = User.objects.get(spotify_id=spotify_id)
+        newMem.group_id = Group.objects.get(group_id=new_id)
 
         # newMem.spotify_id = spotify_id
         # newMem.group_id = new_id
