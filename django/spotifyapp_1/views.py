@@ -36,9 +36,12 @@ def dash(request):
 
     # auth safety check
     if(code != ''):
-        token_info = sp_oauth.get_access_token(code)
-        global access_token
-        access_token = token_info['access_token']
+        try:
+            token_info = sp_oauth.get_access_token(code)
+            global access_token
+            access_token = token_info['access_token']
+        except:
+            return connect(request)
 
     try:
         # set gloabl spotify var to be used in other functions
