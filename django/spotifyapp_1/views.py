@@ -228,22 +228,24 @@ def create_group_req(request):
         new_id = request.POST.get('new_id')
         new_name = request.POST.get('new_name')
 
-        newGroup = Group()
-        newGroup.group_id = new_id
-        newGroup.name = new_name
-        newGroup.member_count = 1
-        newGroup.suggestions = []
-        newGroup.save()
+        # checks if group exists
+        if len(Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(new_id))) == 0:
+            newGroup = Group()
+            newGroup.group_id = new_id
+            newGroup.name = new_name
+            newGroup.member_count = 1
+            newGroup.suggestions = []
+            newGroup.save()
 
-        newMem = Membership()
-        newMem.m_user = User.objects.get(spotify_id=spotify_id)
-        newMem.m_group = Group.objects.get(group_id=new_id)
+            newMem = Membership()
+            newMem.m_user = User.objects.get(spotify_id=spotify_id)
+            newMem.m_group = Group.objects.get(group_id=new_id)
+            newMem.save()
 
-        # newMem.spotify_id = spotify_id
-        # newMem.group_id = new_id
-        newMem.save()
+            data = {'message': "id: {0}, name: {1} added".format(new_id, new_name)}
+        else:
+            data = {'message': "id: {0}, name: {1} already exists".format(new_id, new_name)}
 
-        data = {'message': "id: {0}, name: {1} added".format(new_id, new_name)}
         return HttpResponse(json.dumps(data), content_type='application/json')
     else:
         raise Http404
