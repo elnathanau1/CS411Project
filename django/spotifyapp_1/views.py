@@ -201,7 +201,7 @@ def top_artists_req(request):
     else:
         raise Http404
 
-def create_group(request):
+def create_group_req(request):
     if request.is_ajax() and request.POST:
         new_id = request.POST.get('new_id')
         new_name = request.POST.get('new_name')
