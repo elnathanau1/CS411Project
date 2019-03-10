@@ -49,6 +49,7 @@ def dash(request):
         spotify = spotipy.Spotify(auth=access_token)
 
         # Get current user
+        global current_user
         current_user = spotify.current_user()
         display_name = current_user['display_name']
         global spotify_id
@@ -235,8 +236,8 @@ def create_group_req(request):
         newGroup.save()
 
         newMem = Membership()
-        newMem.spotify_id = Membership.objects.raw('SELECT * FROM membership WHERE spotify_id = \'{0}\''.format(spotify_id)).get()
-        newMem.group_id = Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(group_id)).get()
+        newMem.spotify_id = current_user
+        newMem.group_id = newGroup
 
         # newMem.spotify_id = spotify_id
         # newMem.group_id = new_id
