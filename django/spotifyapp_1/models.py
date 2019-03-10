@@ -36,6 +36,7 @@ class Membership(models.Model):
 
     class Meta:
         db_table = 'membership'
+        unique_together = (("m_user", "m_group"),)
         managed = True
 
     def __str__(self):
