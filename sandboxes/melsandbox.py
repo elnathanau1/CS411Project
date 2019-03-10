@@ -7,6 +7,8 @@ import webbrowser
 import spotipy
 import spotipy.util as util
 import spotipy.oauth2 as oauth2
+from spotifyapp_1.models import *
+
 
 CLIENT_ID = 'c7c0e5450e374d8581a809b81ad3cb43'
 CLIENT_SECRET = '9e40af53e60b4e77be9465a1beab1ffd'
@@ -31,6 +33,13 @@ access_token = "BQDSHul-IW_RnpDQq4Vn8JzbHoJipl_FiYlyVOk6nwkAFWLoOMFk5AsUNc3HxncO
 spotify_id = 'melanielin'
 
 print('SELECT * FROM users WHERE spotify_id = \"{0}\"'.format(spotify_id))
+list_groups = []
+groups = Membership.objects.raw('SELECT group_id FROM membership WHERE spotify_id = \'{0}\''.format(spotify_id))
+
+for group in groups:
+    list_groups.append(group)
+    print(group)
+
 #
 # # Pull top artists
 # top_artists_long = spotify.current_user_top_artists(limit=25, time_range='long_term')
