@@ -182,6 +182,15 @@ $(document).ready(function() {
 4. ```top_artists_req``` then packages that list into a json and sends a HttpResponse back to ```dash.js``` with the data.
 5. ```dash.js``` runs the function defined in ```success: function(data)```, using jquery to append a new table entry to the table defined by ```id=top_artist_table```
 
+## Migrations
+To make changes to the database [NOTE: WILL WIPE DATA]
+1. ```heroku pg:psql -a cs411-spotify```
+2. Within psql, ```DROP TABLE [table name];```, for all tables in spotifyapp_1
+3. Run ```\dt;``` to confirm they have been deleted.
+4. Run ```heroku run bash -a cs411-spotify```
+5. ```python django/manage.py migrate --fake spotifyapp_1 zero```
+6. ```python django/manage.py migrate```
+7. Confirm the tables were recreated in psql.
 
 ## Resources
 - [Spotipy](https://spotipy.readthedocs.io/en/latest/#) - Python Spotify wrapper
