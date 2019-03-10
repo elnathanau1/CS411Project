@@ -32,6 +32,7 @@ class Group(models.Model):
     group_id = models.CharField(primary_key = True, max_length = 20)
     name = models.CharField(max_length = 50)
     member_count = models.IntegerField()
+    suggestions = models.ArrayField(models.CharField(max_length = 20))
 
     class Meta:
         db_table = 'groups'
@@ -39,14 +40,6 @@ class Group(models.Model):
 
     def __str__(self):
         return self.group_id
-
-class Suggestion(models.Model):
-    group_id = models.CharField(max_length = 20)
-    song_id = models.CharField(max_length = 50)
-
-    class Meta:
-        db_table = 'suggestions'
-        managed = True
 
 class Song(models.Model):
     #https://api.spotify.com/v1/artists/{id}/top-tracks
