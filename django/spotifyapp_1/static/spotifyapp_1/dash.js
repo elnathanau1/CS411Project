@@ -12,6 +12,18 @@ $(document).ready(function() {
     }
   });
 
+  //loaded immediately after page is done loading
+  $.ajax({
+    type: "GET",
+    url: "/ajax/list_groups/",
+    success: function(data) {
+      for(i = 0; i < data.length; i++){
+      // jQuery selector
+        $('#list_groups_table').append('<tr><th>'+data[i]+'</th></tr>')
+      }
+    }
+  });
+
   // AJAX POST
   $('.create-group').click(function(){
       console.log("clicked")

@@ -207,6 +207,19 @@ def top_artists_req(request):
     else:
         raise Http404
 
+def list_groups_req(request):
+    if request.is_ajax():
+        list_groups = []
+        groups = Group.objects.raw('SELECT name FROM groups WHERE spotify_id = \'{0}\''.format(spotify_id))
+
+        for group in groups:
+            list_groups.append(group)
+
+        data = json.dumps(list_groups)
+        return HttpResponse(data, content_type='application/json')
+    else:
+        raise Http404
+
 def create_group_req(request):
     if request.is_ajax() and request.POST:
         new_id = request.POST.get('new_id')
