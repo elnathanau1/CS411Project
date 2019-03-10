@@ -210,10 +210,11 @@ def top_artists_req(request):
 def list_groups_req(request):
     if request.is_ajax():
         list_groups = []
-        groups = Membership.objects.raw('SELECT id, group_id FROM membership WHERE spotify_id = \'{0}\''.format(spotify_id))
+        membership_query = Membership.objects.raw('SELECT * FROM membership WHERE spotify_id = \'{0}\''.format(spotify_id))
 
-        for i in groups:
-            list_groups.append(i.group_id)
+        for i in membership_query:
+            group = Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(i.group_id))
+            list_groups.append(group.name)
 
         data = json.dumps(list_groups)
         return HttpResponse(data, content_type='application/json')
