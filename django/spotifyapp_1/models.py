@@ -17,17 +17,6 @@ class User(models.Model):
     def __str__(self):
         return (self.name + ", " + self.spotify_id)
 
-class Membership(models.Model):
-    spotify_id = models.ForeignKey(User, on_delete = models.CASCADE)
-    group_id = models.ForeignKey(Group, on_delete = models.CASCADE)
-
-    class Meta:
-        db_table = 'membership'
-        managed = True
-
-    def __str__(self):
-        return (self.spotify_id + " in " + self.group_id)
-
 class Group(models.Model):
     group_id = models.CharField(primary_key = True, max_length = 20)
     name = models.CharField(max_length = 50)
@@ -40,6 +29,17 @@ class Group(models.Model):
 
     def __str__(self):
         return (self.group_id + ", " + self.name)
+
+class Membership(models.Model):
+    spotify_id = models.ForeignKey(User, on_delete = models.CASCADE)
+    group_id = models.ForeignKey(Group, on_delete = models.CASCADE)
+
+    class Meta:
+        db_table = 'membership'
+        managed = True
+
+    def __str__(self):
+        return (self.spotify_id + " in " + self.group_id)
 
 class Song(models.Model):
     #https://api.spotify.com/v1/artists/{id}/top-tracks
