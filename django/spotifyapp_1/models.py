@@ -19,14 +19,14 @@ class User(models.Model):
 
 class Membership(models.Model):
     spotify_id = models.CharField(primary_key = True, max_length = 50)
-    group_id = models.CharField(max_length = 20)
+    group_id = models.CharField(primary_key = True, max_length = 20)
 
     class Meta:
         db_table = 'membership'
         managed = True
 
     def __str__(self):
-        return self.spotify_id
+        return (self.spotify_id + " in " + self.group_id)
 
 class Group(models.Model):
     group_id = models.CharField(primary_key = True, max_length = 20)
@@ -39,7 +39,7 @@ class Group(models.Model):
         managed = True
 
     def __str__(self):
-        return self.group_id
+        return (self.group_id + ", " + self.name)
 
 class Song(models.Model):
     #https://api.spotify.com/v1/artists/{id}/top-tracks
