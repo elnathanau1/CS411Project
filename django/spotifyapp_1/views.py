@@ -235,8 +235,8 @@ def create_group_req(request):
         newGroup.save()
 
         newMem = Membership()
-        newMem.spotify_id = Membership.objects.raw('SELECT * FROM membership WHERE spotify_id = \'{0}\''.format(spotify_id).get())
-        newMem.group_id = Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(group_id).get())
+        newMem.spotify_id = Membership.objects.raw('SELECT * FROM membership WHERE spotify_id = \'{0}\''.format(spotify_id)).get()
+        newMem.group_id = Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(group_id)).get()
 
         # newMem.spotify_id = spotify_id
         # newMem.group_id = new_id
