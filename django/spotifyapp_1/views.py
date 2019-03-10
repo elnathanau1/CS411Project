@@ -48,7 +48,7 @@ def dash(request):
         display_name = current_user['display_name']
         spotify_id = current_user['id']
 
-        # if user already exists, then don't add songs 
+        # if user already exists, then don't add songs
         if len(User.objects.raw('SELECT * FROM users WHERE spotify_id = \'{0}\''.format(spotify_id))) == 0:
 
             # Pull top artists
@@ -198,5 +198,22 @@ def top_artists_req(request):
 
         data = json.dumps(top_artists)
         return HttpResponse(data, content_type='application/json')
+    else:
+        raise Http404
+
+def create_group(request):
+    if request.is_ajax() and request.POST:
+        new_id = request.POST.get('new_id')
+        new_name = request.POST.get('new_name')
+
+        newGroup = Group()
+        newGroup.group_id = new_id
+        newGroup.group_name = new_name
+        newGroup.member_count = 1
+        newGroup.suggestions = []
+        newGroup.save()
+
+        data = {'message': "id: {0}, name: {1} added".format(new_id, new_name)}
+        return HttpResponse(json.dumps(data), content_type='application/json')
     else:
         raise Http404
