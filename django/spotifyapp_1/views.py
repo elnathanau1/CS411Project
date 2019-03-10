@@ -221,6 +221,7 @@ def create_group_req(request):
         newMem = Membership()
         newMem.spotify_id = spotify_id
         newMem.group_id = new_id
+        newMem.save()
 
         data = {'message': "id: {0}, name: {1} added".format(new_id, new_name)}
         return HttpResponse(json.dumps(data), content_type='application/json')
