@@ -25,21 +25,26 @@ sp_oauth = oauth2.SpotifyOAuth(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, scope=SCO
 
 spotify = spotipy.Spotify()
 
+access_token = ""
+
 # Create your views here.
 def dash(request):
     # Get the code from Spotify connection
     code = request.GET.get('code', '')
 
     # auth safety check
-    if(code == ''):
+    if(code != ''):
+        token_info = sp_oauth.get_access_token(code)
+        global access_token
+        access_token = token_info['access_token']
+
+    try:
+        # set gloabl spotify var to be used in other functions
+        global spotify
+        spotify = spotipy.Spotify(auth=access_token)
+
+    except:
         return connect(request)
-
-    token_info = sp_oauth.get_access_token(code)
-    access_token = token_info['access_token']
-
-    # set gloabl spotify var to be used in other functions
-    global spotify
-    spotify = spotipy.Spotify(auth=access_token)
 
     # Get current user
     current_user = spotify.current_user()
