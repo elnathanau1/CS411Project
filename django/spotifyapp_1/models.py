@@ -31,15 +31,15 @@ class Group(models.Model):
         return (self.group_id + ", " + self.name)
 
 class Membership(models.Model):
-    spotify_id = models.ForeignKey(User, on_delete = models.CASCADE)
-    group_id = models.ForeignKey(Group, on_delete = models.CASCADE)
+    m_user = models.ForeignKey(User, on_delete = models.CASCADE)
+    m_group = models.ForeignKey(Group, on_delete = models.CASCADE)
 
     class Meta:
         db_table = 'membership'
         managed = True
 
     def __str__(self):
-        return (self.spotify_id + " in " + self.group_id)
+        return (self.m_user.spotify_id + " in " + self.m_group.group_id)
 
 class Song(models.Model):
     #https://api.spotify.com/v1/artists/{id}/top-tracks
