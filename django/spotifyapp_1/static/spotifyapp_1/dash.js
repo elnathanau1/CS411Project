@@ -13,7 +13,7 @@ $(document).ready(function() {
   });
 
   // AJAX POST
-  $('.group_name').click(function(){
+  $('.create_group').click(function(){
       $.ajax({
           type: "POST",
           url: "/ajax/create_group/",

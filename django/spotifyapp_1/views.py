@@ -27,6 +27,8 @@ spotify = spotipy.Spotify()
 
 access_token = ""
 
+spotify_id = ""
+
 # Create your views here.
 def dash(request):
     # Get the code from Spotify connection
@@ -46,6 +48,7 @@ def dash(request):
         # Get current user
         current_user = spotify.current_user()
         display_name = current_user['display_name']
+        global spotify_id
         spotify_id = current_user['id']
 
         # if user already exists, then don't add songs
@@ -212,6 +215,7 @@ def create_group_req(request):
         newGroup.member_count = 1
         newGroup.suggestions = []
         newGroup.save()
+
 
         data = {'message': "id: {0}, name: {1} added".format(new_id, new_name)}
         return HttpResponse(json.dumps(data), content_type='application/json')
