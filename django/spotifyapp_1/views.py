@@ -242,7 +242,7 @@ def list_groups_req(request):
 
         for mem in membership_query:
             group = Group.objects.get(group_id = mem.m_group.group_id)
-            group.update(member_count = F('member_count')+1)
+            group.update(member_count = group.member_count+1)
             list_groups.append('{0} ({1})'.format(group.name, group.group_id))
 
         data = json.dumps(list_groups)
