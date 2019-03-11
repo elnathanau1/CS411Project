@@ -177,7 +177,7 @@ def group(request):
     return render(request, 'group.html', context)
 
 def group_view(request, group_id):
-    group = Group.objects.filter(group_id=group_id)
+    group = Group.objects.filter(group_id=group_id).first()
     if group != None:
         members_q = Membership.objects.filter(m_group=group)
         members = []
