@@ -36,8 +36,22 @@ $(document).ready(function() {
               alert(data.message);
           }
       });
-
   });
+
+  // AJAX POST
+  $('.join-group').click(function(){
+      console.log("clicked")
+      $.ajax({
+          type: "POST",
+          url: "/ajax/join_group/",
+          dataType: "json",
+          data: { "join_id": $(".group_id").val() },
+          success: function(data) {
+              alert(data.message);
+          }
+      });
+  });
+
 
   // CSRF code
   function getCookie(name) {
