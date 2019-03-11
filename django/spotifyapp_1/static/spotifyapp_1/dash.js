@@ -61,6 +61,7 @@ $(document).ready(function() {
           data: { "join_id": $(".join_id").val() },
           success: function(data) {
               alert(data.message);
+              window.location.replace("/groups/" + $(".join_id").val());
           }
       });
   });
