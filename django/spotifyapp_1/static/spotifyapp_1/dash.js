@@ -45,7 +45,7 @@ $(document).ready(function() {
           type: "POST",
           url: "/ajax/join_group/",
           dataType: "json",
-          data: { "join_id": $(".group_id").val() },
+          data: { "join_id": $(".join_id").val() },
           success: function(data) {
               alert(data.message);
           }
