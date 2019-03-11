@@ -259,7 +259,7 @@ def join_group_req(request):
             newMem = Membership()
             newMem.m_user = User.objects.get(spotify_id = spotify_id)
             group = Group.objects.get(group_id = join_id)
-            group.update(member_count = F('member_count') + 1
+            group.update(member_count = F('member_count') + 1)
             newMem.m_group = group
             newMem.save()
 
