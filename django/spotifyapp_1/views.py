@@ -257,11 +257,11 @@ def join_group_req(request):
         # checks that group exists
         if len(Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(join_id))) != 0:
             newMem = Membership()
-            newMem.m_user = User.objects.get(spotify_id=spotify_id)
-            group = Group.objects.get(group_id=join_id)
+            newMem.m_user = User.objects.get(spotify_id = spotify_id)
+            group = Group.objects.get(group_id = join_id)
+            group.update(member_count = F('member_count') + 1
             newMem.m_group = group
             newMem.save()
-#            group.update(member_count = F('member_count')+1)
 
             data = {'message': "joined {0} ({1})".format(group.name, group.group_id)}
         else:
