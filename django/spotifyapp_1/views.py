@@ -267,7 +267,7 @@ def join_group_req(request):
         if len(Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(join_id))) != 0:
             user = User.objects.get(spotify_id = request.session['spotify_id'])
             group = Group.objects.get(group_id = join_id)
-            mem_exists = Membership.objects.filter(m_user=user, m_group=group)
+            mem_exists = Membership.objects.filter(m_user=user, m_group=group).first()
             if mem_exists == None:
                 newMem = Membership()
                 newMem.m_user = User.objects.get(spotify_id = request.session['spotify_id'])
