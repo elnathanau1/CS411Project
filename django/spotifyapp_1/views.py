@@ -277,7 +277,7 @@ def leave_group_req(request):
         if len(Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(leave_id))) != 0:
             group = Group.objects.filter(group_id=leave_id).first()
             user = User.objects.filter(spotify_id = request.session['spotify_id']).first()
-            qs = Membership.objects.filter(m_group=group, m_user=user).filter()
+            qs = Membership.objects.filter(m_group=group, m_user=user).first()
             if qs == None:
                 data = {'message': "you are not in group with id {0}".format(group.group_id)}
             else:
