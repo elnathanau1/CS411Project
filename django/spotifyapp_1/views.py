@@ -238,7 +238,7 @@ def create_group_req(request):
 
             data = {'redirect': True, 'message': "id: {0}, name: {1} added".format(new_id, new_name)}
         else:
-            data = {'redirect': False, 'message': "id: {0}, name: {1} already exists".format(new_id, new_name)}
+            data = {'redirect': False, 'message': "group with id: {0} already exists".format(new_id)}
 
         return HttpResponse(json.dumps(data), content_type='application/json')
     else:
