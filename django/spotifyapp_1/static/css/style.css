@@ -67,3 +67,11 @@ ul li a:hover{
 .btn.log-out:hover{
     background-color: #f44336;
 }
+
+.container {
+    margin-left: 500px;
+    margin-top: 50px;
+    float: center;
+    width: 100%;
+    padding: 15px;
+}
