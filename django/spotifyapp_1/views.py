@@ -265,7 +265,7 @@ def join_group_req(request):
 
             data = {'message': "joined {0} ({1})".format(group.name, group.group_id)}
         else:
-            data = {'message': "group with id: {0} does not exist".format(new_id)}
+            data = {'message': "group with id: {0} does not exist".format(join_id)}
 
         return HttpResponse(json.dumps(data), content_type='application/json')
     else:
