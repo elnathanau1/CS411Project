@@ -46,8 +46,9 @@ $(document).ready(function() {
           data: { "new_id": $(".group_id").val(), "new_name": $(".group_name").val() },
           success: function(data) {
               alert(data.message);
-              window.location.replace("/groups/" + $(".group_id").val());
-          }
+              if (data.redirect) {
+                  window.location.replace("/groups/" + $(".group_id").val());
+              }          }
       });
   });
 
@@ -61,7 +62,9 @@ $(document).ready(function() {
           data: { "join_id": $(".join_id").val() },
           success: function(data) {
               alert(data.message);
-              window.location.replace("/groups/" + $(".join_id").val());
+              if (data.redirect) {
+                  window.location.replace("/groups/" + $(".join_id").val());
+              }
           }
       });
   });
