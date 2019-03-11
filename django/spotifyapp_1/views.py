@@ -213,8 +213,8 @@ def list_groups_req(request):
         list_groups = []
         membership_query = Membership.objects.raw('SELECT * FROM membership WHERE spotify_id = \'{0}\''.format(spotify_id))
 
-        for i in membership_query:
-            group = Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(i.group_id))
+        for mem in membership_query:
+            group = Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(mem.m_group.group_id))
             for g in group:
                 list_groups.append(g.name)
 
