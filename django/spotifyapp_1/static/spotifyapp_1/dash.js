@@ -21,7 +21,7 @@ $(document).ready(function() {
       groups = data.groups[0];
       for(i = 0; i < ids.length; i++){
       // jQuery selector
-        $('#list_groups_table').append('<tr><th>'+groups[i]+ids[i]+'</th></tr>');
+        $('#list_groups_table').append('<tr><th>'+groups[i]+'</th></tr>');
         //$('#list_groups_table').append('<td><a href=\"https://cs411-spotify.herokuapp.com/group/'+data.ids[i]+'\"/>'+data.groups[i]+'</a></td>')
 
       }
