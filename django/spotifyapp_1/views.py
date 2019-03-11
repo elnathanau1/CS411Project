@@ -182,7 +182,7 @@ def group_view(request, group_id):
         members_q = Membership.objects.filter(m_group=group)
         members = []
         for q in members_q:
-            members.append((q.m_user.name, q.m_user.user_id))
+            members.append((q.m_user.name, q.m_user.spotify_id))
         context = {"group_id":group.group_id, "group_name":group.name, "members":json.dumps(members)}
     return render(request, 'group_view.html', context)
 
