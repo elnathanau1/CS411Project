@@ -258,8 +258,9 @@ def join_group_req(request):
         if len(Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(join_id))) != 0:
             newMem = Membership()
             newMem.m_user = User.objects.get(spotify_id = spotify_id)
-            Group.objects.get(group_id = join_id).update(member_count = F('member_count') + 1)
             group = Group.objects.get(group_id = join_id)
+            group.member_count += 1
+            group.save()
             newMem.m_group = group
             newMem.save()
 
