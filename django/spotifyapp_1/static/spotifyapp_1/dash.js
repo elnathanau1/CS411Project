@@ -46,6 +46,7 @@ $(document).ready(function() {
           data: { "new_id": $(".group_id").val(), "new_name": $(".group_name").val() },
           success: function(data) {
               alert(data.message);
+              window.location.replace("/groups/" + $(".group_id").val());
           }
       });
   });
