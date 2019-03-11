@@ -275,7 +275,7 @@ def join_group_req(request):
                 newMem.save()
                 data = {'redirect': True, 'message': "joined {0} ({1})".format(group.name, group.group_id)}
             else:
-                data = {'redirect': False, 'message': "already joined {0} ({1})".format(group.name, group.group_id)}
+                data = {'redirect': True, 'message': "already joined {0} ({1})".format(group.name, group.group_id)}
         else:
             data = {'redirect': False, 'message': "group with id: {0} does not exist".format(join_id)}
 
