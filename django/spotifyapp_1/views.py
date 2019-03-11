@@ -23,12 +23,6 @@ SCOPE = 'user-library-read, user-top-read, user-read-private, user-read-birthdat
 
 sp_oauth = oauth2.SpotifyOAuth(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, scope=SCOPE, cache_path=CACHE)
 
-spotify = spotipy.Spotify()
-
-access_token = ""
-
-spotify_id = ""
-
 # Create your views here.
 def dash(request):
     # Get the code from Spotify connection
@@ -38,21 +32,23 @@ def dash(request):
     if(code != ''):
         try:
             token_info = sp_oauth.get_access_token(code)
-            global access_token
-            access_token = token_info['access_token']
+
+            # set session access token
+            request.session['access_token'] = token_info['access_token']
         except:
             return connect(request)
 
     try:
         # set gloabl spotify var to be used in other functions
-        global spotify
-        spotify = spotipy.Spotify(auth=access_token)
+        spotify = spotipy.Spotify(auth=request.session['access_token'])
 
         # Get current user
         current_user = spotify.current_user()
         display_name = current_user['display_name']
-        global spotify_id
         spotify_id = current_user['id']
+
+        # set session spotify_id
+        request.session['spotify_id'] = current_user['id']
 
         # if user already exists, then don't add songs
         if len(User.objects.raw('SELECT * FROM users WHERE spotify_id = \'{0}\''.format(spotify_id))) == 0:
@@ -187,7 +183,9 @@ def login(request):
 # Button functions
 def logout_req(request):
     if request.is_ajax():
-        os.remove(CACHE)
+        # should log them out
+        request.session.flush()
+        # os.remove(CACHE)
         todo_items = []
         data = json.dumps(todo_items)
         return HttpResponse(data, content_type='application/json')
@@ -196,6 +194,8 @@ def logout_req(request):
 
 def top_artists_req(request):
     if request.is_ajax():
+        spotify = spotipy.Spotify(auth=request.session['access_token'])
+
         top_artists = []
         top_artists_long = spotify.current_user_top_artists(limit=25, time_range='long_term')
 
@@ -222,7 +222,7 @@ def create_group_req(request):
             newGroup.save()
 
             newMem = Membership()
-            newMem.m_user = User.objects.get(spotify_id=spotify_id)
+            newMem.m_user = User.objects.get(spotify_id=request.session['spotify_id'])
             newMem.m_group = Group.objects.get(group_id=new_id)
             newMem.save()
 
@@ -237,7 +237,7 @@ def create_group_req(request):
 def list_groups_req(request):
     if request.is_ajax():
         list_groups = []
-        user = User.objects.get(spotify_id=spotify_id) # get current user
+        user = User.objects.get(spotify_id=request.session['spotify_id']) # get current user
         membership_query = Membership.objects.filter(m_user = user) # gets memberships with current user
 
         for mem in membership_query:
@@ -257,7 +257,7 @@ def join_group_req(request):
         # checks that group exists
         if len(Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(join_id))) != 0:
             newMem = Membership()
-            newMem.m_user = User.objects.get(spotify_id = spotify_id)
+            newMem.m_user = User.objects.get(spotify_id = request.session['spotify_id'])
             group = Group.objects.get(group_id = join_id)
             group.member_count += 1
             group.save()
