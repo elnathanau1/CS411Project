@@ -236,9 +236,9 @@ def create_group_req(request):
             newMem.m_group = Group.objects.get(group_id=new_id)
             newMem.save()
 
-            data = {'message': "id: {0}, name: {1} added".format(new_id, new_name)}
+            data = {'redirect': True, 'message': "id: {0}, name: {1} added".format(new_id, new_name)}
         else:
-            data = {'message': "id: {0}, name: {1} already exists".format(new_id, new_name)}
+            data = {'redirect': False, 'message': "id: {0}, name: {1} already exists".format(new_id, new_name)}
 
         return HttpResponse(json.dumps(data), content_type='application/json')
     else:
@@ -272,9 +272,9 @@ def join_group_req(request):
             newMem.m_group = group
             newMem.save()
 
-            data = {'message': "joined {0} ({1})".format(group.name, group.group_id)}
+            data = {'redirect': True, 'message': "joined {0} ({1})".format(group.name, group.group_id)}
         else:
-            data = {'message': "group with id: {0} does not exist".format(join_id)}
+            data = {'redirect': False, 'message': "group with id: {0} does not exist".format(join_id)}
 
         return HttpResponse(json.dumps(data), content_type='application/json')
     else:
