@@ -47,7 +47,7 @@ $(document).ready(function() {
           success: function(data) {
               alert(data.message);
               if (data.redirect) {
-                  window.location.replace("/groups/" + $(".group_id").val());
+                  window.location.replace("/group/" + $(".group_id").val());
               }          }
       });
   });
@@ -63,7 +63,7 @@ $(document).ready(function() {
           success: function(data) {
               alert(data.message);
               if (data.redirect) {
-                  window.location.replace("/groups/" + $(".join_id").val());
+                  window.location.replace("/group/" + $(".join_id").val());
               }
           }
       });
