@@ -17,11 +17,9 @@ $(document).ready(function() {
     type: "GET",
     url: "/ajax/list_groups/",
     success: function(data) {
-      ids = data.ids[0];
-      groups = data.groups[0];
-      for(i = 0; i < ids.length; i++){
+      for(i = 0; i < data.groups.length; i++){
       // jQuery selector
-        $('#list_groups_table').append('<tr><th>'+groups[i]+'</th></tr>');
+        $('#list_groups_table').append('<tr><th>'+data.groups[i]+'</th></tr>');
         //$('#list_groups_table').append('<td><a href=\"https://cs411-spotify.herokuapp.com/group/'+data.ids[i]+'\"/>'+data.groups[i]+'</a></td>')
 
       }
