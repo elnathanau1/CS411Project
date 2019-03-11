@@ -268,3 +268,25 @@ def join_group_req(request):
         return HttpResponse(json.dumps(data), content_type='application/json')
     else:
         raise Http404
+
+def leave_group_req(request):
+    if request.is_ajax() and request.POST:
+        leave_id = request.POST.get('leave_id')
+
+        # check for group, check for membership, delete membership
+        # checks that group exists
+        if len(Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(leave_id))) != 0:
+            group = Group.objects.filter(group_id=leave_id).first()
+            user = User.objects.filter(spotify_id = request.session['spotify_id']).first()
+            qs = Membership.objects.filter(m_group=group, m_user=user).filter()
+            if qs == None:
+                data = {'message': "you are not in group with id {0}".format(group.group_id)}
+            else:
+                qs.delete()
+                data = {'message': "left group {0} ({1})".format(group.group_name, group.group_id)}
+
+        else:
+            data = {'message': "group with id: {0} does not exist".format(leave_id)}
+        return HttpResponse(json.dumps(data), content_type='application/json')
+    else:
+        raise Http404
