@@ -242,7 +242,6 @@ def list_groups_req(request):
 
         for mem in membership_query:
             group = Group.objects.get(group_id = mem.m_group.group_id)
-            group.update(member_count = group.member_count+1)
             list_groups.append('{0} ({1})'.format(group.name, group.group_id))
 
         data = json.dumps(list_groups)
@@ -262,6 +261,7 @@ def join_group_req(request):
             group = Group.objects.get(group_id=join_id)
             newMem.m_group = group
             newMem.save()
+            group.update(member_count = group.member_count+1)
 
             data = {'message': "joined {0} ({1})".format(group.name, group.group_id)}
         else:
