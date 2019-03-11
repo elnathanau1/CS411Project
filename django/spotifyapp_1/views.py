@@ -49,7 +49,6 @@ def dash(request):
         spotify = spotipy.Spotify(auth=access_token)
 
         # Get current user
-        global current_user
         current_user = spotify.current_user()
         display_name = current_user['display_name']
         global spotify_id
@@ -211,7 +210,8 @@ def top_artists_req(request):
 def list_groups_req(request):
     if request.is_ajax():
         list_groups = []
-        membership_query = Membership.objects.raw('SELECT * FROM membership WHERE spotify_id = \'{0}\''.format(spotify_id))
+        user = User.objects.get(spotify_id=spotify_id) # get current user
+        membership_query = Membership.objects.filter(m_user=user) # gets memberships with current user
 
         for mem in membership_query:
             group = Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(mem.m_group.group_id))
