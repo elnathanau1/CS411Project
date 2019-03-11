@@ -5,6 +5,11 @@
     font-family: Century Gothic;
 }
 
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 body{
   background-image: url(../images//headphones.jfif);
   height: 100vh;
