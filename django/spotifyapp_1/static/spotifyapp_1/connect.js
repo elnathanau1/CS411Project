@@ -13,23 +13,6 @@ $(document).ready(function() {
 
     });
 
-
-    // AJAX POST
-    $('.add-todo').click(function(){
-      console.log('am i called');
-
-        $.ajax({
-            type: "POST",
-            url: "/ajax/add/",
-            dataType: "json",
-            data: { "item": $(".todo-item").val() },
-            success: function(data) {
-                alert(data.message);
-            }
-        });
-
-    });
-
     // CSRF code
     function getCookie(name) {
         var cookieValue = null;

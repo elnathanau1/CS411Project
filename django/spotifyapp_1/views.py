@@ -184,10 +184,10 @@ def login(request):
 def logout_req(request):
     if request.is_ajax():
         # should log them out
+        user_info = [request.session['spotify_id']]
         request.session.flush()
         # os.remove(CACHE)
-        todo_items = []
-        data = json.dumps(todo_items)
+        data = json.dumps(user_info)
         return HttpResponse(data, content_type='application/json')
     else:
         raise Http404

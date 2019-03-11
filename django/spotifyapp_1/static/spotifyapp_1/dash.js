@@ -24,6 +24,18 @@ $(document).ready(function() {
     }
   });
 
+  $('.log-out').click(function(){
+    $.ajax({
+      type: "GET",
+      url: "/ajax/logout/",
+      success: function(data) {
+        alert(data[0] + " was successfully logged out");
+        window.location.replace("/connect/");
+      }
+    });
+
+  });
+
   // AJAX POST
   $('.create-group').click(function(){
       console.log("clicked")
