@@ -265,14 +265,17 @@ def join_group_req(request):
 
         # checks that group exists
         if len(Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(join_id))) != 0:
-            newMem = Membership()
-            newMem.m_user = User.objects.get(spotify_id = request.session['spotify_id'])
+            user = User.objects.get(spotify_id = request.session['spotify_id'])
             group = Group.objects.get(group_id = join_id)
-            group.save()
-            newMem.m_group = group
-            newMem.save()
-
-            data = {'redirect': True, 'message': "joined {0} ({1})".format(group.name, group.group_id)}
+            mem_exists = Membership.objects.filter(m_user=user, m_group=group)
+            if mem_exists != None
+                newMem = Membership()
+                newMem.m_user = User.objects.get(spotify_id = request.session['spotify_id'])
+                newMem.m_group = group
+                newMem.save()
+                data = {'redirect': True, 'message': "joined {0} ({1})".format(group.name, group.group_id)}
+            else:
+                data = {'redirect': False, 'message': "already joined {0} ({1})".format(group.name, group.group_id)}
         else:
             data = {'redirect': False, 'message': "group with id: {0} does not exist".format(join_id)}
 
