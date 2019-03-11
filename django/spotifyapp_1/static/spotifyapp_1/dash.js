@@ -17,8 +17,8 @@ $(document).ready(function() {
     type: "GET",
     url: "/ajax/list_groups/",
     success: function(data) {
-      ids = data.ids
-      groups = data.groups
+      ids = data.ids[0]
+      groups = data.groups[0]
       for(i = 0; i < ids.length; i++){
       // jQuery selector
         $('#list_groups_table').append('<tr><th>'+groups[i]+ids[i]+'</th></tr>')
