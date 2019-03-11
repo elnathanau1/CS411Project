@@ -17,9 +17,11 @@ $(document).ready(function() {
     type: "GET",
     url: "/ajax/list_groups/",
     success: function(data) {
-      for(i = 0; i < data.length; i++){
+      for(i = 0; i < data.ids.length; i++){
       // jQuery selector
-        $('#list_groups_table').append('<tr><th>'+data[i]+'</th></tr>')
+        // $('#list_groups_table').append('<tr><th>'+data[i]+'</th></tr>')
+        $('#list_groups_table').append('<td><a href=\"https://cs411-spotify.herokuapp.com/group/{0}\">{1}</a></td>'.format(data.ids[i], data.groups[i]))
+
       }
     }
   });
@@ -48,7 +50,8 @@ $(document).ready(function() {
               alert(data.message);
               if (data.redirect) {
                   window.location.replace("/group/" + $(".group_id").val());
-              }          }
+              }
+          }
       });
   });
 
