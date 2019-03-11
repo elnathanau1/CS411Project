@@ -238,12 +238,12 @@ def list_groups_req(request):
     if request.is_ajax():
         list_groups = []
         user = User.objects.get(spotify_id=spotify_id) # get current user
-        membership_query = Membership.objects.filter(m_user=user) # gets memberships with current user
+        membership_query = Membership.objects.filter(m_user = user) # gets memberships with current user
 
         for mem in membership_query:
-            group = Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(mem.m_group.group_id))
-            for g in group:
-                list_groups.append('{0} ({1})'.format(g.name, g.group_id))
+            group = Group.objects.get(group_id = mem.m_group.group_id))
+            group.update(member_count = F('member_count')+1)
+            list_groups.append('{0} ({1})'.format(group.name, group.group_id))
 
         data = json.dumps(list_groups)
         return HttpResponse(data, content_type='application/json')
