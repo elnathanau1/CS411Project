@@ -176,9 +176,20 @@ def group(request):
     context = {"inputTable" : table}
     return render(request, 'group.html', context)
 
+def group_view(request, group_id):
+    group = Group.objects.filter(group_id=group_id)
+    if group != None:
+        members_q = Membership.objects.filter(m_group=group)
+        members = []
+        for q in members_q:
+            members.append((q.m_user.name, q.m_user.user_id))
+        context = {"group_id":group.group_id, "group_name":group.name, "members":json.dumps(members)}
+    return render(request, 'group_view.html', context)
+
 def login(request):
     context = {}
     return render(request, 'login.html', context)
+
 
 # Button functions
 def logout_req(request):
