@@ -217,7 +217,6 @@ def create_group_req(request):
             newGroup = Group()
             newGroup.group_id = new_id
             newGroup.name = new_name
-            newGroup.member_count = 1
             newGroup.suggestions = []
             newGroup.save()
 
@@ -249,7 +248,6 @@ def list_groups_req(request):
     else:
         raise Http404
 
-# fix
 def join_group_req(request):
     if request.is_ajax() and request.POST:
         join_id = request.POST.get('join_id')
@@ -259,7 +257,6 @@ def join_group_req(request):
             newMem = Membership()
             newMem.m_user = User.objects.get(spotify_id = request.session['spotify_id'])
             group = Group.objects.get(group_id = join_id)
-            group.member_count += 1
             group.save()
             newMem.m_group = group
             newMem.save()
