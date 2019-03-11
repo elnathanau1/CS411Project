@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
+<div class="container" align='left'>
   <h1>Welcome {{display_name}}!</h1>
 
   <h2>Your Spotify ID is: {{spotify_id}}</h2>
@@ -16,16 +16,16 @@
       <th>Group</th>
     </tr>
   </table>
-  
   <button class='btn log-out'>Log out</button>
 </div>
-<div class="container">
+
+<div class="container" align='left'>
   <input class="group_id" type="text" placeholder="group_id">
   <input class="group_name" type="text" placeholder="group_name">
   <button class="btn create-group">Create New Group</button>
 </div>
 
-<div class="container">
+<div class="container" align='left'>
   <input class="join_id" type="text" placeholder="group_id">
   <button class="btn join-group">Join Group</button>
 </div>
