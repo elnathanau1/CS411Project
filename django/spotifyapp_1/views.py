@@ -216,7 +216,7 @@ def list_groups_req(request):
         for mem in membership_query:
             group = Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(mem.m_group.group_id))
             for g in group:
-                list_groups.append('{0} ({1})'.format(g.name, g.group_id)
+                list_groups.append('{0} ({1})'.format(g.name, g.group_id))
 
         data = json.dumps(list_groups)
         return HttpResponse(data, content_type='application/json')
