@@ -256,7 +256,7 @@ def join_group_req(request):
         join_id = request.POST.get('join_id')
 
         # checks that group exists
-        if len(Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(new_id))) != 0:
+        if len(Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(join_id))) != 0:
             newMem = Membership()
             newMem.m_user = User.objects.get(spotify_id=spotify_id)
             group = Group.objects.get(group_id=join_id)
