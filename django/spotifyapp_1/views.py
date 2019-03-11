@@ -261,7 +261,7 @@ def join_group_req(request):
             group = Group.objects.get(group_id=join_id)
             newMem.m_group = group
             newMem.save()
-#            group.update(member_count = group.member_count+1)
+            group.update(member_count = F('member_count')+1)
 
             data = {'message': "joined {0} ({1})".format(group.name, group.group_id)}
         else:
