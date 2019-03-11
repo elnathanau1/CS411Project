@@ -256,8 +256,9 @@ def list_groups_req(request):
             list_groups.append('{0} ({1})'.format(group.name, group.group_id))
             list_ids.append(group.group_id)
 
+        data = {'groups': json.dumps(list_groups)}
         #data = {'ids':json.dumps(list_ids), 'groups': json.dumps(list_groups)}
-        data = json.dumps(list_groups)
+        #data = json.dumps(list_groups)
         return HttpResponse(data, content_type='application/json')
     else:
         raise Http404
