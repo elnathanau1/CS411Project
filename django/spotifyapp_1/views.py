@@ -207,22 +207,6 @@ def top_artists_req(request):
     else:
         raise Http404
 
-def list_groups_req(request):
-    if request.is_ajax():
-        list_groups = []
-        user = User.objects.get(spotify_id=spotify_id) # get current user
-        membership_query = Membership.objects.filter(m_user=user) # gets memberships with current user
-
-        for mem in membership_query:
-            group = Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(mem.m_group.group_id))
-            for g in group:
-                list_groups.append('{0} ({1})'.format(g.name, g.group_id))
-
-        data = json.dumps(list_groups)
-        return HttpResponse(data, content_type='application/json')
-    else:
-        raise Http404
-
 def create_group_req(request):
     if request.is_ajax() and request.POST:
         new_id = request.POST.get('new_id')
@@ -245,6 +229,43 @@ def create_group_req(request):
             data = {'message': "id: {0}, name: {1} added".format(new_id, new_name)}
         else:
             data = {'message': "id: {0}, name: {1} already exists".format(new_id, new_name)}
+
+        return HttpResponse(json.dumps(data), content_type='application/json')
+    else:
+        raise Http404
+
+def list_groups_req(request):
+    if request.is_ajax():
+        list_groups = []
+        user = User.objects.get(spotify_id=spotify_id) # get current user
+        membership_query = Membership.objects.filter(m_user=user) # gets memberships with current user
+
+        for mem in membership_query:
+            group = Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(mem.m_group.group_id))
+            for g in group:
+                list_groups.append('{0} ({1})'.format(g.name, g.group_id))
+
+        data = json.dumps(list_groups)
+        return HttpResponse(data, content_type='application/json')
+    else:
+        raise Http404
+
+# fix
+def join_group_req(request):
+    if request.is_ajax() and request.POST:
+        join_id = request.POST.get('join_id')
+
+        # checks that group exists
+        if len(Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(new_id))) != 0:
+            newMem = Membership()
+            newMem.m_user = User.objects.get(spotify_id=spotify_id)
+            group = Group.objects.get(group_id=join_id)
+            newMem.m_group = group
+            newMem.save()
+
+            data = {'message': "joined {0} ({1})".format(group.name, group.group_id)}
+        else:
+            data = {'message': "group with id: {0} does not exist".format(new_id)}
 
         return HttpResponse(json.dumps(data), content_type='application/json')
     else:
