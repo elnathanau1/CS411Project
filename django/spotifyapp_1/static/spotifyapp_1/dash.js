@@ -19,8 +19,8 @@ $(document).ready(function() {
     success: function(data) {
       for(i = 0; i < data.ids.length; i++){
       // jQuery selector
-        // $('#list_groups_table').append('<tr><th>'+data[i]+'</th></tr>')
-        $('#list_groups_table').append('<td><a href=\"https://cs411-spotify.herokuapp.com/group/{0}\">{1}</a></td>'.format(data.ids[i], data.groups[i]))
+        //$('#list_groups_table').append('<tr><th>'+data[i]+'</th></tr>')
+        $('#list_groups_table').append('<td><a href=\"https://cs411-spotify.herokuapp.com/group/''+data.ids[i]+'\"/>'+data.groups[i]+'</a></td>')
 
       }
     }
