@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
+<div class="holder">
   <h1>Welcome {{display_name}}!</h1>
 
   <h2>Your Spotify ID is: {{spotify_id}}</h2>
@@ -11,13 +11,12 @@
       <th>Artist</th>
     </tr>
   </table>
-  <div class="holder">
-      <table style="width:100%" id="list_groups_table">
-        <tr>
-          <th>Group</th>
-        </tr>
-      </table>
-  </div>
+
+  <table style="width:100%" id="list_groups_table">
+    <tr>
+      <th>Group</th>
+    </tr>
+  </table>
   <button class='btn log-out'>Log out</button>
 </div>
 
