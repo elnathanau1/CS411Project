@@ -66,7 +66,6 @@ ul li a:hover{
     width: 100%;
     padding: 15px;
 }
-<<<<<<< HEAD
 h1{
     color: #fff;
     font-size: 50px;
@@ -80,8 +79,7 @@ th, td {
     font-weight: bold;
     font-size: 150%;
     color: black;
-=======
-
+}    
 .holder {
     display: table;
     position: fixed;
@@ -89,5 +87,4 @@ th, td {
     height: 100%;
     width: 100%;
     text-align: center;
->>>>>>> 991be1de91be48791f04581dae04042ee1fe1dc1
 }
