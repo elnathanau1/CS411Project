@@ -21,8 +21,8 @@ $(document).ready(function() {
       // jQuery selector
         //$('#list_groups_table').append('<tr><th>'+data.groups[i]+'</th></tr>');
         $('#list_groups_table').append('<tr><th><a href=\"https://cs411-spotify.herokuapp.com/group/'+data.ids[i]+'/\"/>'+data.groups[i]+'</a></th></th>')
-
       }
+
     }
   });
 
