@@ -39,6 +39,7 @@ urlpatterns = [
     url(r'^group/(?P<group_id>\w+)/$', group_view, name = 'group_view'),
     url(r'^connecting/', connecting, name = 'connecting'),
     url(r'^spotifyReturn/', connect, name = 'spotifyReturn'),
+    url(r'^about_us/', about_us, name = 'about_us'),
     url(r'^$', connect, name = 'default'),
 ]
 
