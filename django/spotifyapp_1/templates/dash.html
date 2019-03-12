@@ -2,23 +2,28 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
+<div class="header">
   <h1>Welcome {{display_name}}!</h1>
-
   <h2>Your Spotify ID is: {{spotify_id}}</h2>
+</div>
+
+<div class="column">
   <table style="width:100%" id="top_artist_table">
     <tr>
       <th>Artist</th>
     </tr>
   </table>
+</div>
+
+<div class="column">
   <table style="width:100%" id="list_groups_table">
     <tr>
       <th>Group</th>
     </tr>
   </table>
-  
-  <button class='btn log-out'>Log out</button>
 </div>
+
+<div class="column">
 <div class="container">
   <input class="group_id" type="text" placeholder="group_id">
   <input class="group_name" type="text" placeholder="group_name">
@@ -29,7 +34,7 @@
   <input class="join_id" type="text" placeholder="group_id">
   <button class="btn join-group">Join Group</button>
 </div>
-
+</div>
 <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
 <script src="{% static 'spotifyapp_1/dash.js' %}"></script>
 {% endblock %}
