@@ -75,3 +75,12 @@ ul li a:hover{
     width: 100%;
     padding: 15px;
 }
+
+.holder {
+    display: table;
+    position: fixed;
+    z-index: 1000;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
