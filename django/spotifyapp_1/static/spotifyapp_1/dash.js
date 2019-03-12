@@ -17,10 +17,12 @@ $(document).ready(function() {
     type: "GET",
     url: "/ajax/list_groups/",
     success: function(data) {
-      for(i = 0; i < data.length; i++){
+      for(i = 0; i < data.groups.length; i++){
       // jQuery selector
-        $('#list_groups_table').append('<tr><th>'+data[i]+'</th></tr>')
+        //$('#list_groups_table').append('<tr><th>'+data.groups[i]+'</th></tr>');
+        $('#list_groups_table').append('<tr><th><a href=\"https://cs411-spotify.herokuapp.com/group/'+data.ids[i]+'/\"/>'+data.groups[i]+'</a></th></tr>')
       }
+
     }
   });
 
@@ -46,6 +48,9 @@ $(document).ready(function() {
           data: { "new_id": $(".group_id").val(), "new_name": $(".group_name").val() },
           success: function(data) {
               alert(data.message);
+              if (data.redirect) {
+                  window.location.replace("/group/" + $(".group_id").val());
+              }
           }
       });
   });
@@ -60,10 +65,26 @@ $(document).ready(function() {
           data: { "join_id": $(".join_id").val() },
           success: function(data) {
               alert(data.message);
+              if (data.redirect) {
+                  window.location.replace("/group/" + $(".join_id").val());
+              }
           }
       });
   });
 
+  // AJAX POST
+  $('.leave-group').click(function(){
+      console.log("clicked")
+      $.ajax({
+          type: "POST",
+          url: "/ajax/leave_group/",
+          dataType: "json",
+          data: { "leave_id": $(".leave_id").val() },
+          success: function(data) {
+              alert(data.message);
+          }
+      });
+  });
 
   // CSRF code
   function getCookie(name) {

@@ -28,13 +28,15 @@ urlpatterns = [
     url(r'^ajax/list_groups/', list_groups_req),
     url(r'^ajax/create_group/', create_group_req),
     url(r'^ajax/join_group/', join_group_req),
+    url(r'^ajax/leave_group/', leave_group_req),
 
     # pages
     url(r'^admin/', admin.site.urls),
     url(r'^login/', login, name = 'login'),
     url(r'^connect/', connect , name = 'connect'),
     url(r'^dash/', dash, name = 'dash'),
-    url(r'^group/', group, name = 'group'),
+    url(r'^group$', group, name = 'group'),
+    url(r'^group/(?P<group_id>\w+)/$', group_view, name = 'group_view'),
     url(r'^connecting/', connecting, name = 'connecting'),
     url(r'^spotifyReturn/', connect, name = 'spotifyReturn'),
     url(r'^$', connect, name = 'default'),

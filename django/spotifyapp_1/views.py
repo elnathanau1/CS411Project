@@ -176,9 +176,20 @@ def group(request):
     context = {"inputTable" : table}
     return render(request, 'group.html', context)
 
+def group_view(request, group_id):
+    group = Group.objects.filter(group_id=group_id).first()
+    if group != None:
+        members_q = Membership.objects.filter(m_group=group)
+        members = []
+        for q in members_q:
+            members.append((q.m_user.name, q.m_user.spotify_id))
+        context = {"group_id":group.group_id, "group_name":group.name, "members":json.dumps(members)}
+    return render(request, 'group_view.html', context)
+
 def login(request):
     context = {}
     return render(request, 'login.html', context)
+
 
 # Button functions
 def logout_req(request):
@@ -217,7 +228,6 @@ def create_group_req(request):
             newGroup = Group()
             newGroup.group_id = new_id
             newGroup.name = new_name
-            newGroup.member_count = 1
             newGroup.suggestions = []
             newGroup.save()
 
@@ -226,9 +236,9 @@ def create_group_req(request):
             newMem.m_group = Group.objects.get(group_id=new_id)
             newMem.save()
 
-            data = {'message': "id: {0}, name: {1} added".format(new_id, new_name)}
+            data = {'redirect': True, 'message': "id: {0}, name: {1} added".format(new_id, new_name)}
         else:
-            data = {'message': "id: {0}, name: {1} already exists".format(new_id, new_name)}
+            data = {'redirect': False, 'message': "group with id: {0} already exists".format(new_id)}
 
         return HttpResponse(json.dumps(data), content_type='application/json')
     else:
@@ -237,37 +247,61 @@ def create_group_req(request):
 def list_groups_req(request):
     if request.is_ajax():
         list_groups = []
+        list_ids = []
         user = User.objects.get(spotify_id=request.session['spotify_id']) # get current user
         membership_query = Membership.objects.filter(m_user = user) # gets memberships with current user
 
         for mem in membership_query:
             group = Group.objects.get(group_id = mem.m_group.group_id)
             list_groups.append('{0} ({1})'.format(group.name, group.group_id))
+            list_ids.append(group.group_id)
 
-        data = json.dumps(list_groups)
+        data = json.dumps({'groups': list_groups, 'ids': list_ids})
         return HttpResponse(data, content_type='application/json')
     else:
         raise Http404
 
-# fix
 def join_group_req(request):
     if request.is_ajax() and request.POST:
         join_id = request.POST.get('join_id')
 
         # checks that group exists
         if len(Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(join_id))) != 0:
-            newMem = Membership()
-            newMem.m_user = User.objects.get(spotify_id = request.session['spotify_id'])
+            user = User.objects.get(spotify_id = request.session['spotify_id'])
             group = Group.objects.get(group_id = join_id)
-            group.member_count += 1
-            group.save()
-            newMem.m_group = group
-            newMem.save()
-
-            data = {'message': "joined {0} ({1})".format(group.name, group.group_id)}
+            mem_exists = Membership.objects.filter(m_user=user, m_group=group).first()
+            if mem_exists == None:
+                newMem = Membership()
+                newMem.m_user = User.objects.get(spotify_id = request.session['spotify_id'])
+                newMem.m_group = group
+                newMem.save()
+                data = {'redirect': True, 'message': "joined {0} ({1})".format(group.name, group.group_id)}
+            else:
+                data = {'redirect': True, 'message': "already joined {0} ({1})".format(group.name, group.group_id)}
         else:
-            data = {'message': "group with id: {0} does not exist".format(join_id)}
+            data = {'redirect': False, 'message': "group with id: {0} does not exist".format(join_id)}
 
+        return HttpResponse(json.dumps(data), content_type='application/json')
+    else:
+        raise Http404
+
+def leave_group_req(request):
+    if request.is_ajax() and request.POST:
+        leave_id = request.POST.get('leave_id')
+
+        # checks that group exists
+        if len(Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(leave_id))) != 0:
+            group = Group.objects.filter(group_id=leave_id).first()
+            user = User.objects.filter(spotify_id = request.session['spotify_id']).first()
+            qs = Membership.objects.filter(m_group=group, m_user=user).first()
+            if qs == None:
+                data = {'message': "you are not in group with id {0}".format(group.group_id)}
+            else:
+                qs.delete()
+                data = {'message': "left group {0} ({1})".format(group.name, group.group_id)}
+
+        else:
+            data = {'message': "group with id: {0} does not exist".format(leave_id)}
         return HttpResponse(json.dumps(data), content_type='application/json')
     else:
         raise Http404
