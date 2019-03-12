@@ -24,17 +24,22 @@
 </div>
 
 <div class="column">
-<div class="container">
-  <input class="group_id" type="text" placeholder="group_id">
-  <input class="group_name" type="text" placeholder="group_name">
-  <button class="btn create-group">Create New Group</button>
+    <div class="container">
+      <input class="group_id" type="text" placeholder="group_id">
+      <input class="group_name" type="text" placeholder="group_name">
+      <button class="btn create-group">Create New Group</button>
+    </div>
+
+    <div class="container">
+      <input class="join_id" type="text" placeholder="group_id">
+      <button class="btn join-group">Join Group</button>
+    </div>
+    <div class="container">
+      <input class="leave_id" type="text" placeholder="group_id">
+      <button class="btn leave-group">Leave Group</button>
+    </div>
 </div>
 
-<div class="container">
-  <input class="join_id" type="text" placeholder="group_id">
-  <button class="btn join-group">Join Group</button>
-</div>
-</div>
 <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
 <script src="{% static 'spotifyapp_1/dash.js' %}"></script>
 {% endblock %}

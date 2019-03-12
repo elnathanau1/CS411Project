@@ -152,8 +152,6 @@ def dash(request):
     except:
         return connect(request)
 
-
-
 def connect(request):
     # Set context
 
@@ -189,6 +187,12 @@ def group_view(request, group_id):
 def login(request):
     context = {}
     return render(request, 'login.html', context)
+
+
+def about_us(request):
+    context = {}
+    return render(request, 'about_us.html', context)
+
 
 
 # Button functions

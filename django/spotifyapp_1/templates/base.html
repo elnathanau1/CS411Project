@@ -1,12 +1,11 @@
 {% load static %}
-<!-- <link rel="stylesheet" type="text/css" href="../css/style.css}"> -->
 <div class="header">
-<link rel="stylesheet" type="text/css" href="../static/css/style.css">
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
         <ul>
           <li><a href="{% url 'login' %}">Login</a></li>
           <li><a href="{% url 'connect' %}">Connect</a></li>
           <li><a href="{% url 'dash' %}">Dashboard</a></li>
-          <li><a href="#">About Us</a></li>
+          <li><a href="{% url 'about_us' %}">About Us</a></li>
         </ul>
 </div>
 {% block content %}
