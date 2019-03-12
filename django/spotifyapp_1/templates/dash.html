@@ -2,40 +2,42 @@
 {% load static %}
 
 {% block content %}
-<div class="holder">
-  <h1>Welcome {{display_name}}!</h1>
+<body>
+    <div class="container">
+      <h1>Welcome {{display_name}}!</h1>
 
-  <h2>Your Spotify ID is: {{spotify_id}}</h2>
-  <table style="width:100%" id="top_artist_table">
-    <tr>
-      <th>Artist</th>
-    </tr>
-  </table>
+      <h2>Your Spotify ID is: {{spotify_id}}</h2>
+      <table style="width:100%" id="top_artist_table">
+        <tr>
+          <th>Artist</th>
+        </tr>
+      </table>
 
-  <table style="width:100%" id="list_groups_table">
-    <tr>
-      <th>Group</th>
-    </tr>
-  </table>
-  <button class='btn log-out'>Log out</button>
-</div>
+      <table style="width:100%" id="list_groups_table">
+        <tr>
+          <th>Group</th>
+        </tr>
+      </table>
+      <button class='btn log-out'>Log out</button>
+    </div>
 
-<div class="container">
-  <input class="group_id" type="text" placeholder="group_id">
-  <input class="group_name" type="text" placeholder="group_name">
-  <button class="btn create-group">Create New Group</button>
-</div>
+    <div class="container">
+      <input class="group_id" type="text" placeholder="group_id">
+      <input class="group_name" type="text" placeholder="group_name">
+      <button class="btn create-group">Create New Group</button>
+    </div>
 
-<div class="container">
-  <input class="join_id" type="text" placeholder="group_id">
-  <button class="btn join-group">Join Group</button>
-</div>
+    <div class="container">
+      <input class="join_id" type="text" placeholder="group_id">
+      <button class="btn join-group">Join Group</button>
+    </div>
 
-<div class="container">
-  <input class="leave_id" type="text" placeholder="group_id">
-  <button class="btn leave-group">Leave Group</button>
-</div>
+    <div class="container">
+      <input class="leave_id" type="text" placeholder="group_id">
+      <button class="btn leave-group">Leave Group</button>
+    </div>
 
-<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
-<script src="{% static 'spotifyapp_1/dash.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'spotifyapp_1/dash.js' %}"></script>
+</body>
 {% endblock %}
