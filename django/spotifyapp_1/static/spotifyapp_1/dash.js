@@ -19,10 +19,7 @@ $(document).ready(function() {
     success: function(data) {
       for(i = 0; i < data.groups.length; i++){
       // jQuery selector
-        //$('#list_groups_table').append('<tr><th>'+data.groups[i]+'</th></tr>');
-        // console.log('<tr><th><a href=\"https://cs411-spotify.herokuapp.com/group/'+data.ids[i]+'/\"/>'+data.groups[i]+'</a></th></tr>');
-        // $('#list_groups_table').append('<tr><td><a href=\"https://cs411-spotify.herokuapp.com/group/'+data.ids[i]+'/\"/>'+data.groups[i]+'</a></td></tr>')
-          $('#list_groups_table').append('<li><a href=\"https://cs411-spotify.herokuapp.com/group/'+data.ids[i]+'/\"/>'+data.groups[i]+'</a></li>')
+        $('#list_groups_table').append('<tr><td><a href=\"https://cs411-spotify.herokuapp.com/group/'+data.ids[i]+'/\">'+data.groups[i]+'</a></td></tr>')
       }
 
     }
