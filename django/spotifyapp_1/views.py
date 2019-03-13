@@ -156,8 +156,8 @@ def dash(request):
             }
             return render(request, 'dash.html', context)
 
-    except:
-        print("caugh exception")
+    except Exception as e:
+        print(str(e))
         return connect(request)
 
 def connect(request):
