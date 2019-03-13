@@ -18,7 +18,6 @@ $(document).ready(function() {
     url: "/ajax/list_groups/",
     success: function(data) {
       for(i = 0; i < data.groups.length; i++){
-      // jQuery selector
         $('#list_groups_table').append('<tr><td><a href=\"https://cs411-spotify.herokuapp.com/group/'+data.ids[i]+'/\">'+data.groups[i]+'</a></td></tr>')
       }
 
