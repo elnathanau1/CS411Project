@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^ajax/create_group/', create_group_req),
     url(r'^ajax/join_group/', join_group_req),
     url(r'^ajax/leave_group/', leave_group_req),
-    url(r'^ajax/change_group_name/(?P<group_id>\w+)/$', change_group_name_req),
+    url(r'^ajax/change_group_name/', change_group_name_req),
 
     # pages
     url(r'^admin/', admin.site.urls),

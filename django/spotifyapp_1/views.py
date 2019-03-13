@@ -318,7 +318,7 @@ def leave_group_req(request):
     else:
         raise Http404
 
-def change_group_name_req(request, group_id):
+def change_group_name_req(request):
     if request.is_ajax():
         #group_id = request.session['group_id']
         new_name = request.POST.get('new_name')

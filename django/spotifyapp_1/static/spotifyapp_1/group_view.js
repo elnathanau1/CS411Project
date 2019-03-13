@@ -5,7 +5,7 @@ $(document).ready(function() {
         console.log("clicked")
         $.ajax({
             type: "POST",
-            url: "/ajax/change_group_name/(?P<group_id>\w+)/$",
+            url: "/ajax/change_group_name/",
             dataType: "json",
             data: { "new_name": $(".new_name").val() },
             success: function(data) {
