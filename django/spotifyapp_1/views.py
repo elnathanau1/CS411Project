@@ -145,7 +145,7 @@ def dash(request):
 
         # Set the context for variables in html
         if codeExists:
-            return redirect("/dash")
+            return redirect("https://cs411-spotify.herokuapp.com/dash/", permanent=True)
         else:
             context = {
             "display_name" : display_name,
