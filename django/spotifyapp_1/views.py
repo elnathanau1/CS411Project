@@ -27,17 +27,18 @@ sp_oauth = oauth2.SpotifyOAuth(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, scope=SCO
 def dash(request):
     # Get the code from Spotify connection
     code = request.GET.get('code', '')
+
+    # used to keep track if we got here from callback
     codeExists = False
+
     # auth safety check
     if(code != ''):
         codeExists = True
         try:
             token_info = sp_oauth.get_access_token(code)
-
             # set session access token
             request.session['access_token'] = token_info['access_token']
         except:
-            print("why are you here")
             return connect(request)
 
     try:
@@ -141,28 +142,25 @@ def dash(request):
                 tempSong.energy = features[id]['energy']
                 tempSong.save()
 
-            # print(songs[id]) # data from https://api.spotify.com/v1/artists/{id}/top-tracks
-            # print(features[id]) # data from https://api.spotify.com/v1/audio-features
 
-        # Set the context for variables in html
+        # if we got here from a callback, redirect to the normal dash page
         if codeExists:
-            print("redirect")
             return redirect("https://cs411-spotify.herokuapp.com/dash/", permanent=True)
+
         else:
-            print("no redirect, show")
+            # Set the context for variables in html
             context = {
-            "display_name" : display_name,
-            "spotify_id" : spotify_id
+                "display_name" : display_name,
+                "spotify_id" : spotify_id
             }
             return render(request, 'dash.html', context)
 
+    # something broke...let user reconnect
     except Exception as e:
         print(str(e))
         return connect(request)
 
 def connect(request):
-    # Set context
-
     # Get Spotify authorization
     auth_url = sp_oauth.get_authorize_url()
 
