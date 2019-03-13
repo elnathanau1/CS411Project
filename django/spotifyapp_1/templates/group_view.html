@@ -2,8 +2,13 @@
 {% load static %}
 
 {% block content %}
-<h1>This is the group page for {{group_name}} ({{group_id}})</h1>
+<h1>{{group_name}} ({{group_id}})</h1>
 
 <h3>{{members}}</h3>
+
+<div class="container">
+  <input class="join_id" type="text" placeholder="group_id">
+  <button class="btn join-group">Join Group</button>
+</div>
 
 {% endblock %}

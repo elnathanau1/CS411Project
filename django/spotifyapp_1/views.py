@@ -190,6 +190,7 @@ def group_view(request, group_id):
         context = {"group_id":group.group_id, "group_name":group.name, "members":json.dumps(members)}
     return render(request, 'group_view.html', context)
 
+
 def login(request):
     context = {}
     return render(request, 'login.html', context)
@@ -198,7 +199,6 @@ def login(request):
 def about_us(request):
     context = {}
     return render(request, 'about_us.html', context)
-
 
 
 # Button functions
@@ -314,6 +314,19 @@ def leave_group_req(request):
 
         else:
             data = {'message': "group with id: {0} does not exist".format(leave_id)}
+        return HttpResponse(json.dumps(data), content_type='application/json')
+    else:
+        raise Http404
+
+def change_group_name_req(request, group_id):
+    if request.is_ajax():
+        new_name = request.POST.get('new_name')
+        group = Group.objects.filter(group_id=group_id).first()
+        if group != None:
+            old_name = group.name
+            group.name = new_name
+            group.save()
+        data = {'message': 'group name changed from {0} to {1}'.format(old_name, new_name)}
         return HttpResponse(json.dumps(data), content_type='application/json')
     else:
         raise Http404
