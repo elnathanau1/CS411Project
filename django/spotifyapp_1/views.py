@@ -308,10 +308,12 @@ def leave_group_req(request):
                 data = {'message': "you are not in group with id {0}".format(group.group_id)}
             else:
                 qs.delete()
+                if Membership.objects.filter(m_group=group).first() == None:
+                    group.delete()
                 data = {'message': "left group {0} ({1})".format(group.name, group.group_id)}
 
         else:
             data = {'message': "group with id: {0} does not exist".format(leave_id)}
-        return HttpResponse(json.dumps(data), content_type='application/json')
+                return HttpResponse(json.dumps(data), content_type='application/json')
     else:
         raise Http404
