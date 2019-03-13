@@ -314,6 +314,6 @@ def leave_group_req(request):
 
         else:
             data = {'message': "group with id: {0} does not exist".format(leave_id)}
-                return HttpResponse(json.dumps(data), content_type='application/json')
+        return HttpResponse(json.dumps(data), content_type='application/json')
     else:
         raise Http404
