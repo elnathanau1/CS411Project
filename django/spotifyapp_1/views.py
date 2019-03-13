@@ -27,9 +27,10 @@ sp_oauth = oauth2.SpotifyOAuth(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, scope=SCO
 def dash(request):
     # Get the code from Spotify connection
     code = request.GET.get('code', '')
-
+    codeExists = False
     # auth safety check
     if(code != ''):
+        codeExists = True
         try:
             token_info = sp_oauth.get_access_token(code)
 
@@ -143,11 +144,14 @@ def dash(request):
             # print(features[id]) # data from https://api.spotify.com/v1/audio-features
 
         # Set the context for variables in html
-        context = {
-        "display_name" : display_name,
-        "spotify_id" : spotify_id
-        }
-        return render(request, 'dash.html', context)
+        if codeExists:
+            return redirect("/dash")
+        else:
+            context = {
+            "display_name" : display_name,
+            "spotify_id" : spotify_id
+            }
+            return render(request, 'dash.html', context)
 
     except:
         return connect(request)
