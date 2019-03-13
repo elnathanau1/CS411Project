@@ -37,6 +37,7 @@ def dash(request):
             # set session access token
             request.session['access_token'] = token_info['access_token']
         except:
+            print("why are you here")
             return connect(request)
 
     try:
@@ -145,8 +146,10 @@ def dash(request):
 
         # Set the context for variables in html
         if codeExists:
+            print("redirect")
             return redirect("https://cs411-spotify.herokuapp.com/dash/", permanent=True)
         else:
+            print("no redirect, show")
             context = {
             "display_name" : display_name,
             "spotify_id" : spotify_id
@@ -154,6 +157,7 @@ def dash(request):
             return render(request, 'dash.html', context)
 
     except:
+        print("caugh exception")
         return connect(request)
 
 def connect(request):
