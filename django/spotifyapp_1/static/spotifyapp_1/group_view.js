@@ -3,11 +3,13 @@ $(document).ready(function() {
     // AJAX POST
     $('.change-group-name').click(function(){
         console.log("clicked")
+        var new_name = prompt("New name:", "");
         $.ajax({
             type: "POST",
             url: "/ajax/change_group_name/",
             dataType: "json",
-            data: { "new_name": $(".new_name").val() },
+            data: { "new_name": new_name },
+            // data: { "new_name": $(".new_name").val() },
             success: function(data) {
               $("#name_header").text(data.group_name + " (" + data.group_id + ")");
               alert(data.message);
