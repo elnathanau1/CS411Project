@@ -9,10 +9,9 @@ $(document).ready(function() {
             url: "/ajax/change_group_name/",
             dataType: "json",
             data: { "new_name": new_name },
-            // data: { "new_name": $(".new_name").val() },
             success: function(data) {
               $("#name_header").text(data.group_name + " (" + data.group_id + ")");
-              alert(data.message);
+              // alert(data.message);
             }
         });
     });
