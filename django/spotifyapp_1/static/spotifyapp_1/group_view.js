@@ -9,7 +9,8 @@ $(document).ready(function() {
             dataType: "json",
             data: { "new_name": $(".new_name").val() },
             success: function(data) {
-                alert(data.message);
+              $("#name_header").text(data.group_name + " (" + data.group_id + ")");
+              alert(data.message);
             }
         });
     });

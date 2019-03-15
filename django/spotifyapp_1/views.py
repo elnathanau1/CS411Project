@@ -328,7 +328,7 @@ def change_group_name_req(request):
             old_name = group.name
             group.name = new_name
             group.save()
-        data = {'message': 'group name changed from {0} to {1}'.format(old_name, new_name)}
+        data = {'group_name' : new_name, 'group_id' : group_id, 'message': 'group name changed from {0} to {1}'.format(old_name, new_name)}
         return HttpResponse(json.dumps(data), content_type='application/json')
     else:
         raise Http404
