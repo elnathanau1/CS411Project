@@ -3,7 +3,7 @@ $(document).ready(function() {
     // AJAX POST
     $('.change-group-name').click(function(){
         console.log("clicked")
-        var new_name = prompt("New name:", "");
+        var new_name = prompt("New name:", "default");
         $.ajax({
             type: "POST",
             url: "/ajax/change_group_name/",
