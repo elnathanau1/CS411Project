@@ -181,6 +181,7 @@ def group(request):
     return render(request, 'group.html', context)
 
 def group_view(request, group_id):
+    request.session['group_id'] = group_id
     group = Group.objects.filter(group_id=group_id).first()
     if group != None:
         members_q = Membership.objects.filter(m_group=group)
@@ -319,9 +320,8 @@ def leave_group_req(request):
         raise Http404
 
 def change_group_name_req(request):
-    print(request.get_full_path())
     if request.is_ajax():
-        #group_id = request.session['group_id']
+        group_id = request.session['group_id']
         new_name = request.POST.get('new_name')
         group = Group.objects.filter(group_id=group_id).first()
         if group != None:
