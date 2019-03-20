@@ -1,0 +1,195 @@
+/* whole website */
+*{
+    font-family: Century Gothic;
+    box-sizing: border-box;
+}
+
+body{
+  background-image: url(../images//light_blue.jpeg);
+  background-size: cover;
+  height: 150vh;
+  width: 100%;
+}
+
+/* Navigation head */
+.header {
+  width: 99%;
+  height: 0.4%;
+}
+
+ul{
+    float: right;
+    list-style-type: none;
+ }
+
+ul li{
+    display: inline-block;
+}
+
+ul li a{
+    text-decoration: none;
+    color: #fff;
+    padding: 5px 20px;
+    border: 1px solid #fff;
+    transition: 0.6s ease;
+}
+
+ul li a:hover{
+  background-color: #fff;
+  color: #000;
+}
+
+#logout:hover {
+  color: red;
+}
+
+/* Login page */
+.middle-container {
+  max-width: 500px;
+  margin: auto;
+}
+
+.center {
+  word-wrap: break-word;
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+/* connect to spotify button */
+#button {
+  background-color:	#1DB954;
+	border-radius:35px;
+	border:1px solid #1DB954;
+	cursor:pointer;
+	color:#ffffff;
+  font-size:25px;
+  font-weight: bold;
+  letter-spacing: 2px;
+	padding:14px 50px;
+	text-decoration:none;
+  transition: 0.8s ease;
+  width: 430px;
+  padding: 15px 40px;
+  text-align: center;
+}
+
+#button:hover{
+  background-color:	#1ED760;
+	border:1px solid #1DB954;
+  border:0px;
+}
+/* under spotify button */
+#text {
+  text-align: center;
+  font-size: 35px;
+}
+
+/* About us */
+.description img {
+  float: left;
+  width: 55px;
+  position: relative;
+  top: 200px;
+}
+
+.description h3 {
+  position: relative;
+  top: 200px;
+  left: 10px;
+}
+
+/* home */
+h1 {
+  text-align: center;
+  font-size: 10vh;
+  text-shadow: 2px 2px black;
+  color: #fff;
+}
+
+h2 {
+  font-size: 4vh;
+  color: #fff;
+  text-shadow: 2px 2px black;
+}
+
+h3 {
+  text-align: center;
+  position: relative;
+  font-size: 30px;
+  color: black;
+}
+
+.white_line {
+  height: 0.5%;
+  background-color: white;
+  width: 99%;
+  border-radius: 500px;
+}
+
+.white_line2 {
+  height: 0.5%;
+  background-color: white;
+  width: 99%;
+  border-radius: 500px;
+}
+
+th {
+    -webkit-text-size-adjust: none;
+    font-weight: bold;
+    font-size: 3vw;
+    color: black;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0px black;
+}
+
+td {
+  font-style: italic;
+    text-align: center;
+    font-weight: bold;
+    font-size: 40px;
+    color: black;
+    background-color: rgba(180, 255, 255);
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0px black;
+}
+
+
+.column {
+  background-color: inherit;
+  float: left;
+  width: 33%;
+  height: 100%;
+  padding: 15px;
+  border: white;
+  box-shadow: 0px 0px 3px 1px black;
+}
+
+.row {
+  text-align: center;
+  word-wrap: break-word;
+  width: 99%;
+  height: 20%;
+  display: block;
+  background-color: hsl(180, 70%, 50%, 0.7);
+  box-shadow: 0px 0px 3px 1px black;
+}
+
+.row:hover {
+  background-color: hsl(180, 70%, 50%, 0.8);
+  transition: background-color 1.6s linear;
+}
+
+.row2 {
+  height: 80%;
+  display: block;
+  background-color: hsl(180, 100%, 50%, 0.1);
+}
+
+.column:hover {
+  background-color: hsl(0, 100%, 100%, 0.15);
+  transition: background-color 1.6s linear;
+}

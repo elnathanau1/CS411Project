@@ -2,8 +2,17 @@
 
 {% block content %}
 {% load static %}
-<head>
-  <title>Login Page</title>
-</head>
+<div class="middle-container">
+		<div class="center" id="image">
+			<img alt="Logo" src= "{% static 'images/Nio_logo-blue_w_headphones.png'}" height="300" class="center">
+		</div>
+		<h3 class="center" id="text">
+			Song suggestions for groups
+		</h3>
+		<a type="button" class="center" id="button" href="home.html">
+			Connect with Spotify
+		</a>
+</div>
+
 
 {% endblock %}

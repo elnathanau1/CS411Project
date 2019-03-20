@@ -11,7 +11,7 @@
 }
 
 body{
-  background-image: url(../images//headphones.jfif);
+  background-image: url(../images//light_blue.jpeg);
   height: 100vh;
 }
  ul{
@@ -79,7 +79,7 @@ th, td {
     font-weight: bold;
     font-size: 150%;
     color: black;
-}    
+}
 .holder {
     display: table;
     position: fixed;
