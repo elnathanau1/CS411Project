@@ -5,14 +5,16 @@
 <div class="middle-container">
 		<div class="center" id="image">
 			<img alt="Logo" src= "{% static 'images/Nio_logo-blue_w_headphones.png'}" height="300" class="center">
+			<img alt="Logo" src= url({% static 'images/Nio_logo-blue_w_headphones.png'}) height="300" class="center">
 		</div>
 		<h3 class="center" id="text">
 			Song suggestions for groups
 		</h3>
-		<a type="button" class="center" id="button" href="home.html">
+		<a type="button" class="center" id="button" href="{% url 'dash' %}">
 			Connect with Spotify
 		</a>
 </div>
-
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'spotifyapp_1/connect.js' %}"></script>
 
 {% endblock %}

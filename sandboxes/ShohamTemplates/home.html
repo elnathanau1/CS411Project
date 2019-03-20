@@ -1,0 +1,71 @@
+<link rel="stylesheet" type="text/css" href="../static/css/style2.css">
+<div class="header">
+  <ul>
+    <li><a href="home.html">Home</a></li>
+    <li><a href="about_us.html">About Us</a></li>
+    <li><a id="logout" href="login.html">Log out</a></li>
+  </ul>
+</div>
+
+<div class="row">
+  <h1>Welcome {{display_name}}!</h1>
+  <h2>Your Spotify ID is: {{spotify_id}}</h2>
+</div>
+
+<div class="white_line2"> </div>
+
+<div class="row2">
+  <div class="column">
+    <table style="width:100%" id="top_artist_table">
+      <tr>
+        <th>favorite artists</th>
+      </tr>
+      <tbody>
+        <td>Idan Raichel</td>
+      </tbody>
+      <tbody>
+        <td>Sia</td>
+      </tbody>
+      <tbody>
+        <td>Usher</td>
+      </tbody>
+    </table>
+  </div>
+<div class="gap">
+
+</div>
+  <div class="column">
+    <table style="width:100%" id="list_groups_table">
+      <tr>
+        <th>groups
+          <div class="delete">
+
+          </div>
+
+        </th>
+      </tr>
+      <tbody>
+        <td>Mel's</td>
+      </tbody>
+      <tbody>
+        <td>Squad</td>
+      </tbody>
+      <tbody>
+        <td>dudes</td>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="column">
+    <div class="container">
+      <input class="group_id" type="text" placeholder="group_id">
+      <input class="group_name" type="text" placeholder="group_name">
+      <button class="btn create-group">Create New Group</button>
+    </div>
+
+    <div class="container">
+      <input class="join_id" type="text" placeholder="group_id">
+      <button class="btn join-group">Join Group</button>
+    </div>
+  </div>
+</div>
