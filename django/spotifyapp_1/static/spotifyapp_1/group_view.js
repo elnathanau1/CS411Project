@@ -23,7 +23,6 @@ $(document).ready(function() {
             type: "POST",
             url: "/ajax/leave_group/",
             dataType: "json",
-            data: { "leave_id": $(".leave_id").val() },
             success: function(data) {
                 alert(data.message);
                 window.location.replace("/dash/");
