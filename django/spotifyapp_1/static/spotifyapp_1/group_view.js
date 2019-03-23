@@ -16,7 +16,6 @@ $(document).ready(function() {
         });
     });
 
-    // AJAX POST
     $('.leave-group').click(function(){
         console.log("clicked")
         $.ajax({
