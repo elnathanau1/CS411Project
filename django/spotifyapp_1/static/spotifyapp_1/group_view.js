@@ -26,7 +26,6 @@ $(document).ready(function() {
             success: function(data) {
                 alert(data.message);
                 window.location.replace("/dash/");
-
             }
         });
     });
