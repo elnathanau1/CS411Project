@@ -5,9 +5,9 @@
 }
 
 body{
-  background-image: url(../images//light_blue.jpeg);
+  background-image: url(../images//shohampaint.png);
   background-size: cover;
-  height: 150vh;
+  height: 100vh;
   width: 100%;
 }
 
@@ -27,6 +27,7 @@ ul li{
 }
 
 ul li a{
+    font-size: 3vh;
     text-decoration: none;
     color: #fff;
     padding: 5px 20px;
@@ -96,21 +97,22 @@ ul li a:hover{
 }
 
 .description h3 {
-  position: relative;
-  top: 200px;
-  left: 10px;
+  text-align: center;
+  font-size: 12vh;
+  text-shadow: 2px 2px black;
+  color: #66FCF1;
 }
 
 /* home */
 h1 {
   text-align: center;
-  font-size: 10vh;
+  font-size: 12vh;
   text-shadow: 2px 2px black;
-  color: #fff;
+  color: #66FCF1;
 }
 
 h2 {
-  font-size: 4vh;
+  font-size: 6vh;
   color: #fff;
   text-shadow: 2px 2px black;
 }
@@ -118,8 +120,8 @@ h2 {
 h3 {
   text-align: center;
   position: relative;
-  font-size: 30px;
-  color: black;
+  font-size:6vh;
+  color: #c5c6c7;
 }
 
 .white_line {
@@ -148,24 +150,30 @@ th {
 
 td {
   font-style: italic;
-    text-align: center;
-    font-weight: bold;
-    font-size: 40px;
-    color: black;
-    background-color: rgba(180, 255, 255);
-    border-radius: 5px;
-    box-shadow: 0 0 10px 0px black;
+  text-align: center;
+  font-weight: bold;
+  font-size: 6vh;
+  color: #c5c6c7;
+  background-color: rgba(180, 255, 255, .11);
+  border-radius: 5px;
+  box-shadow: 0 0 10px 0px black;
 }
 
+td:hover {
+    background-color: #0B0C10;
+    color: #45A29E;
+    cursor: pointer;
+}
 
 .column {
-  background-color: inherit;
+  background-color: hsl(0.59,	0.24,	0.16,0);
   float: left;
   width: 33%;
   height: 100%;
   padding: 15px;
   border: white;
   box-shadow: 0px 0px 3px 1px black;
+  transition: background-color 10s linear;
 }
 
 .row {
