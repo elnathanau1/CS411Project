@@ -297,8 +297,8 @@ def join_group_req(request):
         raise Http404
 
 def leave_group_req(request):
-    if request.is_ajax() and request.POST:
-        leave_id = request.POST.get('leave_id')
+    if request.is_ajax():
+        leave_id = request.session['group_id']
 
         # checks that group exists
         if len(Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(leave_id))) != 0:

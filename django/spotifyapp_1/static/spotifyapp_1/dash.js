@@ -70,19 +70,6 @@ $(document).ready(function() {
       });
   });
 
-  // AJAX POST
-  $('.leave-group').click(function(){
-      console.log("clicked")
-      $.ajax({
-          type: "POST",
-          url: "/ajax/leave_group/",
-          dataType: "json",
-          data: { "leave_id": $(".leave_id").val() },
-          success: function(data) {
-              alert(data.message);
-          }
-      });
-  });
 
   // CSRF code
   function getCookie(name) {
