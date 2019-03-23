@@ -7,7 +7,7 @@ $(document).ready(function() {
     success: function(data) {
       for(i = 0; i < data.length; i++){
       // jQuery selector
-        $('#top_artist_table').append('<tr><th>'+data[i]+'</th></tr>')
+        $('#top_artist_table').append('<tr><td>'+data[i]+'</td></tr>')
       }
     }
   });
@@ -18,7 +18,7 @@ $(document).ready(function() {
     url: "/ajax/list_groups/",
     success: function(data) {
       for(i = 0; i < data.groups.length; i++){
-        $('#list_groups_table').append('<tr><td><a href=\"https://cs411-spotify.herokuapp.com/group/'+data.ids[i]+'/\">'+data.groups[i]+'</a></td></tr>')
+        $('#list_groups_table').append('<tr><td><a id="group" href=\"https://cs411-spotify.herokuapp.com/group/'+data.ids[i]+'/\">'+data.groups[i]+'</a></td></tr>')
       }
 
     }
