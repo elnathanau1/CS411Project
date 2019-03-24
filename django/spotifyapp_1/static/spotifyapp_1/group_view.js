@@ -16,6 +16,19 @@ $(document).ready(function() {
         });
     });
 
+    $('.leave-group').click(function(){
+        console.log("clicked")
+        $.ajax({
+            type: "POST",
+            url: "/ajax/leave_group/",
+            dataType: "json",
+            success: function(data) {
+                alert(data.message);
+                window.location.replace("/dash/");
+            }
+        });
+    });
+
 
   // CSRF code
   function getCookie(name) {
