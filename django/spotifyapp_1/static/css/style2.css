@@ -221,7 +221,7 @@ td:hover {
   background-color: hsl(180, 100%, 50%, 0.1);
 }
 
-.button {
+button {
   text-decoration:none;
   font-style: italic;
   text-align: center;
