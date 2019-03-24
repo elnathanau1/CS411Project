@@ -36,6 +36,11 @@ $(document).ready(function() {
 
   });
 
+  //Trial button
+  $('#click_me').click(function(){
+    alert("clicked");
+  }
+  
   // AJAX POST
   $('.create-group').click(function(){
       console.log("clicked")
