@@ -59,6 +59,11 @@ ul li a:hover{
   position: relative;
 }
 
+#image {
+  position: relative;
+  top: 5vh;
+}
+
 /* connect to spotify button */
 #SpotifyButton {
   background-color:	#1DB954;
@@ -142,8 +147,8 @@ th {
     -webkit-text-size-adjust: none;
     font-weight: bold;
     font-size: 3vw;
-    color: black;
-    background-color: white;
+    color: #c5c6c7;
+    background-color: rgba(180, 255, 255, .42);
     border-radius: 5px;
     box-shadow: 0 0 10px 0px black;
 }
@@ -200,25 +205,9 @@ td:hover {
   transition: background-color 10s linear;
 }
 
-.row {
-  text-align: center;
-  word-wrap: break-word;
-  width: 99%;
-  height: 20%;
-  display: block;
-  background-color: hsl(180, 70%, 50%, 0.7);
-  box-shadow: 0px 0px 3px 1px black;
-}
-
-.row:hover {
-  background-color: hsl(180, 70%, 50%, 0.8);
-  transition: background-color 1.6s linear;
-}
-
-.row2 {
-  height: 80%;
-  display: block;
-  background-color: hsl(180, 100%, 50%, 0.1);
+.container {
+  background-color: rgba(180, 255, 255, .11);
+  height: 100vh;
 }
 
 .button {
