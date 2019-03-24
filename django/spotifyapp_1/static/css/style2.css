@@ -206,8 +206,7 @@ td:hover {
 }
 
 .container {
-  background-color: rgba(180, 255, 255, .11);
-  height: 100vh;
+  height: 6vh;
 }
 
 .button {
@@ -233,7 +232,6 @@ td:hover {
   font-weight: bold;
   font-size: 6vh;
   color: #c5c6c7;
-  background-color: rgba(180, 255, 255, .11);
   border-radius: 5px;
   box-shadow: 0 0 10px 0px black;
   word-wrap: break-word;
