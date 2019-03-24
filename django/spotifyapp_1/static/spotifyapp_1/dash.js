@@ -40,7 +40,7 @@ $(document).ready(function() {
   $('#click').click(function(){
     $('#click').text("voila!");
     alert("clicked");
-  }
+  });
 
   // AJAX POST
   $('.create-group').click(function(){
