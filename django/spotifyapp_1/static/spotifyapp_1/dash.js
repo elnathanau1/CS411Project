@@ -37,10 +37,11 @@ $(document).ready(function() {
   });
 
   //Trial button
-  $('#click_me').click(function(){
+  $('#click').click(function(){
+    $('#click').text("voila!");
     alert("clicked");
   }
-  
+
   // AJAX POST
   $('.create-group').click(function(){
       console.log("clicked")
