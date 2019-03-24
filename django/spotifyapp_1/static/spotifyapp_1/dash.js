@@ -37,7 +37,7 @@ $(document).ready(function() {
   });
 
   // AJAX POST
-  $("#create-group").click(function(){
+  $('.create-group').click(function(){
       console.log("clicked")
       $.ajax({
           type: "POST",
