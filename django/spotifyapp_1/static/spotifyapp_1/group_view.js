@@ -1,5 +1,17 @@
 $(document).ready(function() {
 
+  //loaded immediately after page is done loading
+  $.ajax({
+    type: "GET",
+    url: "/ajax/get_group_members/",
+    success: function(data) {
+      for(i = 0; i < data.length; i++){
+      // jQuery selector
+        $('#group_members_table').append('<tr><td>'+str(data[i])+'</td></tr>')
+      }
+    }
+  });
+
     // AJAX POST
     $('.change-group-name').click(function(){
         console.log("clicked")

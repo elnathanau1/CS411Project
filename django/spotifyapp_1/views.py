@@ -332,3 +332,19 @@ def change_group_name_req(request):
         return HttpResponse(json.dumps(data), content_type='application/json')
     else:
         raise Http404
+
+def get_group_members_req(request):
+    if request.is_ajax():
+        # group should have been set by initial view load
+        group = Group.objects.filter(group_id=group_id).first()
+        if group != None:
+            members_q = Membership.objects.filter(m_group=group)
+            members = []
+            for q in members_q:
+                members.append((q.m_user.name, q.m_user.spotify_id))
+            data = json.dumps({'members': members})
+            return HttpResponse(data, content_type='application/json')
+        else:
+            raise Http404
+    else:
+        raise Http404
