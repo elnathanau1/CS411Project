@@ -38,8 +38,16 @@ $(document).ready(function() {
 
   //Trial button
   $('#click').click(function(){
-    $('#click').text("voila!");
-    alert("clicked");
+    $('.content').hide();
+    if ($('#click').text() == "Click Me") {
+        $('#click').text("voila!");
+        $('#click').css("color","purple");
+        $('#group').css("color","yellow");
+    } else {
+      $('#click').text("Click Me");
+      $('#click').css("color","");
+      $('#group').css("color","");
+    }
   });
 
   // AJAX POST

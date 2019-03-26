@@ -1,20 +1,31 @@
+/*
+color scheme:
+black: #0B0C10
+dark blue: #1F2833
+gray: #c5c6c7
+light blue: #66FCF1
+medium blue: #45A29E
+ */
+
 /* whole website */
 *{
     font-family: Century Gothic;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 body{
   background-image: url(../images//shohampaint.png);
   background-size: cover;
-  height: 100vh;
-  width: 100%;
+  height: 80%;
+  width: 99%;
 }
 
 /* Navigation head */
 .header {
+  min-width: 800px;
   width: 99%;
-  height: 0.4%;
+  height: 60px;
 }
 
 ul{
@@ -27,7 +38,7 @@ ul li{
 }
 
 ul li a{
-    font-size: 3vh;
+    font-size: 20px;
     text-decoration: none;
     color: #fff;
     padding: 5px 20px;
@@ -45,8 +56,8 @@ ul li a:hover{
 }
 
 /* Login page */
-.middle-container {
-  max-width: 500px;
+#middle {
+  float: none;
   margin: auto;
 }
 
@@ -61,7 +72,7 @@ ul li a:hover{
 
 #image {
   position: relative;
-  top: 5vh;
+  top: 60px;
 }
 
 /* connect to spotify button */
@@ -87,32 +98,23 @@ ul li a:hover{
 	border:1px solid #1DB954;
   border:0px;
 }
-/* under spotify button */
-#text {
-  text-align: center;
-  font-size: 35px;
-}
 
 /* About us */
-.description img {
-  float: left;
-  width: 55px;
+.description h3 {
   position: relative;
   top: 200px;
+  left: 10px;
 }
 
-.description h3 {
-  text-align: center;
-  font-size: 12vh;
-  text-shadow: 2px 2px black;
+#nio {
   color: #66FCF1;
 }
 
 /* home */
 h1 {
+  min-width: 800px;
   text-align: center;
-  font-size: 12vh;
-  text-shadow: 2px 2px black;
+  font-size: 60px;
   color: #66FCF1;
 }
 
@@ -125,49 +127,31 @@ h2 {
 h3 {
   text-align: center;
   position: relative;
-  font-size:6vh;
+  font-size:40px;
   color: #c5c6c7;
 }
 
-.white_line {
-  height: 0.5%;
-  background-color: white;
-  width: 99%;
-  border-radius: 500px;
-}
-
-.white_line2 {
-  height: 0.5%;
-  background-color: white;
-  width: 99%;
-  border-radius: 500px;
-}
-
 th {
-    -webkit-text-size-adjust: none;
     font-weight: bold;
-    font-size: 3vw;
+    font-size: 35px;
+    color: #1F2833;
+    background-color: #45A29E;
+}
+
+td {
+    font-style: italic;
+    text-align: center;
+    font-weight: bold;
+    font-size: 35px;
     color: #c5c6c7;
-    background-color: rgba(180, 255, 255, .42);
+    background-color: rgba(180, 255, 255, .11);
     border-radius: 5px;
     box-shadow: 0 0 10px 0px black;
 }
 
-td {
-  font-style: italic;
-  text-align: center;
-  font-weight: bold;
-  font-size: 6vh;
-  color: #c5c6c7;
-  background-color: rgba(180, 255, 255, .11);
-  border-radius: 5px;
-  box-shadow: 0 0 10px 0px black;
-}
-
 td:hover {
-    background-color: #0B0C10;
+    background-color: rgba(11, 12, 16, 0.4);
     color: #45A29E;
-    cursor: pointer;
 }
 
 #group {
@@ -175,13 +159,12 @@ td:hover {
   font-style: italic;
   text-align: center;
   font-weight: bold;
-  font-size: 6vh;
+  font-size: 35px;
   color: #c5c6c7;
   background-color: rgba(180, 255, 255, .11);
   border-radius: 5px;
   box-shadow: 0 0 10px 0px black;
   word-wrap: break-word;
-  text-align: center;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -189,7 +172,7 @@ td:hover {
 }
 
 #group:hover {
-  background-color: #0B0C10;
+  background-color: rgba(11, 12, 16, 0.4);
   color: #45A29E;
   cursor: pointer;
 }
@@ -200,44 +183,56 @@ td:hover {
   width: 33%;
   height: 100%;
   padding: 15px;
-  border: white;
-  box-shadow: 0px 0px 3px 1px black;
-  transition: background-color 10s linear;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1200px) {
+  h3 {
+    min-width: 800px;
+  }
+  .column {
+    min-width: 800px;
+    height: auto;
+    width: 700px;
+    text-align: center;
+    display: block;
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+  }
 }
 
 .container {
-  height: auto;
+  margin-top: 40px;
+  margin-left: 5%;
+  margin-right: 15%;
 }
 
 .button {
   text-decoration:none;
-  font-style: italic;
-  font-weight: bold;
-  font-size: 6vh;
+  font-size: 30px;
   color: #c5c6c7;
   background-color: rgba(180, 255, 255, .11);
   border-radius: 5px;
-  box-shadow: 0 0 10px 0px black;
-  word-wrap: break-word;
   text-align: center;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
+  width: 500px;
+}
+
+.button:hover {
+  background-color: rgba(11, 12, 16, 0.4);
+  color: #45A29E;
+  cursor: pointer;
 }
 
 .input {
   text-decoration:none;
   font-style: italic;
-  font-weight: bold;
-  font-size: 6vh;
+  font-size: 30px;
   color: #c5c6c7;
+  background-color: black;
   border-radius: 5px;
-  box-shadow: 0 0 10px 0px black;
-  word-wrap: break-word;
   text-align: center;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
+  width: 500px;
 }
