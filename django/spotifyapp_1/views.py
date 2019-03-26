@@ -336,6 +336,7 @@ def change_group_name_req(request):
 def get_group_members_req(request):
     if request.is_ajax():
         # group should have been set by initial view load
+        group_id = request.session['group_id']
         group = Group.objects.filter(group_id=group_id).first()
         if group != None:
             members_q = Membership.objects.filter(m_group=group)
