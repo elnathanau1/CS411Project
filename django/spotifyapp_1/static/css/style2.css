@@ -5,7 +5,7 @@ dark blue: #1F2833
 gray: #c5c6c7
 light blue: #66FCF1
 medium blue: #45A29E
-*/
+ */
 
 /* whole website */
 *{
@@ -100,11 +100,10 @@ ul li a:hover{
 }
 
 /* About us */
-.description img {
-  float: left;
-  width: 55px;
+.description h3 {
   position: relative;
   top: 200px;
+  left: 10px;
 }
 
 #nio {
@@ -133,26 +132,26 @@ h3 {
 }
 
 th {
-  font-weight: bold;
-  font-size: 35px;
-  color: #1F2833;
-  background-color: #45A29E;
+    font-weight: bold;
+    font-size: 35px;
+    color: #1F2833;
+    background-color: #45A29E;
 }
 
 td {
-  font-style: italic;
-  text-align: center;
-  font-weight: bold;
-  font-size: 35px;
-  color: #c5c6c7;
-  background-color: rgba(180, 255, 255, .11);
-  border-radius: 5px;
-  box-shadow: 0 0 10px 0px black;
+    font-style: italic;
+    text-align: center;
+    font-weight: bold;
+    font-size: 35px;
+    color: #c5c6c7;
+    background-color: rgba(180, 255, 255, .11);
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0px black;
 }
 
 td:hover {
-  background-color: rgba(11, 12, 16, 0.4);
-  color: #45A29E;
+    background-color: rgba(11, 12, 16, 0.4);
+    color: #45A29E;
 }
 
 #group {
@@ -166,7 +165,6 @@ td:hover {
   border-radius: 5px;
   box-shadow: 0 0 10px 0px black;
   word-wrap: break-word;
-  text-align: center;
   display: block;
   margin-left: auto;
   margin-right: auto;
