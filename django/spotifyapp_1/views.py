@@ -342,7 +342,7 @@ def get_group_members_req(request):
             members_q = Membership.objects.filter(m_group=group)
             members = []
             for q in members_q:
-                members.append(''{0} {{1}}''.format(q.m_user.name, q.m_user.spotify_id))
+                members.append('{0} {{1}}'.format(q.m_user.name, q.m_user.spotify_id))
             data = json.dumps({'members': members})
             return HttpResponse(data, content_type='application/json')
         else:
