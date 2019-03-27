@@ -6,9 +6,10 @@ $(document).ready(function() {
         url: "/ajax/get_group_members/",
         success: function(data) {
             console.log(data);
-            for(i = 0; i < data.length; i++){
+            for(i = 0; i < data.members.length; i++){
             // jQuery selector
-              $('#group_members_table').append('<tr><td>'+data[i]+'</td></tr>')
+              $('#group_members_table').append('<tr><td>'+data.members[i]+'</td></tr>')
+
             }
         }
     });
