@@ -8,7 +8,7 @@ $(document).ready(function() {
             console.log(data);
             for(i = 0; i < data.length; i++){
             // jQuery selector
-              $('#group_members_table').append('<tr><td>'+str(data[i])+'</td></tr>')
+              $('#group_members_table').append('<tr><td>'+data[i]+'</td></tr>')
             }
         }
     });
