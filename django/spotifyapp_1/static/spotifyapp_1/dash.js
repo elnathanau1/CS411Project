@@ -38,16 +38,15 @@ $(document).ready(function() {
 
   //Trial button
   $('#click').click(function(){
-    $('.content').hide();
-    if ($('#click').text() == "Click Me") {
-        $('#click').text("voila!");
-        $('#click').css("color","purple");
-        $('#group').css("color","yellow");
-    } else {
-      $('#click').text("Click Me");
-      $('#click').css("color","");
-      $('#group').css("color","");
-    }
+    $('body').css('background-image', 'url(../static/images//shohampaint3.png)');
+  });
+
+  $('#click2').click(function(){
+    $('body').css('background-image', 'url(../static/images//abstract1.png)');
+  });
+
+  $('#click3').click(function(){
+    $('body').css('background-image', 'url(../static/images//shohampaint.png)');
   });
 
   // AJAX POST

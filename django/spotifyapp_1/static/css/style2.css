@@ -17,7 +17,7 @@ medium blue: #45A29E
 body{
   background-image: url(../images//shohampaint.png);
   background-size: cover;
-  height: 80%;
+  height: 85%;
   width: 99%;
 }
 
@@ -38,7 +38,7 @@ ul li{
 }
 
 ul li a{
-    font-size: 20px;
+    font-size: 15px;
     text-decoration: none;
     color: #fff;
     padding: 5px 20px;
@@ -57,6 +57,8 @@ ul li a:hover{
 
 /* Login page */
 #middle {
+  padding-top: 0px;
+  width: 600px;
   float: none;
   margin: auto;
 }
@@ -68,15 +70,16 @@ ul li a:hover{
   margin-left: auto;
   margin-right: auto;
   position: relative;
+  margin-top: 0;
 }
 
 #image {
-  position: relative;
-  top: 60px;
+  margin-top: 50px;
 }
 
 /* connect to spotify button */
 #SpotifyButton {
+  margin-top: 0;
   background-color:	#1DB954;
 	border-radius:35px;
 	border:1px solid #1DB954;
@@ -114,7 +117,7 @@ ul li a:hover{
 h1 {
   min-width: 800px;
   text-align: center;
-  font-size: 60px;
+  font-size: 55px;
   color: #66FCF1;
 }
 
@@ -132,21 +135,23 @@ h3 {
 }
 
 th {
-    font-weight: bold;
-    font-size: 35px;
-    color: #1F2833;
-    background-color: #45A29E;
+  background-color: rgba(180, 255, 255, .11);
+  border:1px solid #c5c6c7;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 25px;
+  font-weight: normal;
+  color: #c5c6c7;
 }
 
 td {
-    font-style: italic;
-    text-align: center;
-    font-weight: bold;
-    font-size: 35px;
-    color: #c5c6c7;
-    background-color: rgba(180, 255, 255, .11);
-    border-radius: 5px;
-    box-shadow: 0 0 10px 0px black;
+  padding-left: 10px;
+  text-align: left;
+  font-size: 25px;
+  color: #c5c6c7;
+  border-radius: 0;
+  border:0.5px solid #1F2833;
+  height: 30px;
 }
 
 td:hover {
@@ -156,15 +161,9 @@ td:hover {
 
 #group {
   text-decoration:none;
-  font-style: italic;
   text-align: center;
-  font-weight: bold;
-  font-size: 35px;
+  font-size: 25px;
   color: #c5c6c7;
-  background-color: rgba(180, 255, 255, .11);
-  border-radius: 5px;
-  box-shadow: 0 0 10px 0px black;
-  word-wrap: break-word;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -182,7 +181,10 @@ td:hover {
   float: left;
   width: 33%;
   height: 100%;
-  padding: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 50px;
+  padding-bottom: 15px;
   display: flex;
   flex-direction: column;
 }
@@ -205,7 +207,9 @@ td:hover {
 }
 
 .container {
-  margin-top: 40px;
+  radius: 200px;
+  background-color: rgba(180, 255, 255, .11);;
+  margin-top: 0px;
   margin-left: 5%;
   margin-right: 15%;
 }
@@ -217,7 +221,7 @@ td:hover {
   background-color: rgba(180, 255, 255, .11);
   border-radius: 5px;
   text-align: center;
-  width: 500px;
+  width: 300px;
 }
 
 .button:hover {
@@ -229,10 +233,10 @@ td:hover {
 .input {
   text-decoration:none;
   font-style: italic;
-  font-size: 30px;
+  font-size: 20px;
   color: #c5c6c7;
   background-color: black;
   border-radius: 5px;
   text-align: center;
-  width: 500px;
+  width: 300px;
 }
