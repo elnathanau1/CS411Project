@@ -18,16 +18,18 @@ $(document).ready(function() {
     $('.change-group-name').click(function(){
         console.log("clicked")
         var new_name = prompt("New name:", "default");
-        $.ajax({
-            type: "POST",
-            url: "/ajax/change_group_name/",
-            dataType: "json",
-            data: { "new_name": new_name },
-            success: function(data) {
-              $("#name_header").text(data.group_name + " (" + data.group_id + ")");
-              // alert(data.message);
-            }
-        });
+        if(new_name.length != 0){
+          $.ajax({
+              type: "POST",
+              url: "/ajax/change_group_name/",
+              dataType: "json",
+              data: { "new_name": new_name },
+              success: function(data) {
+                $("#name_header").text(data.group_name + " (" + data.group_id + ")");
+                // alert(data.message);
+              }
+          });
+        }
     });
 
     $('.leave-group').click(function(){
