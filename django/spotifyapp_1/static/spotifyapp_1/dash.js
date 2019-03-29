@@ -50,7 +50,7 @@ $(document).ready(function() {
   });
 
   // AJAX POST
-  $('#create-group').click(function(){
+  $('.create-group').click(function(){
       console.log("clicked")
       $.ajax({
           type: "POST",
@@ -67,7 +67,7 @@ $(document).ready(function() {
   });
 
   // AJAX POST
-  $('#join-group').click(function(){
+  $('.join-group').click(function(){
       console.log("clicked")
       $.ajax({
           type: "POST",
