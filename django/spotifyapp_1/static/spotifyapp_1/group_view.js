@@ -18,7 +18,7 @@ $(document).ready(function() {
     $('.change-group-name').click(function(){
         console.log("clicked")
         var new_name = prompt("New name:", "default");
-        if(new_name.length != null){
+        if(new_name != null){
           if(new_name.length != 0){
             $.ajax({
                 type: "POST",
