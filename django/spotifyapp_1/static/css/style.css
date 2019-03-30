@@ -74,11 +74,7 @@ h1{
 h2{
     font-size: 30px;
 }
-table{
-   overflow-y:scroll;
-   height:100px;
-   display:block;
-}
+
 th, td {
     font-weight: bold;
     font-size: 150%;

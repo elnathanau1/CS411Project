@@ -134,6 +134,12 @@ h3 {
   color: #c5c6c7;
 }
 
+table{
+   overflow-y:scroll;
+   height:100px;
+   display:block;
+}
+
 th {
   background-color: rgba(180, 255, 255, .11);
   border:1px solid #c5c6c7;
