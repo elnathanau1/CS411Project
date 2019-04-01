@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
+from django.db import connections
 
 from spotifyapp_1.models import *
 
@@ -349,3 +350,9 @@ def get_group_members_req(request):
             raise Http404
     else:
         raise Http404
+
+# def generate_suggestions_req(request):
+#     group_id = request.session['group_id']
+#     cursor = connection.cursor()
+#     cursor.execute("SELECT
+#                     ")
