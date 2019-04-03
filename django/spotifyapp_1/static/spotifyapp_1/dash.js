@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
   //marking the page
+  alert('hi');
   alert($(location).attr('href'));
 
   $('ul li a').filter(":contains('Login')").remove();
