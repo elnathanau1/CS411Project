@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  alert($(location).attr('href'));
   if ($(location).attr('href') == 'file:///C:/Users/shoha/Desktop/Web/templates/dash.html') {
     alert('works');
     $('ul li a').filter(":contains('Login')").remove();
