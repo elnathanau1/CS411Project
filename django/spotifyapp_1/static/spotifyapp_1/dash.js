@@ -1,5 +1,12 @@
 $(document).ready(function() {
 
+  //marking the page
+  $('ul li a').filter(":contains('Login')").remove();
+  $('ul li a').filter(":contains('Connect')").remove();
+  $('ul li a').filter(":contains('Group')").remove();
+  $('ul li a').filter(":contains('Home')").css('background-color', '#fff');
+  $('ul li a').filter(":contains('Home')").css('color', '#000');
+
   //loaded immediately after page is done loading
   $.ajax({
     type: "GET",
