@@ -1,6 +1,8 @@
 $(document).ready(function() {
 
   //marking the page
+  alert($(location).attr('href'));
+
   $('ul li a').filter(":contains('Login')").remove();
   $('ul li a').filter(":contains('Connect')").remove();
   $('ul li a').filter(":contains('Group')").remove();
