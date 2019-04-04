@@ -197,10 +197,17 @@ def login(request):
     context = {}
     return render(request, 'login.html', context)
 
-
 def about_us(request):
     context = {}
     return render(request, 'about_us.html', context)
+
+def graph_test(request):
+    context = {}
+    return render(request, 'graph_test.html', context)
+
+def songs(request):
+    context = {}
+    return render(request, 'songs.html', context)
 
 
 # Button functions
