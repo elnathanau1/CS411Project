@@ -9,6 +9,17 @@ import spotipy
 import spotipy.util as util
 import spotipy.oauth2 as oauth2
 
+import networkx as nx
+from bokeh.io import show, output_file
+from bokeh.models import Plot, Range1d, MultiLine, Circle, HoverTool, BoxZoomTool, ResetTool
+from bokeh.models.graphs import from_networkx
+from bokeh.palettes import Spectral4
+
+import os
+from os import listdir
+
+from django.contrib.staticfiles.templatetags.staticfiles import static
+
 import json
 
 # technically we should hide these, but oh well
@@ -182,13 +193,71 @@ def group(request):
     return render(request, 'group.html', context)
 
 def group_view(request, group_id):
+    # get current group_id
     request.session['group_id'] = group_id
     group = Group.objects.filter(group_id=group_id).first()
     if group != None:
+        # get members
         members_q = Membership.objects.filter(m_group=group)
-        members = []
+        members = []        # user nodes
         for q in members_q:
             members.append((q.m_user.name, q.m_user.spotify_id))
+
+        # get other info
+        genreSet = set()
+        commonGenres = set()        # common genres aka our genre nodes
+        for i in range(0, len(members)):
+            (tempName, tempId) = members[i]
+            user = User.objects.get(spotify_id=tempId)
+            for key in user.genres:
+                if key not in genreSet:
+                    genreSet.add(key)
+                else:
+                    commonGenres.add(key)
+
+        # create graph
+        G = nx.Graph()
+
+        # add user nodes
+        for member in members:
+            (member_name, member_id) = member
+            G.add_node(member_id)
+            G[member_id]['node_type'] = "user"
+            G[member_id]['name'] = member_name
+            G[member_id]['spotify_id'] = member_id
+
+        # genre nodes and connect edges
+        for genre in commonGenres:
+            # add node
+            G.add_node(genre)
+            G[genre]['node_type'] = "genre"
+            G[genre]['name'] = genre
+
+            # find connections
+            for user in User.objects.raw('SELECT * FROM users WHERE genres -> \'{0}\' IS NOT NULL'.format(genre)):
+                tempWeight = user.genres[genre]
+                G.add_edge(user.spotify_id, genre, weight=tempWeight)
+
+        # create display
+        # Show with Bokeh
+        plot = Plot(plot_width=400, plot_height=400,
+                    x_range=Range1d(-1.1, 1.1), y_range=Range1d(-1.1, 1.1))
+        plot.title.text = "Common Genre Graph"
+
+        node_hover_tool = HoverTool(tooltips=[("node_type", "@node_type"), ("name", "@name")])
+        plot.add_tools(node_hover_tool, BoxZoomTool(), ResetTool())
+
+        graph_renderer = from_networkx(G, nx.spring_layout, scale=1, center=(0, 0))
+
+        graph_renderer.node_renderer.glyph = Circle(size=15, fill_color=Spectral4[0])
+        graph_renderer.edge_renderer.glyph = MultiLine(line_color="edge_color", line_alpha=0.8, line_width=1)
+        plot.renderers.append(graph_renderer)
+
+        # save graph
+        output_file(os.getcwd() + static('spotifyapp_1/test.html'))
+        save(plot)
+
+        # set context for html
         context = {"group_id":group.group_id, "group_name":group.name, "members":json.dumps(members)}
     return render(request, 'group_view.html', context)
 
