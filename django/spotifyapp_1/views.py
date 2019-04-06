@@ -222,16 +222,16 @@ def group_view(request, group_id):
         for member in members:
             (member_name, member_id) = member
             G.add_node(member_id)
-            G[member_id]['node_type'] = "user"
-            G[member_id]['name'] = member_name
-            G[member_id]['spotify_id'] = member_id
+            G.nodes[member_id]['node_type'] = "user"
+            G.nodes[member_id]['name'] = member_name
+            G.nodes[member_id]['spotify_id'] = member_id
 
         # genre nodes and connect edges
         for genre in commonGenres:
             # add node
             G.add_node(genre)
-            G[genre]['node_type'] = "genre"
-            G[genre]['name'] = genre
+            G.nodes[genre]['node_type'] = "genre"
+            G.nodes[genre]['name'] = genre
 
             # find connections
             for user in User.objects.raw('SELECT * FROM users WHERE genres -> \'{0}\' IS NOT NULL'.format(genre)):
