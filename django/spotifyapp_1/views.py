@@ -239,6 +239,8 @@ def group_view(request, group_id):
                 tempWeight = user.genres[genre]
                 G.add_edge(user.spotify_id, genre, weight=tempWeight)
 
+        print(list(G.nodes))
+        print(list(G.edges))
         # create display
         # Show with Bokeh
         plot = Plot(plot_width=400, plot_height=400,
