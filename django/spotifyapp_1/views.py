@@ -12,7 +12,7 @@ import spotipy.oauth2 as oauth2
 from bokeh.plotting import figure, output_file, show, save
 import networkx as nx
 from bokeh.io import show, output_file
-from bokeh.models import Plot, Range1d, MultiLine, Circle, HoverTool, BoxZoomTool, ResetTool, PanTool, TapTool
+from bokeh.models import *
 from bokeh.models.graphs import from_networkx
 from bokeh.palettes import Spectral4
 
@@ -240,8 +240,10 @@ def group_view(request, group_id):
                     tempWeight = user.genres[genre]
                     G.add_edge(user.spotify_id, genre, weight=tempWeight)
 
-        print(list(G.nodes))
-        print(list(G.edges))
+        # debug purposes
+        # print(list(G.nodes))
+        # print(list(G.edges))
+
         # create display
         # Show with Bokeh
         # plot = Plot(plot_width=400, plot_height=400,
