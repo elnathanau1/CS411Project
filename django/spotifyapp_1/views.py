@@ -13,7 +13,7 @@ from bokeh.plotting import figure, output_file, show, save
 import networkx as nx
 from bokeh.io import show, output_file
 from bokeh.models import Plot, Range1d, MultiLine, Circle, HoverTool, BoxZoomTool, ResetTool, PanTool, TapTool, BoxSelectTool
-from bokeh.models.graphs import from_networkx
+from bokeh.models.graphs import from_networkx, NodesAndLinkedEdges, EdgesAndLinkedNodes
 from bokeh.palettes import Spectral4
 
 import os
