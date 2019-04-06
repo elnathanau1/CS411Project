@@ -251,7 +251,7 @@ def group_view(request, group_id):
         graph_renderer = from_networkx(G, nx.spring_layout, scale=1, center=(0, 0))
 
         graph_renderer.node_renderer.glyph = Circle(size=15, fill_color=Spectral4[0])
-        graph_renderer.edge_renderer.glyph = MultiLine(line_color="edge_color", line_alpha=0.8, line_width=1)
+        graph_renderer.edge_renderer.glyph = MultiLine(line_color="black", line_alpha=0.8, line_width=1)
         plot.renderers.append(graph_renderer)
 
         # save graph
