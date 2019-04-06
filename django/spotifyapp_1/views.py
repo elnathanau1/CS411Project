@@ -246,7 +246,7 @@ def group_view(request, group_id):
         plot.title.text = "Common Genre Graph"
 
         node_hover_tool = HoverTool(tooltips=[("node_type", "@node_type"), ("name", "@name")])
-        plot.add_tools(node_hover_tool, BoxZoomTool(), ResetTool())
+        plot.add_tools(node_hover_tool, PanTool(), BoxZoomTool(), ResetTool())
 
         graph_renderer = from_networkx(G, nx.spring_layout, scale=1, center=(0, 0))
 
