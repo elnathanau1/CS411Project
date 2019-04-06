@@ -264,7 +264,7 @@ def group_view(request, group_id):
         graph_renderer.edge_renderer.selection_glyph = MultiLine(line_color=Spectral4[2], line_width=5)
         graph_renderer.edge_renderer.hover_glyph = MultiLine(line_color=Spectral4[1], line_width=5)
 
-        graph_renderer.selection_policy = NodesOnly()
+        graph_renderer.selection_policy = NodesAndLinkedEdges()
         graph_renderer.inspection_policy = NodesOnly()
 
         plot.renderers.append(graph_renderer)
