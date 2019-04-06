@@ -262,9 +262,10 @@ def group_view(request, group_id):
 
         plot = Plot(plot_width=400, plot_height=400,
             x_range=Range1d(-1.1,1.1), y_range=Range1d(-1.1,1.1))
-        plot.title.text = "Graph Interaction Demonstration"
+        plot.title.text = "Common Genres Graph"
 
-        plot.add_tools(HoverTool(tooltips=None), TapTool(), BoxSelectTool())
+        node_hover_tool = HoverTool(tooltips=[("node_type", "@node_type"), ("name", "@name")])
+        plot.add_tools(node_hover_tool, TapTool(), BoxSelectTool(), BoxZoonTool(), ResetTool())
 
         graph_renderer = from_networkx(G, nx.circular_layout, scale=1, center=(0,0))
 
