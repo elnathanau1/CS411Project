@@ -251,7 +251,8 @@ def group_view(request, group_id):
         node_hover_tool = HoverTool(tooltips=[("node_type", "@node_type"), ("name", "@name")])
         plot.add_tools(node_hover_tool, BoxZoomTool(), ResetTool())
 
-        graph_renderer = from_networkx(G, nx.circular_layout, scale=1, center=(0, 0))
+        # play around with layouts to see which works best
+        graph_renderer = from_networkx(G, nx.circular_layout, scale=1, center=(0, 0)).options(color_index='node_type', cmap='Category10')
 
         graph_renderer.node_renderer.glyph = Circle(size=15, fill_color=Spectral4[0])
         graph_renderer.edge_renderer.glyph = MultiLine(line_color="black", line_alpha=0.8, line_width=1)
