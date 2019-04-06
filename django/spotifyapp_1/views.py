@@ -255,7 +255,7 @@ def group_view(request, group_id):
         plot.renderers.append(graph_renderer)
 
         # save graph
-        output_file(os.getcwd() + static('spotifyapp_1/test.html'))
+        output_file('django/spotifyapp_1/' + static('spotifyapp_1/test.html')) # SUUUUPER HACKY
         save(plot)
 
         # set context for html
