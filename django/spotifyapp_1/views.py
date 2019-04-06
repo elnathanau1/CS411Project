@@ -236,8 +236,9 @@ def group_view(request, group_id):
 
             # find connections
             for user in User.objects.raw('SELECT * FROM users WHERE genres -> \'{0}\' IS NOT NULL'.format(genre)):
-                tempWeight = user.genres[genre]
-                G.add_edge(user.spotify_id, genre, weight=tempWeight)
+                if user.spotify_id in list(G.nodes):
+                    tempWeight = user.genres[genre]
+                    G.add_edge(user.spotify_id, genre, weight=tempWeight)
 
         print(list(G.nodes))
         print(list(G.edges))
