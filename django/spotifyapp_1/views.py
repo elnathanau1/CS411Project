@@ -12,7 +12,7 @@ import spotipy.oauth2 as oauth2
 from bokeh.plotting import figure, output_file, show, save
 import networkx as nx
 from bokeh.io import show, output_file
-from bokeh.models import Plot, Range1d, MultiLine, Circle, HoverTool, BoxZoomTool, ResetTool, PanTool
+from bokeh.models import Plot, Range1d, MultiLine, Circle, HoverTool, BoxZoomTool, ResetTool, PanTool, TapTool
 from bokeh.models.graphs import from_networkx
 from bokeh.palettes import Spectral4
 
