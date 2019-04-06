@@ -12,7 +12,7 @@ import spotipy.oauth2 as oauth2
 from bokeh.plotting import figure, output_file, show, save
 import networkx as nx
 from bokeh.io import show, output_file
-from bokeh.models import Plot, Range1d, MultiLine, Circle, HoverTool, BoxZoomTool, ResetTool
+from bokeh.models import Plot, Range1d, MultiLine, Circle, HoverTool, BoxZoomTool, ResetTool, PanTool
 from bokeh.models.graphs import from_networkx
 from bokeh.palettes import Spectral4
 
@@ -246,7 +246,7 @@ def group_view(request, group_id):
         plot.title.text = "Common Genre Graph"
 
         node_hover_tool = HoverTool(tooltips=[("node_type", "@node_type"), ("name", "@name")])
-        plot.add_tools(node_hover_tool, PanTool(), BoxZoomTool(), ResetTool())
+        plot.add_tools(node_hover_tool, BoxZoomTool(), ResetTool())
 
         graph_renderer = from_networkx(G, nx.spring_layout, scale=1, center=(0, 0))
 
