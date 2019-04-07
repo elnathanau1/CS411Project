@@ -1,4 +1,4 @@
-$(document).ready(
+$(document).ready(funtion() {
   function dash() {
     if ($(location).attr('href') == 'https://cs411-spotify.herokuapp.com/dash/') {
       $('ul li a').filter(":contains('Login')").remove();
@@ -7,9 +7,9 @@ $(document).ready(
       $('ul li a').filter(":contains('Home')").css('background-color', '#fff');
       $('ul li a').filter(":contains('Home')").css('color', '#000');
     }
-  };
+  }
 
-  function dash() {
+  function group() {
     if ($(location).attr('href') == 'https://cs411-spotify.herokuapp.com/group/') {
       $('ul li a').filter(":contains('Login')").remove();
       $('ul li a').filter(":contains('Connect')").remove();
@@ -17,7 +17,7 @@ $(document).ready(
       $('ul li a').filter(":contains('Group')").css('color', 'blue');
       $('ul li a').filter(":contains('Group')").text('{{group_name}}');
     }
-  };
+  }
 
   function about_us() {
     if ($(location).attr('href') == 'https://cs411-spotify.herokuapp.com/about_us/') {
@@ -27,9 +27,9 @@ $(document).ready(
       $('ul li a').filter(":contains('About us')").remove();
       $('ul li a').filter(":contains('Home')").remove();
     }
-  };
+  }
 
-  function() {
+  function login() {
     if ($(location).attr('href') == 'https://cs411-spotify.herokuapp.com/login/') {
       $('ul li a').filter(":contains('Log out')").remove();
       $('ul li a').filter(":contains('Home')").remove();
@@ -37,5 +37,5 @@ $(document).ready(
       $('ul li a').filter(":contains('Connect')").remove();
       $('ul li a').filter(":contains('Login')").remove();
     }
-  };
+  }
 });
