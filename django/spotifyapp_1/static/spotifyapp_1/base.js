@@ -9,7 +9,7 @@ $(document).ready(
     }
   });
 
-  function group() {
+  function() {
     if ($(location).attr('href') == 'https://cs411-spotify.herokuapp.com/group/') {
       $('ul li a').filter(":contains('Login')").remove();
       $('ul li a').filter(":contains('Connect')").remove();
@@ -19,7 +19,7 @@ $(document).ready(
     }
   });
 
-  function aboutUs() {
+  function() {
     if ($(location).attr('href') == 'https://cs411-spotify.herokuapp.com/about_us/') {
       $('ul li a').filter(":contains('Log out')").remove();
       $('ul li a').filter(":contains('Connect')").remove();
