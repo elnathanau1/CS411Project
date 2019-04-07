@@ -9,18 +9,20 @@ medium blue: #45A29E
 
 /* whole website */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #c5c6c7;
+  background-color: #1F2833;
 }
 ::-webkit-scrollbar-thumb {
+  border-radius:500px;
   background-color: grey;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #1F2833;
+  background-color: #c5c6c7;
 }
+
 *{
     font-family: Century Gothic;
     box-sizing: border-box;
@@ -39,6 +41,14 @@ html{
   min-width: 800px;
   width: 99%;
   height: 60px;
+}
+
+p3 {
+  color: #c5c6c7;
+  font-size: 20px;
+  position: relative;
+  float: right;
+  bottom: 0px;
 }
 
 ul{
@@ -124,7 +134,7 @@ ul li a:focus{
 }
 
 /* About us */
-.description h3 {
+.description p2 {
   position: relative;
   top: 200px;
   left: 10px;
@@ -134,22 +144,30 @@ ul li a:focus{
   color: #66FCF1;
 }
 
+.row2 {
+  height: 270px;
+}
+
+p2 {
+  color: #c5c6c7;
+  font-size: 30px;
+  text-align: center;
+}
 /* home */
+p {
+  color: white;
+  font-size: 40px;
+  position: relative;
+  top: 10px;
+  left: 50px;
+  width: 800px;
+}
 h1 {
   min-width: 800px;
   text-align: center;
   font-size: 55px;
   color: white;
   /* color: #66FCF1; */
-}
-
-h2 {
-  text-align: left;
-  left: 10px;
-  position: relative;
-  margin-top: 0;
-  font-size:40px;
-  color: white;
 }
 
 h3 {
@@ -163,6 +181,15 @@ h3 {
 
 .space {
   margin-top: 50px;
+}
+
+.items {
+  height:600px;
+  overflow:auto;
+}
+
+table{
+  width: 100%;
 }
 
 th {
@@ -199,12 +226,14 @@ tr:hover #remove {
   opacity: 1;
 }
 
-#list_groups_table td {
+.items td {
+  padding-left: 0;
+  padding-right: 0;
   color: #45A29E;
   border:2px solid #c5c6c7;
 }
 
-#list_groups_table td:hover {
+.items td:hover {
   background-color: white;
 }
 
@@ -223,6 +252,10 @@ tr:hover #remove {
 #group:hover {
   color: #1F2833;
   cursor: pointer;
+}
+
+.row {
+  height: 200px;
 }
 
 .column {
