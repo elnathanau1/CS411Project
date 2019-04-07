@@ -7,7 +7,7 @@ $(document).ready(
       $('ul li a').filter(":contains('Home')").css('background-color', '#fff');
       $('ul li a').filter(":contains('Home')").css('color', '#000');
     }
-  }
+  });
 
   function group() {
     if ($(location).attr('href') == 'https://cs411-spotify.herokuapp.com/group/') {
@@ -17,7 +17,7 @@ $(document).ready(
       $('ul li a').filter(":contains('Group')").css('color', 'blue');
       $('ul li a').filter(":contains('Group')").text('{{group_name}}');
     }
-  }
+  });
 
   function aboutUs() {
     if ($(location).attr('href') == 'https://cs411-spotify.herokuapp.com/about_us/') {
@@ -27,7 +27,7 @@ $(document).ready(
       $('ul li a').filter(":contains('About us')").remove();
       $('ul li a').filter(":contains('Home')").remove();
     }
-  }
+  });
 
   function() {
     if ($(location).attr('href') == 'https://cs411-spotify.herokuapp.com/login/') {
@@ -37,5 +37,5 @@ $(document).ready(
       $('ul li a').filter(":contains('Connect')").remove();
       $('ul li a').filter(":contains('Login')").remove();
     }
-  }
+  });
 });
