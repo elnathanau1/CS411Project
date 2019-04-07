@@ -2,10 +2,7 @@
 {% load static %}
 
 {% block content %}
-<div class="center" id="header">
-  <h1>Welcome, {{display_name}}!</h1>
-  <h3>Your Spotify ID is: {{spotify_id}}</h3>
-</div>
+<p>Welcome, {{display_name}}!</p>
 
 <div class="column">
     <div class="container">
@@ -38,9 +35,16 @@
 </div>
 
 <div class="column">
-  <table style="width:100%" id="list_groups_table">
+  <table style="width:100%">
     <tr>
       <th>Group</th>
+    </tr>
+    <tr>
+      <td>
+        <div class="items" id="list_groups_table">
+
+        </div>
+      </td>
     </tr>
   </table>
 </div>
