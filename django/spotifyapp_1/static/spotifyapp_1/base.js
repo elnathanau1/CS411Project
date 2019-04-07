@@ -8,4 +8,4 @@ $(document).ready(function() {
     $('ul li a').filter(":contains('Home')").css('background-color', '#fff');
     $('ul li a').filter(":contains('Home')").css('color', '#000');
   }
-)};
+});
