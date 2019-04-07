@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+    alert($(location).attr('href'));
     //loaded immediately after page is done loading
     $.ajax({
         type: "GET",
