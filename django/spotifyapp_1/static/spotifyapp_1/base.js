@@ -7,7 +7,7 @@ $(document).ready(function() {
       $('ul li a').filter(":contains('Home')").css('color', '#000');
     }
 
-    if ($(location).attr('href') == 'https://cs411-spotify.herokuapp.com/group_view/') {
+    if ($(location).attr('href') == 'https://cs411-spotify.herokuapp.com/group/{{group_id}}/') {
       $('ul li a').filter(":contains('Login')").remove();
       $('ul li a').filter(":contains('Connect')").remove();
       $('ul li a').filter(":contains('Group')").css('background-color', '#c5c6c7');
