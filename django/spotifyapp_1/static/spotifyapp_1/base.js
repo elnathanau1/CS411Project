@@ -1,4 +1,4 @@
-$(document).ready(funtion() {
+$(document).ready(function() {
   function dash() {
     if ($(location).attr('href') == 'https://cs411-spotify.herokuapp.com/dash/') {
       $('ul li a').filter(":contains('Login')").remove();
