@@ -448,7 +448,7 @@ def get_songs_req(request):
         list_songs = []
         songs = Song.objects.raw('SELECT * FROM songs'.format())
         for song in songs:
-            list_songs.append(song)
+            list_songs.append(json.dumps({'name': song.name, 'artist_name': song.artist_name}))
         data = json.dumps({'songs': list_songs})
         return HttpResponse(data, content_type='application/json')
     else:
