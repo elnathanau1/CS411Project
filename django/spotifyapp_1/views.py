@@ -443,6 +443,36 @@ def get_group_members_req(request):
     else:
         raise Http404
 
+def get_songs_req(request):
+    if request.is_ajax():
+        list_songs = []
+        songs = Song.objects.raw('SELECT * FROM songs'.format())
+        for song in songs:
+            list_songs.append(song)
+        data = json.dumps({'songs': list_songs})
+        return HttpResponse(data, content_type='application/json')
+    else:
+        raise Http404
+
+
+# def list_groups_req(request):
+#     if request.is_ajax():
+#         list_groups = []
+#         list_ids = []
+#         user = User.objects.get(spotify_id=request.session['spotify_id']) # get current user
+#         membership_query = Membership.objects.filter(m_user = user) # gets memberships with current user
+#
+#         for mem in membership_query:
+#             group = Group.objects.get(group_id = mem.m_group.group_id)
+#             list_groups.append('{0} ({1})'.format(group.name, group.group_id))
+#             list_ids.append(group.group_id)
+#
+#         data = json.dumps({'groups': list_groups, 'ids': list_ids})
+#         return HttpResponse(data, content_type='application/json')
+#     else:
+#         raise Http404
+
+
 # def generate_suggestions_req(request):
 #     group_id = request.session['group_id']
 #     cursor = connection.cursor()

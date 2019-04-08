@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^ajax/leave_group/', leave_group_req),
     url(r'^ajax/change_group_name/', change_group_name_req),
     url(r'^ajax/get_group_members/', get_group_members_req),
+    url(r'^ajax/get_songs/', get_songs_req),
 
     # pages
     url(r'^admin/', admin.site.urls),
