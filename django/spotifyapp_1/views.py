@@ -456,6 +456,16 @@ def get_songs_req(request):
 
 def add_song_req(request):
     if request.is_ajax():
+        code = request.GET.get('code', '')
+        codeExists = False
+        if(code != ''):
+            codeExists = True
+            try:
+                token_info = sp_oauth.get_access_token(code)
+                request.session['access_token'] = token_info['access_token']
+            except:
+                return connect(request)
+
         spotify = spotipy.Spotify(auth=request.session['access_token'])
         new_song_id = request.POST.get('new_song_id')
         query = Song.objects.raw('SELECT * FROM songs WHERE song_id=\'{0}\''.format(new_song_id))
