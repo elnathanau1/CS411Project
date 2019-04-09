@@ -445,6 +445,7 @@ def get_group_members_req(request):
 
 def get_songs_req(request):
     if request.is_ajax():
+        search_val = request.POST.get('serach_val')
         list_songs = []
         songs = Song.objects.raw('SELECT * FROM songs'.format())
         for song in songs:
