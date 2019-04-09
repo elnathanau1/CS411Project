@@ -40,6 +40,7 @@ urlpatterns = [
     url(r'^connect/', connect , name = 'connect'),
     url(r'^dash/', dash, name = 'dash'),
     url(r'^group$', group, name = 'group'),
+    url(r'^group/$', group, name = 'group'),
     url(r'^group/(?P<group_id>\w+)/$', group_view, name = 'group_view'),
     url(r'^connecting/', connecting, name = 'connecting'),
     url(r'^spotifyReturn/', connect, name = 'spotifyReturn'),
