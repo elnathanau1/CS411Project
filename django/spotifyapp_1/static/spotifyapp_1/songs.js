@@ -8,7 +8,7 @@ $(document).ready(function() {
             console.log(data);
             for(i = 0; i < data.songs; i++){
             // jQuery selector
-              $('#songs_table').append('<tr><td>'+data.songs[i]+'</td></tr>')
+              $('#songs_table').append('<tr><td>'+data.songs[i].name+'</td></tr>')
 
             }
         }
