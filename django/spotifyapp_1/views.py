@@ -458,7 +458,7 @@ def add_song_req(request):
     if request.is_ajax():
         new_song_id = request.POST.get('new_song_id')
         query = Song.objects.raw('SELECT * FROM songs WHERE song_id=\'{0}\''.format(new_song_id))
-        if len(query) != 0:
+        if len(query) == 0:
             tempSong = Song()
             track = spotify.track(new_song_id)
             tempSong.song_id = track['id']
