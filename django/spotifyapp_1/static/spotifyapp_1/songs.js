@@ -15,7 +15,7 @@ $(document).ready(function() {
     });
 
     // AJAX POST
-    $('#add-song').click(function(){
+    $('.add-song').click(function(){
         console.log("clicked")
         $.ajax({
             type: "POST",
