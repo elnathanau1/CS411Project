@@ -21,7 +21,7 @@ $(document).ready(function() {
             type: "POST",
             url: "/ajax/add_song/",
             dataType: "json",
-            data: { "new_song_id": $("#new_song_id").val()},
+            data: { "new_song_id": $(".new_song_id").val()},
             success: function(data) {
                 alert(data.message)
             }
