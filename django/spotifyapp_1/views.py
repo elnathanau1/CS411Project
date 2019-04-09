@@ -480,7 +480,7 @@ def add_song_req(request):
             tempSong.save()
             data = {'message': "added song {0}".format(track['name'])}
         else:
-            data = {'message': "song {0} already in database".format(track['name'])}
+            data = {'message': "song with uri {0} does not exist".format(new_song_id)}
         return HttpResponse(data, content_type='application/json')
     else:
         raise Http404
