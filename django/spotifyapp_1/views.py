@@ -445,7 +445,6 @@ def get_group_members_req(request):
 
 def get_songs_req(request):
     if request.is_ajax():
-        search_val = request.POST.get('serach_val')
         list_songs = []
         songs = Song.objects.raw('SELECT * FROM songs'.format())
         for song in songs:
@@ -455,23 +454,36 @@ def get_songs_req(request):
     else:
         raise Http404
 
-
-# def list_groups_req(request):
-#     if request.is_ajax():
-#         list_groups = []
-#         list_ids = []
-#         user = User.objects.get(spotify_id=request.session['spotify_id']) # get current user
-#         membership_query = Membership.objects.filter(m_user = user) # gets memberships with current user
-#
-#         for mem in membership_query:
-#             group = Group.objects.get(group_id = mem.m_group.group_id)
-#             list_groups.append('{0} ({1})'.format(group.name, group.group_id))
-#             list_ids.append(group.group_id)
-#
-#         data = json.dumps({'groups': list_groups, 'ids': list_ids})
-#         return HttpResponse(data, content_type='application/json')
-#     else:
-#         raise Http404
+def add_songs_req(request):
+    if request.is_ajax():
+        new_song_id = request.POST.get('new_song_id')
+        query = Song.objects.raw('SELECT * FROM songs WHERE song_id=\'{0}\''.format(new_song_id))
+        if len(query) != 0:
+            tempSong = Song()
+            track = spotify.track(new_song_id)
+            tempSong.song_id = track['id']
+            tempSong.popularity = track['popularity']
+            tempSong.name = track['name']
+            tempSong.artist_id = track['artists'][0]['id']
+            tempSong.artist_name = track['artists'][0]['name']
+            art = spotify.artist(track['artists'][0]['id'])
+            genres = []
+            for genre in art['genres']:
+                genres.append(genre)
+            tempSong.genre = genres
+            af = spotify.audio_features(tracks=[new_song_id])
+            for t in af:
+                tempSong.mode = t['mode']
+                tempSong.acousticness = t['acousticness']
+                tempSong.danceability = t['danceability']
+                tempSong.energy = t['energy']
+            tempSong.save()
+            data = {'message': "added song {0}".format(track['name'])}
+        else:
+            data = {'message': "song {0} already in database".format(track['name'])}
+        return HttpResponse(data, content_type='application/json')
+    else:
+        raise Http404
 
 
 # def generate_suggestions_req(request):

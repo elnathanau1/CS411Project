@@ -14,29 +14,26 @@ $(document).ready(function() {
         }
     });
 
+    // AJAX POST
+    $('#add-song').click(function(){
+        console.log("clicked")
+        $.ajax({
+            type: "POST",
+            url: "/ajax/add_song/",
+            dataType: "json",
+            data: { "new_song_id": $("#new_song_id").val()},
+            success: function(data) {
+
+            }
+        });
+    });
+
     $("#search_val").on("keyup", function() {
         var value = $(this).val().toLowerCase();
         $("#songs_table tr").filter(function() {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
     });
-
-    // // AJAX POST
-    // $('.create-group').click(function(){
-    //     console.log("clicked")
-    //     $.ajax({
-    //         type: "POST",
-    //         url: "/ajax/create_group/",
-    //         dataType: "json",
-    //         data: { "new_id": $(".group_id").val(), "new_name": $(".group_name").val() },
-    //         success: function(data) {
-    //             alert(data.message);
-    //             if (data.redirect) {
-    //                 window.location.replace("/group/" + $(".group_id").val());
-    //             }
-    //         }
-    //     });
-    // });
 
   // CSRF code
   function getCookie(name) {
