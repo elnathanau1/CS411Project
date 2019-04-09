@@ -279,7 +279,10 @@ def group_view(request, group_id):
 
 
 def login(request):
-    context = {}
+    # Get Spotify authorization
+    auth_url = sp_oauth.get_authorize_url()
+
+    context = {"auth_url" : auth_url }
     return render(request, 'login.html', context)
 
 def about_us(request):

@@ -37,7 +37,7 @@ urlpatterns = [
     # pages
     url(r'^admin/', admin.site.urls),
     url(r'^login/', login, name = 'login'),
-    url(r'^connect/', connect , name = 'connect'),
+    url(r'^connect/', login , name = 'connect'),
     url(r'^dash/', dash, name = 'dash'),
     url(r'^group$', group, name = 'group'),
     url(r'^group/$', group, name = 'group'),
