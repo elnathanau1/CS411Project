@@ -8,7 +8,7 @@ $(document).ready(function() {
             console.log(data);
             for(i = 0; i < data.names.length; i++){
             // jQuery selector
-            $('#all_groups_table').append('<tr><td><a id="group" href=\"https://cs411-spotify.herokuapp.com/group/'+data.ids[i]+'/\">'+data.names[i]+'</a></td></tr>')
+            $('#all_groups_table').append('<tr><td><a id="group" href=\"https://cs411-spotify.herokuapp.com/group/{0}/\">{1} ({2})</a></td></tr>'.format(data.ids[i], data.names[i], data.ids[i]))
 
             }
         }
