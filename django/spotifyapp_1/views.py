@@ -456,11 +456,15 @@ def get_group_members_req(request):
 
 def get_songs_req(request):
     if request.is_ajax():
-        list_songs = []
-        songs = Song.objects.raw('SELECT * FROM songs'.format())
-        for song in songs:
-            list_songs.append('{0} by {1}'.format(song.name, song.artist_name))
-        data = json.dumps({'songs': list_songs})
+        names = []
+        artists = []
+        genres = []
+        query = Song.objects.raw('SELECT * FROM songs'.format())
+        for song in query:
+            names.append(song.name)
+            artists.append(song.artist_name)
+            genres.append(song.genre)
+        data = json.dumps({'names':names, 'artists':artists, 'genres':genres})
         return HttpResponse(data, content_type='application/json')
     else:
         raise Http404
