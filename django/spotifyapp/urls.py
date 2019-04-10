@@ -48,7 +48,7 @@ urlpatterns = [
     url(r'^about_us/', about_us, name = 'about_us'),
     url(r'^songs/', songs, name = 'songs'),
     url(r'^graph_test/', graph_test, name = 'graph_test'),
-    url(r'^$', connect, name = 'default'),
+    url(r'^$', login, name = 'default'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
