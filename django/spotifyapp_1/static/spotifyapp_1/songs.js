@@ -6,7 +6,7 @@ $(document).ready(function() {
         url: "/ajax/get_songs/",
         success: function(data) {
             console.log(data);
-            for(i = 0; i < data.songs.length; i++){
+            for(i = 0; i < data.names.length; i++){
             // jQuery selector
               $('#songs_table').append('<tr><td>'+data.names[i]+'</td><td>'+data.artists[i]+'</td><td>'+data.genres[i]+'</td></tr>')
 
