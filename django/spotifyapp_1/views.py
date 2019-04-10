@@ -184,14 +184,18 @@ def connecting(request):
     context = {}
     return render(request, 'connecting.html', context)
 
-def group(request):
-    table = ""
-    for user in User.objects.raw('SELECT * FROM users'):
-        # Note: the HTML injections obviously don't work, but the SQL call does
-        table += "<tr>\n<th>" + user.name + "</th>\n</tr>"
-
-    context = {"inputTable" : table}
-    return render(request, 'group.html', context)
+def list_all_groups_req(request):
+    if request.is_ajax():
+        names = []
+        ids = []
+        groups_query = Group.objects.raw('SELECT * FROM groups'.format())
+        for group in groups_query:
+            ids.append(group.group_id)
+            names.append(group.name)
+        data = json.dumps({"names": names, "ids": ids})
+        return HttpResponse(data, content_type='application/json')
+    else:
+        raise Http404
 
 def group_view(request, group_id):
     # get current group_id
