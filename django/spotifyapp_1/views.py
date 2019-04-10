@@ -184,6 +184,10 @@ def connecting(request):
     context = {}
     return render(request, 'connecting.html', context)
 
+def group(request):
+    context = {}
+    return render(request, 'group.html', context)
+
 def list_all_groups_req(request):
     if request.is_ajax():
         names = []
