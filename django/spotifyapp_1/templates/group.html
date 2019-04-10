@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>This is the Group page</h1>
-
 <table style="width:100%">
-{{inputTable}}
+<tr>
+  <td>
+    <div class="items">
+      <table id="all_groups_table">
+      </table>
+    </div>
+  </td>
+</tr>
 </table>
 {% endblock %}
