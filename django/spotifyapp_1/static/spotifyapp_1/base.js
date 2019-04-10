@@ -10,6 +10,13 @@ if ($(location).attr('href') == 'https://cs411-spotify.herokuapp.com/about_us/')
 }
 
 if ($(location).attr('href') == 'https://cs411-spotify.herokuapp.com/login/') {
-  $('ul li a').filter(":contains('Log out')").remove();
-  $('ul li a').filter(":contains('Dash')").remove();
+    $('ul li a').filter(":contains('Log in')").remove();
+    $('ul li a').filter(":contains('Log out')").remove();
+    $('ul li a').filter(":contains('Dash')").remove();
+}
+
+if ($(location).attr('href') == 'https://cs411-spotify.herokuapp.com/connect/') {
+    $('ul li a').filter(":contains('Log in')").remove();
+    $('ul li a').filter(":contains('Log out')").remove();
+    $('ul li a').filter(":contains('Dash')").remove();
 }
