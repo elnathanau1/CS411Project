@@ -1,17 +1,22 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<table style="width:100%">
-<tr>
-  <td>
-    <div class="items">
-      <table id="all_groups_table">
-      </table>
-    </div>
-  </td>
-</tr>
-</table>
-
+<div class="column">
+  <table style="width:100%">
+    <tr>
+      <th>Groups</th>
+    </tr>
+    <tr>
+      <td>
+        <div class="items">
+          <table id="all_groups_table">
+          </table>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
 
 <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
 <script src="{% static 'spotifyapp_1/group.js' %}"></script>
