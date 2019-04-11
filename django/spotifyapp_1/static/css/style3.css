@@ -323,3 +323,8 @@ tr:hover #remove {
   text-align: center;
   width: 300px;
 }
+
+/* SOngs */
+#songs_table {
+  font-size: 5px;
+}
