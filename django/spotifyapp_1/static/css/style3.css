@@ -230,10 +230,6 @@ tr:hover #remove {
   border-bottom:2px solid #c5c6c7;
 }
 
-.items td:hover {
-  background-color: white;
-}
-
 #group {
   text-decoration:none;
   text-align: center;
