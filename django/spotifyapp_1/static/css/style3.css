@@ -13,7 +13,8 @@ medium blue: #45A29E
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #1F2833;
+  background-color: rgba(0,0,0,0);
+  /* #1F2833; */
 }
 ::-webkit-scrollbar-thumb {
   border-radius:500px;
