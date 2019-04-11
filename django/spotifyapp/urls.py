@@ -34,16 +34,15 @@ urlpatterns = [
     url(r'^ajax/get_songs/', get_songs_req),
     url(r'^ajax/add_song/', add_song_req),
     url(r'^ajax/list_all_groups/', list_all_groups_req),
+    url(r'^ajax/list_suggestions/', list_suggestions_req),
 
     # pages
     url(r'^admin/', admin.site.urls),
     url(r'^login/', login, name = 'login'),
-    url(r'^connect/', login , name = 'connect'),
     url(r'^dash/', dash, name = 'dash'),
     url(r'^group$', group, name = 'group'),
     url(r'^group/$', group, name = 'group'),
     url(r'^group/(?P<group_id>\w+)/$', group_view, name = 'group_view'),
-    url(r'^connecting/', connecting, name = 'connecting'),
     url(r'^spotifyReturn/', connect, name = 'spotifyReturn'),
     url(r'^about_us/', about_us, name = 'about_us'),
     url(r'^songs/', songs, name = 'songs'),

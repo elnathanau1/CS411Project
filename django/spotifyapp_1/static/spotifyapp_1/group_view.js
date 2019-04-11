@@ -16,6 +16,20 @@ $(document).ready(function() {
         }
     });
 
+    //loaded immediately after page is done loading
+    $.ajax({
+        type: "GET",
+        url: "/ajax/list_suggestions/",
+        success: function(data) {
+            console.log(data);
+            for(i = 0; i < data.names.length; i++){
+            // jQuery selector
+            $('#suggestions_table').append('<tr><td>'+data.names[i]+'</td><td>'+data.artists[i]+'</td><td>'+data.genres[i]+'</td></tr>')
+
+            }
+        }
+    });
+
     // AJAX POST
     $('.change-group-name').click(function(){
         console.log("clicked")

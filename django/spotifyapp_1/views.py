@@ -173,33 +173,9 @@ def dash(request):
         print(str(e))
         return connect(request)
 
-def connect(request):
-    # Get Spotify authorization
-    auth_url = sp_oauth.get_authorize_url()
-
-    context = {"auth_url" : auth_url }
-    return render(request, 'connect.html', context)
-
-def connecting(request):
-    context = {}
-    return render(request, 'connecting.html', context)
-
 def group(request):
     context = {}
     return render(request, 'group.html', context)
-
-def list_all_groups_req(request):
-    if request.is_ajax():
-        names = []
-        ids = []
-        groups_query = Group.objects.raw('SELECT * FROM groups'.format())
-        for group in groups_query:
-            ids.append(group.group_id)
-            names.append(group.name)
-        data = json.dumps({"names": names, "ids": ids})
-        return HttpResponse(data, content_type='application/json')
-    else:
-        raise Http404
 
 def group_view(request, group_id):
     # get current group_id
@@ -497,6 +473,19 @@ def add_song_req(request):
             data = {'message': "added song {0}".format(track['name'])}
         else:
             data = {'message': "song with uri {0} does not exist".format(new_song_id)}
+        return HttpResponse(data, content_type='application/json')
+    else:
+        raise Http404
+
+def list_all_groups_req(request):
+    if request.is_ajax():
+        names = []
+        ids = []
+        groups_query = Group.objects.raw('SELECT * FROM groups'.format())
+        for group in groups_query:
+            ids.append(group.group_id)
+            names.append(group.name)
+        data = json.dumps({"names": names, "ids": ids})
         return HttpResponse(data, content_type='application/json')
     else:
         raise Http404
