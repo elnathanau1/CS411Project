@@ -35,8 +35,8 @@ urlpatterns = [
     url(r'^ajax/add_song/', add_song_req),
     url(r'^ajax/list_all_groups/', list_all_groups_req),
     url(r'^ajax/list_suggestions/', list_suggestions_req),
-    url(r'^ajax/make_suggetions/', make_suggestions_req),
-    url(r'^ajax/clear_suggetions/', clear_suggestions_req),
+    url(r'^ajax/make_suggestions/', make_suggestions_req),
+    url(r'^ajax/clear_suggestions/', clear_suggestions_req),
 
     # pages
     url(r'^admin/', admin.site.urls),
