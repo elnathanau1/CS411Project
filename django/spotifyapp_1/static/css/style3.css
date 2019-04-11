@@ -198,6 +198,7 @@ h3 {
 
 table{
   width: 100%;
+  border: 2px solid #c5c6c7;
 }
 
 th {
