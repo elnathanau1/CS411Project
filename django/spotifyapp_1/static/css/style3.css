@@ -43,6 +43,11 @@ html{
   height: 60px;
 }
 
+.left {
+  position: relative;
+  float: left;
+}
+
 p3 {
   color: #c5c6c7;
   font-size: 20px;
