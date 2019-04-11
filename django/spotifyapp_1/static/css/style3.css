@@ -30,7 +30,6 @@ medium blue: #45A29E
 }
 
 html{
-  /* background-image: url(../images//abstract1.png); */
   background-image: url(../images//darkblue.svg);
   background-size: cover;
   height: 100vh;
@@ -185,7 +184,7 @@ h3 {
 
 
 .items {
-  height:300px;
+  height:200px;
   overflow:auto;
 }
 
