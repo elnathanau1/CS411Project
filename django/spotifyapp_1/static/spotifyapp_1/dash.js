@@ -30,7 +30,7 @@ $(document).ready(function() {
       url: "/ajax/logout/",
       success: function(data) {
         alert(data[0] + " was successfully logged out");
-        window.location.replace("/connect/");
+        window.location.replace("/login/");
       }
     });
 

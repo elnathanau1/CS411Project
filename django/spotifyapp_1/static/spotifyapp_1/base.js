@@ -1,6 +1,5 @@
 var no_bar = [
   'https://cs411-spotify.herokuapp.com/login/',
-  'https://cs411-spotify.herokuapp.com/connect/',
   'https://cs411-spotify.herokuapp.com'
 ];
 
