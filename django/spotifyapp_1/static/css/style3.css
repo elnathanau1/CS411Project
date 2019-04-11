@@ -187,7 +187,7 @@ h3 {
 
 
 .items {
-  height:400px;
+  height:300px;
   overflow:auto;
 }
 
@@ -225,7 +225,7 @@ tr:hover #remove {
   opacity: 1;
 }
 
-.items td {
+.items tr {
   color: #45A29E;
   border-bottom:2px solid #c5c6c7;
 }
