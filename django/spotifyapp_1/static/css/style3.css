@@ -243,6 +243,7 @@ tr:hover #remove {
 }
 
 #group:hover {
+  background-color: white;
   color: #1F2833;
   cursor: pointer;
 }
