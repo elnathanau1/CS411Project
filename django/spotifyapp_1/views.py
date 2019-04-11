@@ -490,6 +490,26 @@ def list_all_groups_req(request):
     else:
         raise Http404
 
+def list_suggestions_req(request):
+    if request.is_ajax():
+        names = []
+        artists = []
+        genres = []
+
+        group_id = request.session['group_id']
+        query = Song.objects.raw('SELECT * FROM songs WHERE song_id <@ (SELECT suggestions FROM groups WHERE group_id = \'{0}\')'.format(group_id))
+
+        for song in query:
+            names.append(song.name)
+            artists.append(song.artist_name)
+            genres.append(song.genre)
+
+        data = json.dumps({'names':names, 'artists':artists, 'genres':genres})
+        return HttpResponse(data, content_type='application/json')
+    else:
+        raise Http404
+        
+
 
 # def generate_suggestions_req(request):
 #     group_id = request.session['group_id']
