@@ -326,6 +326,6 @@ tr:hover #remove {
 }
 
 /* SOngs */
-#songs_table {
+#songs_table td {
   font-size: 5px;
 }
