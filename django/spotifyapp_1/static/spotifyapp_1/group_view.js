@@ -24,7 +24,7 @@ $(document).ready(function() {
             console.log(data);
             for(i = 0; i < data.names.length; i++){
             // jQuery selector
-            $('#suggestions_table').append('<tr><td>'+data.names[i]+'</td><td>'+data.artists[i]+'</td><td>'+data.genres[i]+'</td></tr>')
+            $('#suggestions_table').append('<tr><td>'+data.names[i]+'</td><td>'+data.artists[i]+'</td><td>'+data.genres[i]+'</td></tr>');
 
             }
         }
@@ -32,7 +32,6 @@ $(document).ready(function() {
 
     // AJAX POST
     $('.change-group-name').click(function(){
-        console.log("clicked")
         var new_name = prompt("New name:", "default");
         if(new_name != null){
           if(new_name.length != 0){
@@ -63,6 +62,31 @@ $(document).ready(function() {
         });
     });
 
+    $('.make-suggestions').click(function(){
+        $.ajax({
+            type: "POST",
+            url: "/ajax/make_suggestions/",
+            dataType: "json",
+            success: function(data) {
+              $('#suggestions_table').empty();
+              $('#suggestions_table').append('<tr><td>'+data.names[i]+'</td><td>'+data.artists[i]+'</td><td>'+data.genres[i]+'</td></tr>');
+            }
+        });
+    });
+
+    $('.clear-suggestions').click(function(){
+        $.ajax({
+            type: "POST",
+            url: "/ajax/clear_suggestions/",
+            dataType: "json",
+            success: function(data) {
+                if (data.cleared == True){
+                  alert("Cleared suggestions");
+                  $('#suggestions_table').empty();
+                }
+            }
+        });
+    });
 
   // CSRF code
   function getCookie(name) {

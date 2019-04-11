@@ -23,6 +23,8 @@ from django.contrib.staticfiles.templatetags.staticfiles import static
 
 import json
 
+import random
+
 # technically we should hide these, but oh well
 CLIENT_ID = 'c7c0e5450e374d8581a809b81ad3cb43'
 CLIENT_SECRET = '9e40af53e60b4e77be9465a1beab1ffd'
@@ -260,7 +262,6 @@ def group_view(request, group_id):
         # set context for html
         context = {"group_id":group.group_id, "group_name":group.name, "members":json.dumps(members)}
     return render(request, 'group_view.html', context)
-
 
 def login(request):
     # Get Spotify authorization
@@ -508,11 +509,62 @@ def list_suggestions_req(request):
         return HttpResponse(data, content_type='application/json')
     else:
         raise Http404
-        
 
+def make_suggestions_req(request):
+    if request.is_ajax():
+        group = Group.objects.filter(group_id=group_id).first()
+        if group != None:
+            # get members
+            members_q = Membership.objects.filter(m_group=group)
+            members = []        # user nodes
+            for q in members_q:
+                members.append((q.m_user.name, q.m_user.spotify_id))
 
-# def generate_suggestions_req(request):
-#     group_id = request.session['group_id']
-#     cursor = connection.cursor()
-#     cursor.execute("SELECT
-#                     ")
+            # get other info
+            genreSet = set()
+            commonGenres = set()        # common genres aka our genre nodes
+            for i in range(0, len(members)):
+                (tempName, tempId) = members[i]
+                user = User.objects.get(spotify_id=tempId)
+                for key in user.genres:
+                    if key not in genreSet:
+                        genreSet.add(key)
+                    else:
+                        commonGenres.add(key)
+
+            # just to test
+            names = []
+            artists = []
+            genres = []
+
+            suggestions = []
+            randomSample = random.sample(commonGenres, 5)
+            for genre in randomSample:
+                query = Song.objects.raw('SELECT * FROM songs WHERE genre @>  \'{0}\' ORDER BY RANDOM() LIMIT 5)'.format(group_id))
+                for song in query:
+                    suggestions.append(song.song_id)
+
+                    names.append(song.name)
+                    artists.append(song.artist_name)
+                    genres.append(song.genre)
+
+            group.suggestions = suggestions
+            group.save()
+
+        data = json.dumps({'names':names, 'artists':artists, 'genres':genres})
+        return HttpResponse(data, content_type='application/json')
+    else:
+        raise Http404
+
+def clear_suggestions_req(request):
+    if request.is_ajax():
+        group_id = request.session['group_id']
+        group = Group.objects.filter(group_id=group_id).first()
+        if group != None:
+            group.suggestions = []
+            group.save()
+
+        data = json.dumps({'cleared': True})
+        return HttpResponse(data, content_type='application/json')
+    else:
+        raise Http404
