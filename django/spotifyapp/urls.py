@@ -43,7 +43,6 @@ urlpatterns = [
     url(r'^group$', group, name = 'group'),
     url(r'^group/$', group, name = 'group'),
     url(r'^group/(?P<group_id>\w+)/$', group_view, name = 'group_view'),
-    url(r'^spotifyReturn/', connect, name = 'spotifyReturn'),
     url(r'^about_us/', about_us, name = 'about_us'),
     url(r'^songs/', songs, name = 'songs'),
     url(r'^graph_test/', graph_test, name = 'graph_test'),
