@@ -155,7 +155,8 @@ p2 {
 }
 /* home */
 p {
-  border-top: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   color: white;
   font-size: 40px;
   position: relative;
