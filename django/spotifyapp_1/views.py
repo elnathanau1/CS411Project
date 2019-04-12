@@ -498,7 +498,8 @@ def list_suggestions_req(request):
         genres = []
 
         group_id = request.session['group_id']
-        query = Song.objects.raw('SELECT * FROM songs WHERE song_id <@ (SELECT suggestions FROM groups WHERE group_id = \'{0}\')'.format(group_id))
+        group = Group.objects.filter(group_id=group_id).first()
+        query = Song.objects.filter(song_id__contained_by=group.suggestions)
 
         for song in query:
             names.append(song.name)
@@ -541,7 +542,7 @@ def make_suggestions_req(request):
             suggestions = []
             randomSample = random.sample(commonGenres, 5)
             for genre in randomSample:
-                query = Song.objects.raw('SELECT * FROM songs WHERE genre @>  \'{0}\' ORDER BY RANDOM() LIMIT 5'.format(genre))
+                query = Song.objects.filter(genre__contains=[genre])
                 for song in query:
                     suggestions.append(song.song_id)
 
