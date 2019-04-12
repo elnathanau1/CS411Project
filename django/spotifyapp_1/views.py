@@ -541,7 +541,7 @@ def make_suggestions_req(request):
             suggestions = []
             randomSample = random.sample(commonGenres, 5)
             for genre in randomSample:
-                query = Song.objects.raw('SELECT * FROM songs WHERE genre @>  \{\'{0}\'\} ORDER BY RANDOM() LIMIT 5'.format(genre))
+                query = Song.objects.raw('SELECT * FROM songs WHERE genre @>  \'{0}\' ORDER BY RANDOM() LIMIT 5'.format(genre))
                 for song in query:
                     suggestions.append(song.song_id)
 
