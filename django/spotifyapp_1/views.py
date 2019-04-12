@@ -173,7 +173,7 @@ def dash(request):
     # something broke...let user reconnect
     except Exception as e:
         print(str(e))
-        return connect(request)
+        return login(request)
 
 def group(request):
     context = {}
