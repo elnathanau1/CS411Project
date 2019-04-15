@@ -196,7 +196,7 @@ h3 {
   overflow:auto;
 }
 
-table{
+.table{
   width: 100%;
   border: 2px solid #c5c6c7;
 }
