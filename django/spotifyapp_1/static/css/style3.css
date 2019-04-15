@@ -336,3 +336,16 @@ input {
 #songs_table tr {
   border-bottom: 2px solid #c5c6c7;
 }
+
+#cnct {
+  animation: move-in-steps 8s infinite;
+}
+
+@keyframes toGreen {
+  0% {
+    color: #c5c6c7;
+  }
+  100% {
+    color: green;
+  }
+}
