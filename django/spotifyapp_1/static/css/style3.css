@@ -88,6 +88,10 @@ ul li a:focus{
   color: red;
 }
 
+#minLogo:hover {
+  cursor: pointer;
+}
+
 /* Login page */
 #middle {
   padding-top: 0px;
