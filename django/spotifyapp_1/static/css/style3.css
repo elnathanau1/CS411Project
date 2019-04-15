@@ -218,19 +218,6 @@ td {
     height: 30px;
 }
 
-#remove {
-  width: 60px;
-  float: right;
-  opacity: 0;
-  color: red;
-  font-size: 15px;
-  text-align: center;
-}
-
-tr:hover #remove {
-  opacity: 1;
-}
-
 .items td {
   color: #45A29E;
   border-bottom:2px solid #c5c6c7;
@@ -338,4 +325,9 @@ input {
 /* Songs */
 #songs_table td {
   font-size: 20px;
+  border-bottom: none;
+}
+
+#songs_table tr {
+  border-bottom: 2px solid #c5c6c7;
 }
