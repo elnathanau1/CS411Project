@@ -4,8 +4,8 @@ var no_bar = [
 ];
 
 if ($(location).attr('href') == 'https://cs411-spotify.herokuapp.com/dash/') {
-  $('ul li a').filter(":contains('Dash')").css('background-color', '#fff');
-  $('ul li a').filter(":contains('Dash')").css('color', '#000');
+  $('ul li a').filter(":contains('Home')").css('background-color', '#fff');
+  $('ul li a').filter(":contains('Home')").css('color', '#000');
 }
 
 if ($(location).attr('href') == 'https://cs411-spotify.herokuapp.com/group/') {
