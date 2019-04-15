@@ -88,10 +88,6 @@ ul li a:focus{
   color: red;
 }
 
-#login:hover {
-  color: green;
-}
-
 /* Login page */
 #middle {
   padding-top: 0px;
