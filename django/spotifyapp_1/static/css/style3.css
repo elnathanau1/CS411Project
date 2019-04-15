@@ -295,6 +295,7 @@ tr:hover #remove {
 }
 
 .container {
+  padding-bottom: 10px;
   margin-left: auto;
   margin-right: auto;
   background-color: rgba(180, 255, 255, .11);
@@ -317,11 +318,11 @@ button {
   width: 300px;
 }
 
-/* button:hover {
+button:hover {
   background-color: white;
   color: #1F2833;
   cursor: pointer;
-} */
+}
 
 input {
   margin-top: 5px;
@@ -339,7 +340,7 @@ input {
   width: 300px;
 }
 
-/* SOngs */
+/* Songs */
 #songs_table td {
   font-size: 20px;
 }
