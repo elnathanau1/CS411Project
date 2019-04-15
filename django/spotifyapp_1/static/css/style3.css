@@ -338,14 +338,14 @@ input {
 }
 
 #cnct {
-  animation: move-in-steps 8s infinite;
+  animation: toGreen 3s forwards;
 }
 
 @keyframes toGreen {
-  0% {
+  from {
     color: #c5c6c7;
   }
-  100% {
+  to {
     color: green;
   }
 }
