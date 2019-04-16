@@ -97,8 +97,7 @@ ul li a:focus{
 
 .minLogo {
   position: relative;
-  float: left;
-  top: 20px;
+  top: 10px;
   left: 20px
 }
 
