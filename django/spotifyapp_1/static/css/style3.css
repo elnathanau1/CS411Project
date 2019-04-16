@@ -85,22 +85,24 @@ ul li a:focus{
 
 @keyframes minLogo {
   0% {
-    src: "{% static 'images//nio_logo_white.png' %}";
+    opacity: 100%;
   }
   100% {
-    src: "{% static 'images//nio_logo.png' %}";
+    opacity: 0%;
   }
 }
+#minLogoWhite {
+    animation: minLogo 3s forwards;
+}
 
-#minLogo {
+.minLogo {
   position: relative;
   float: left;
   top: 20px;
   left: 20px
-  animation: minLogo 3s forwards;
 }
 
-#minLogo:hover {
+.minLogo:hover {
   cursor: pointer;
 }
 
