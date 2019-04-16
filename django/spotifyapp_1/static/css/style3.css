@@ -308,6 +308,7 @@ td {
 .button_hous {
   margin-left: auto;
   margin-right: auto;
+  width: 320px;
 }
 
 button {
