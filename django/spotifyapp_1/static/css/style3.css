@@ -305,6 +305,11 @@ td {
   border-radius: 10px;
 }
 
+.button_hous {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 button {
   margin-top: 5px;
   margin-bottom: 5px;
