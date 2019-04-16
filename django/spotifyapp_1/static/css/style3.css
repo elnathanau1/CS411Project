@@ -88,6 +88,21 @@ ul li a:focus{
   color: red;
 }
 
+@keyframes minLogo {
+  0% {
+    src: "{% static 'images//nio_logo_white.png' %}";
+  }
+  100% {
+    src: "{% static 'images//nio_logo.png' %}";
+  }
+}
+
+#minLogo {
+  top: 20px;
+  left: 20px
+  animation: minLogo 3s forwards;
+}
+
 #minLogo:hover {
   cursor: pointer;
 }
