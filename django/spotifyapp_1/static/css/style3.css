@@ -83,16 +83,18 @@ ul li a:focus{
   color: red;
 }
 
-@keyframes minLogo {
-  0% {
+@keyframes fade {
+  from {
     opacity: 100%;
+    background-color: green;
   }
-  100% {
+  to {
     opacity: 0%;
+    background-color: blue;
   }
 }
 #minLogoWhite {
-    animation: minLogo 3s forwards;
+    animation: fade 3s forwards;
 }
 
 .minLogo {
