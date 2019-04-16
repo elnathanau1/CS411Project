@@ -85,12 +85,10 @@ ul li a:focus{
 
 @keyframes fade {
   from {
-    opacity: 100%;
-    background-color: green;
+    opacity: 1;
   }
   to {
     opacity: 0%;
-    background-color: blue;
   }
 }
 #minLogoWhite {
