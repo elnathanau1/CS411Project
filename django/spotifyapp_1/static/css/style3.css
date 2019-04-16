@@ -169,6 +169,7 @@ ul li a:focus{
 }
 
 p2 {
+  top: 0px;
   color: #c5c6c7;
   font-size: 30px;
   text-align: center;
