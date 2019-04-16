@@ -92,7 +92,8 @@ ul li a:focus{
   }
 }
 #minLogoWhite {
-    animation: fade 3s forwards;
+  opacity: 0;
+  animation: fade 3s forwards;
 }
 
 .minLogo {
