@@ -360,7 +360,7 @@ def join_group_req(request):
         # checks that group exists
         if join_id == "":
             data = {'redirect': False, 'message': "You did not enter a group id"}
-        else if len(Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(join_id))) != 0:
+        elif len(Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(join_id))) != 0:
             user = User.objects.get(spotify_id = request.session['spotify_id'])
             group = Group.objects.get(group_id = join_id)
             mem_exists = Membership.objects.filter(m_user=user, m_group=group).first()
