@@ -80,7 +80,7 @@ $(document).ready(function() {
             url: "/ajax/clear_suggestions/",
             dataType: "json",
             success: function(data) {
-                if (data.cleared == True){
+                if (data.cleared == true){
                   alert("Cleared suggestions");
                   $('#suggestions_table').empty();
                 }
