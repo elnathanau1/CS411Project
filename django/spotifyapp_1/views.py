@@ -588,13 +588,10 @@ def create_playlist_req(request):
         spotify.user_playlist_add_tracks(user, playlist['id'], group.suggestions, position=None)
         tracks = group.suggestions
         start = 0
-        while start < len(tracks):
-            if len(tracks) - start < 100:
-                spotify.user_playlist_add_tracks(user, playlist['id'], tracks[start : len(tracks)])
-            else:
-                spotify.user_playlist_add_tracks(user, playlist['id'], tracks[start : start+100])
-            start += 100
-        data = json.dumps({'message': 'create playlist'})
+        while tracks:
+            results = sp.user_playlist_add_tracks(username, playlist_id, tracks[:100], position=None)
+            tracks = tracks[100:]
+        data = json.dumps({'message': 'created playlist'})
         return HttpResponse(data, content_type='application/json')
     else:
         raise Http404
