@@ -365,6 +365,7 @@ input {
 
 /* Songs */
 #songs_table td {
+  text-align: center;
   font-size: 20px;
   border-bottom: none;
 }
