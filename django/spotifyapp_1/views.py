@@ -585,7 +585,6 @@ def create_playlist_req(request):
 
         # add tracks to playlist
         group = Group.objects.filter(group_id=group_id).first()
-        spotify.user_playlist_add_tracks(user, playlist['id'], group.suggestions, position=None)
         tracks = group.suggestions
         while tracks:
             results = sp.user_playlist_add_tracks(name, playlist['id'], tracks[:100], position=None)
