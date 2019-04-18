@@ -586,6 +586,14 @@ def create_playlist_req(request):
         # add tracks to playlist
         group = Group.objects.filter(group_id=group_id).first()
         spotify.user_playlist_add_tracks(user, playlist['id'], group.suggestions, position=None)
+        tracks = group.suggestions
+        start = 0
+        while start < len(tracks):
+            if len(tracks) - start < 100:
+                spotify.user_playlist_add_tracks(user, playlist['id'], tracks[start : len(tracks)])
+            else:
+                spotify.user_playlist_add_tracks(user, playlist['id'], tracks[start : start+50])
+            start += 100
         data = json.dumps({'message': 'create playlist'})
         return HttpResponse(data, content_type='application/json')
     else:
