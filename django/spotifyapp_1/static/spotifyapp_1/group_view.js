@@ -70,7 +70,8 @@ $(document).ready(function() {
               $('#suggestions_table').empty();
               for(i = 0; i < data.names.length; i++){
                   $('#suggestions_table').append('<tr><td>'+data.names[i]+'</td><td>'+data.artists[i]+'</td><td>'+data.genres[i]+'</td></tr>');
-              }            }
+              }
+          }
         });
     });
 
