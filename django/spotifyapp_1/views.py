@@ -54,7 +54,7 @@ def dash(request):
             # set session access token
             request.session['access_token'] = token_info['access_token']
         except:
-            return connect(request)
+            return dash(request)
 
     try:
         # set gloabl spotify var to be used in other functions
