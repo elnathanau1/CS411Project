@@ -101,6 +101,14 @@ $(document).ready(function() {
         });
     });
 
+
+    $("#search_val").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#suggestions_table tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+
   // CSRF code
   function getCookie(name) {
       var cookieValue = null;
