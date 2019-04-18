@@ -592,7 +592,7 @@ def create_playlist_req(request):
             if len(tracks) - start < 100:
                 spotify.user_playlist_add_tracks(user, playlist['id'], tracks[start : len(tracks)])
             else:
-                spotify.user_playlist_add_tracks(user, playlist['id'], tracks[start : start+50])
+                spotify.user_playlist_add_tracks(user, playlist['id'], tracks[start : start+100])
             start += 100
         data = json.dumps({'message': 'create playlist'})
         return HttpResponse(data, content_type='application/json')
