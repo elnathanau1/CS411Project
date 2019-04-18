@@ -581,7 +581,7 @@ def create_playlist_req(request):
         # create new playlist
         user = request.session['spotify_id']
         name = request.POST.get('playlist_name')
-        playlist = spotify.user_playlist_create(user, "test", public=True)
+        playlist = spotify.user_playlist_create(user, str(name), public=True)
 
         # add tracks to playlist
         group = Group.objects.filter(group_id=group_id).first()
