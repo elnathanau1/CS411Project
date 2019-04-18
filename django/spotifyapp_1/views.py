@@ -568,7 +568,25 @@ def clear_suggestions_req(request):
             group.suggestions = []
             group.save()
 
-        data = json.dumps({'cleared': True})
+        data = json.dumps({'cleared': 'true'})
+        return HttpResponse(data, content_type='application/json')
+    else:
+        raise Http404
+
+def create_playlist_req(request):
+    if request.is_ajax():
+        spotify = spotipy.Spotify(auth=request.session['access_token'])
+        group_id = request.session['group_id']
+
+        # create new playlist
+        user = request.session['spotify_id']
+        name = request.POST.get('playlist_name')
+        playlist = spotify.user_playlist_create(user, name, public=True, description='')
+
+        # add tracks to playlist
+        group = Group.objects.filter(group_id=group_id).first()
+        spotify.user_playlist_add_tracks(user, playlist.id, group.suggestions, position=None)
+        data = json.dumps({'message': 'create playlist'})
         return HttpResponse(data, content_type='application/json')
     else:
         raise Http404

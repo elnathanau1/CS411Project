@@ -81,10 +81,21 @@ $(document).ready(function() {
             url: "/ajax/clear_suggestions/",
             dataType: "json",
             success: function(data) {
-                if (data.cleared == true){
+                if (data.cleared == 'true'){
                   alert("Cleared suggestions");
                   $('#suggestions_table').empty();
                 }
+            }
+        });
+    });
+
+    $('.create-playlist').click(function(){
+        $.ajax({
+            type: "POST",
+            url: "/ajax/create_playlist/",
+            dataType: "json",
+            success: function(data) {
+                alert(data.message)
             }
         });
     });
