@@ -541,14 +541,12 @@ def make_suggestions_req(request):
             names = []
             artists = []
             genres = []
-
             suggestions = []
             randomSample = random.sample(commonGenres, 5)
             for genre in randomSample:
                 query = Song.objects.filter(genre__contains=[genre])
                 for song in query:
                     suggestions.append(song.song_id)
-
                     names.append(song.name)
                     artists.append(song.artist_name)
                     genres.append(song.genre)
