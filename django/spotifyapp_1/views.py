@@ -503,7 +503,7 @@ def list_suggestions_req(request):
         group_id = request.session['group_id']
         group = Group.objects.filter(group_id=group_id).first()
         print(group.suggestions)
-        query = Song.objects.filter(song_id__contained_by=list(group.suggestions))
+        query = Song.objects.filter(song_id__in=list(group.suggestions))
 
         for song in query:
             names.append(song.name)
