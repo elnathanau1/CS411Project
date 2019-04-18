@@ -314,9 +314,10 @@ def create_group_req(request):
     if request.is_ajax() and request.POST:
         new_id = request.POST.get('new_id')
         new_name = request.POST.get('new_name')
-
+        if len(new_id) == 0 or len(new_name) == 0:
+            data = {'redirect': False, 'message': "cannot leave id or name blank"}
         # checks if group exists
-        if len(Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(new_id))) == 0:
+        elif len(Group.objects.raw('SELECT * FROM groups WHERE group_id = \'{0}\''.format(new_id))) == 0:
             newGroup = Group()
             newGroup.group_id = new_id
             newGroup.name = new_name
