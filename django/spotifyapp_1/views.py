@@ -581,6 +581,11 @@ def create_playlist_req(request):
         # create new playlist
         user = request.session['spotify_id']
         name = request.POST.get('playlist_name')
+        if name == None:
+            data = json.dumps({'message': 'add playlist name'})
+            return HttpResponse(data, content_type='application/json')
+
+
         playlist = spotify.user_playlist_create(user, name, public=True)
 
         # add tracks to playlist
