@@ -574,14 +574,14 @@ def clear_suggestions_req(request):
         raise Http404
 
 def create_playlist_req(request):
-    if request.is_ajax():
+    if request.is_ajax() and request.POST:
         spotify = spotipy.Spotify(auth=request.session['access_token'])
         group_id = request.session['group_id']
 
         # create new playlist
         user = request.session['spotify_id']
         name = request.POST.get('playlist_name')
-        playlist = spotify.user_playlist_create(user, str(name), public=True)
+        playlist = spotify.user_playlist_create(user, name, public=True)
 
         # add tracks to playlist
         group = Group.objects.filter(group_id=group_id).first()

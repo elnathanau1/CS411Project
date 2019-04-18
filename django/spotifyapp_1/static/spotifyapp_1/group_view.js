@@ -94,6 +94,7 @@ $(document).ready(function() {
             type: "POST",
             url: "/ajax/create_playlist/",
             dataType: "json",
+            data: { "playlist_id": $(".playlist_id").val()},
             success: function(data) {
                 alert(data.message)
             }
