@@ -24,8 +24,7 @@ $(document).ready(function() {
             console.log(data);
             for(i = 0; i < data.names.length; i++){
             // jQuery selector
-            $('#suggestions_table').append('<tr><td>'+data.names[i]+'</td><td>'+data.artists[i]+'</td><td>'+data.genres[i]+'</td></tr>');
-
+                $('#suggestions_table').append('<tr><td>'+data.names[i]+'</td><td>'+data.artists[i]+'</td><td>'+data.genres[i]+'</td></tr>');
             }
         }
     });
@@ -69,8 +68,9 @@ $(document).ready(function() {
             dataType: "json",
             success: function(data) {
               $('#suggestions_table').empty();
-              $('#suggestions_table').append('<tr><td>'+data.names[i]+'</td><td>'+data.artists[i]+'</td><td>'+data.genres[i]+'</td></tr>');
-            }
+              for(i = 0; i < data.names.length; i++){
+                  $('#suggestions_table').append('<tr><td>'+data.names[i]+'</td><td>'+data.artists[i]+'</td><td>'+data.genres[i]+'</td></tr>');
+              }            }
         });
     });
 
