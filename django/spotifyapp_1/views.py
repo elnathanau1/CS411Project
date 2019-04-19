@@ -564,7 +564,10 @@ def make_suggestions_req(request):
             for i in range(0, len(weights)):
                 weights[i] = weights[i]/total_values
 
-            print(np.random.choice(genres, 10, weights))
+            print(genres)
+            print(weights)
+
+            print(np.random.choice(genres, 10, replace=True, weights))
 
 
 
