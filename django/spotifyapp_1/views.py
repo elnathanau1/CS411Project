@@ -171,7 +171,7 @@ def dash(request):
         groups = set()
         for membership in query:
             user_id = membership.m_user
-            group_id = memership.m_group
+            group_id = membership.m_group
             if user_id not in users:
                 users.add(user_id)
                 G.add_node(user_id)
