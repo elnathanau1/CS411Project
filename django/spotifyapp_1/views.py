@@ -162,60 +162,6 @@ def dash(request):
                 tempSong.energy = features[id]['energy']
                 tempSong.save()
 
-        # add graph
-        G = nx.Graph()
-        query = Membership.objects.filter(m_user=spotify_id)
-
-        # add nodes and edges
-        users = set()
-        groups = set()
-        for membership in query:
-            print(membership)
-            user_id = membership.m_user
-            group_id = membership.m_group
-            if user_id not in users:
-                users.add(user_id)
-                G.add_node(user_id)
-                G.nodes[user_id]['name'] = user_id.name
-
-            if group_id not in groups:
-                groups.add(group_id)
-                G.add_node(group_id)
-                G.nodes[group_id]['name'] = group_id.name
-
-            G.add_edge(user_id, group_id)
-
-        # create display
-        # Show with Bokeh
-        plot = Plot(plot_width=400, plot_height=400,
-                    x_range=Range1d(-1.1, 1.1), y_range=Range1d(-1.1, 1.1))
-        plot.title.text = "Groups Graph"
-
-        node_hover_tool = HoverTool(tooltips=[("name", "@name")])
-
-        plot.add_tools(node_hover_tool, TapTool(), BoxZoomTool(), ResetTool())
-
-        # play around with layouts to see which works best
-        graph_renderer = from_networkx(G, nx.circular_layout, scale=1, center=(0, 0))
-
-        graph_renderer.node_renderer.glyph = Circle(size=15, fill_color=Spectral3[0])
-        graph_renderer.node_renderer.selection_glyph = Circle(size=15, fill_color=Spectral3[2])
-        graph_renderer.node_renderer.hover_glyph = Circle(size=15, fill_color=Spectral3[1])
-
-        graph_renderer.edge_renderer.glyph = MultiLine(line_color="black", line_alpha=0.8, line_width=1)
-        graph_renderer.edge_renderer.selection_glyph = MultiLine(line_color=Spectral3[2], line_width=5)
-        graph_renderer.edge_renderer.hover_glyph = MultiLine(line_color=Spectral3[1], line_width=5)
-
-        graph_renderer.selection_policy = NodesAndLinkedEdges()
-        graph_renderer.inspection_policy = NodesOnly()
-
-        plot.renderers.append(graph_renderer)
-
-        # save graph
-        output_file('django/spotifyapp_1/' + static('spotifyapp_1/groups_graph.html')) # SUUUUPER HACKY
-        save(plot)
-
-
 
         # if we got here from a callback, redirect to the normal dash page
         if codeExists:
