@@ -554,10 +554,11 @@ def make_suggestions_req(request):
             # sort the genres by weight
             sorted_genres = sorted(common_genres_weighted.items(), key=operator.itemgetter(1), reverse=True)
             # split to two lists
-            genres, weights = zip(*sorted_genres)
+            genres_tuple, weights_tuple = zip(*sorted_genres)
 
-            print(genres)
-            print(weights)
+            genres = list(genres_tuple)
+            weights = list(weights_tuple)
+            # print(weights)
             # get probability distribution
             total_values = sum(weights)
             for i in range(0, len(weights)):
