@@ -248,6 +248,7 @@ td {
 }
 
 .items td {
+  font-size: 3vh;
   width= 33%;
   color: #45A29E;
   border-bottom:2px solid #c5c6c7;
