@@ -558,29 +558,99 @@ def make_suggestions_req(request):
 
             genres = list(genres_tuple)
             weights = list(weights_tuple)
-            # print(weights)
+
             # get probability distribution
             total_values = sum(weights)
             for i in range(0, len(weights)):
                 weights[i] = weights[i]/total_values
 
-            print(np.random.choice(genres, 100, replace=True, p=weights))
+            num_songs = 100
 
-
-
-            # just to test
+            # vars to hold songs
             names = []
             artists = []
             genres = []
             suggestions = []
-            randomSample = random.sample(common_genres, 5)
-            for genre in randomSample:
-                query = Song.objects.filter(genre__contains=[genre])
-                for song in query:
+
+            # vars to hold playlist math
+            popularity = []
+            mode = []
+            acousticness = []
+            danceability = []
+            energy = []
+
+            avgs = []
+            stds = []
+
+            chosen_genres = np.random.choice(genres, num_songs, replace=True, p=weights)
+
+            # need a basis to generate future
+            n = 5
+            count = 0
+
+            for genre in chosen_genres:
+                # flag for adding song to suggestions
+                found_song = False
+
+                # get songs from the chosen genre
+                genre_query = Song.objects.filter(genre__contains=[genre])
+
+                # if its in the first n songs, just add to playlist as no additional math needed
+                if count < n:
+                    count += 1
+                    index = random.randint(0, len(genre_query)-1)
+                    song = genre_query[index]
+                    found_song = True
+
+                else:
+                    # math-y stuff
+                    # calculate mean and standard deviations for each category
+                    calc_list = [popularity, mode, acousticness, danceability, energy]
+                    for i in range(0, len(calc_list)):
+                        avgs[i] = np.mean(list[i])
+                        stds[i] = np.std(list[i])
+
+                    num_std_away = 1
+                    while num_std_away <= 5:
+                        bounds = [[], []]
+                        for i in range(0, len(avgs)):
+                            bounds[0] = avgs[i] - num_std_away * stds[i]
+                            bounds[1] = avgs[i] + num_std_away * stds[i]
+
+                        math_query = genre_query.filter(
+                            popularity__gte=bounds[0][0],
+                            popularity__lte=bounds[1][0],
+                            acousticness__gte=bounds[0][2],
+                            acousticness__lte=bounds[1][2],
+                            danceability__gte=bounds[0][3],
+                            danceability__lte=bounds[1][3],
+                            energy__gte=bounds[0][4],
+                            energy__lte=bounds[1][4],
+                        )
+
+                        if math_query:  # it is not empty
+                            index = random.randint(0, len(math_query)-1)
+                            song = math_query[index]
+                            found_song = True
+
+                        else:
+                            num_std_away += 1
+
+
+                # add song to suggestions
+                if found_song:
                     suggestions.append(song.song_id)
                     names.append(song.name)
                     artists.append(song.artist_name)
                     genres.append(song.genre)
+
+                    # add song to math-y stuff
+                    popularity.append(float(song.popularity))
+                    mode.append(float(song.mode))
+                    acousticness.append(song.acousticness)
+                    danceability.append(song.danceability)
+                    energy.append(song.energy)
+
 
             group.suggestions = suggestions
             group.save()
