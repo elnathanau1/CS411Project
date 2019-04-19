@@ -589,7 +589,7 @@ def make_suggestions_req(request):
             for i in range(0, len(weights_list)):
                 weights_list[i] = weights_list[i]/total_values
 
-            num_songs = 100
+            num_songs = 50
 
             # vars to hold songs
             names = []
@@ -608,6 +608,7 @@ def make_suggestions_req(request):
             stds = [0.0, 0.0, 0.0, 0.0, 0.0]
 
             chosen_genres = np.random.choice(genres_list, num_songs, replace=True, p=weights_list)
+            print(chosen_genres)
 
             # need a basis to generate future
             n = 5
@@ -635,8 +636,12 @@ def make_suggestions_req(request):
                         avgs[i] = np.mean(calc_list[i])
                         stds[i] = np.std(calc_list[i])
 
+                    print(avgs)
+                    print(stds)
+
                     num_std_away = 1
                     while num_std_away <= 5:
+                        print(num_std_away)
                         bounds = [[], []]
                         for i in range(0, len(avgs)):
                             bounds[0].append(avgs[i] - num_std_away * stds[i])
