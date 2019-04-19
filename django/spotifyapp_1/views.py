@@ -278,7 +278,7 @@ def group_view(request, group_id):
 // JavaScript code goes here
 console.log(cb_obj);
 console.log(cb_data);
-document.getElementById('search_val').textContent = 'Goodbye!';
+document.getElementById('search_val').value = 'success';
 """)
 
         custom_tap_tool = TapTool(callback=tap_callback)
