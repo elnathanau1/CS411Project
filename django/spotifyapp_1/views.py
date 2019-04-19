@@ -604,8 +604,8 @@ def make_suggestions_req(request):
             danceability = []
             energy = []
 
-            avgs = []
-            stds = []
+            avgs = [0.0, 0.0, 0.0, 0.0, 0.0]
+            stds = [0.0, 0.0, 0.0, 0.0, 0.0]
 
             chosen_genres = np.random.choice(genres_list, num_songs, replace=True, p=weights_list)
 
