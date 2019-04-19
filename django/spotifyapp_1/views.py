@@ -567,7 +567,7 @@ def make_suggestions_req(request):
             print(genres)
             print(weights)
 
-            print(np.random.choice(genres, 10, replace=True, weights))
+            print(np.random.choice(genres, 10, replace=True, p=weights))
 
 
 
