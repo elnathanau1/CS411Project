@@ -327,18 +327,19 @@ td {
 }
 
 button {
+  margin-left: 5px;
+  margin-right: 5px;
   margin-top: 5px;
   margin-bottom: 5px;
   position: relative;
-  float: left;
+  float: right;
   text-decoration:none;
-  font-size: 20px;
+  font-size: 1.3vw;
   color: white;
-  left: 10px;
   background-color: rgba(180, 255, 255, .11);
   border-radius: 5px;
   text-align: center;
-  width: 300px;
+  width: 15vw;
 }
 
 button:hover {
@@ -352,10 +353,9 @@ input {
   margin-bottom: 5px;
   position: relative;
   float: left;
-  left: 10px;
   text-decoration:none;
   font-style: italic;
-  font-size: 20px;
+  font-size: 1.3vw;
   color: white;
   background-color: rgba(0,0,0,0);
   border-radius: 5px;
@@ -385,4 +385,23 @@ input {
   to {
     color: green;
   }
+}
+
+
+.left{
+  margin-left: 20px;
+  width: 40vw;
+  position: relative;
+  float: left;
+}
+
+.right{
+  margin-right: 20px;
+  width: 54vw;
+  position: relative;
+  float: right;
+}
+
+#leave:hover{
+  color: red;
 }
