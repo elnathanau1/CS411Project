@@ -582,7 +582,7 @@ def make_suggestions_req(request):
             avgs = []
             stds = []
 
-            chosen_genres = np.random.choice(genres_list, num_songs, replace=True, p=weights)
+            chosen_genres = np.random.choice(genres_list, num_songs, replace=True, p=weights_list)
 
             # need a basis to generate future
             n = 5
