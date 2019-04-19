@@ -414,3 +414,8 @@ input {
 #leave:hover{
   color: red;
 }
+
+object {
+    margin-left: 10vw;
+    margin-top: 10vh;
+}
