@@ -170,6 +170,7 @@ def dash(request):
         users = set()
         groups = set()
         for membership in query:
+            print(membership)
             user_id = membership.m_user
             group_id = membership.m_group
             if user_id not in users:
