@@ -614,7 +614,9 @@ def make_suggestions_req(request):
             n = 5
             count = 0
 
-            for genre in chosen_genres:
+            i = 0
+            while i < len(chosen_genres):
+                genre = chosen_genres[i]
                 # flag for adding song to suggestions
                 found_song = False
 
@@ -659,9 +661,12 @@ def make_suggestions_req(request):
                         )
 
                         if math_query:  # it is not empty
-                            index = random.randint(0, len(math_query)-1)
-                            song = math_query[index]
-                            found_song = True
+                            for i in range(0, 10): # 10 attempts at finding a unique song
+                                index = random.randint(0, len(math_query)-1)
+                                song = math_query[index]
+                                if song.song_id not in suggestions:
+                                    found_song = True
+                                    break
                             break
 
                         else:
@@ -671,18 +676,21 @@ def make_suggestions_req(request):
                 # add song to suggestions
                 if found_song:
                     # make sure song wasnt already recommended
-                    if song.song_id not in suggestions:
-                        suggestions.append(song.song_id)
-                        names.append(song.name)
-                        artists.append(song.artist_name)
-                        genres.append(song.genre)
+                    suggestions.append(song.song_id)
+                    names.append(song.name)
+                    artists.append(song.artist_name)
+                    genres.append(song.genre)
 
-                        # add song to math-y stuff
-                        popularity.append(float(song.popularity))
-                        mode.append(float(song.mode))
-                        acousticness.append(song.acousticness)
-                        danceability.append(song.danceability)
-                        energy.append(song.energy)
+                    # add song to math-y stuff
+                    popularity.append(float(song.popularity))
+                    mode.append(float(song.mode))
+                    acousticness.append(song.acousticness)
+                    danceability.append(song.danceability)
+                    energy.append(song.energy)
+
+                else:
+                    chosen_genres.append(np.random.choice(genres_list, 1, replace=True, p=weights_list))
+
 
 
             group.suggestions = suggestions
