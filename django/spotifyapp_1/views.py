@@ -639,8 +639,8 @@ def make_suggestions_req(request):
                     while num_std_away <= 5:
                         bounds = [[], []]
                         for i in range(0, len(avgs)):
-                            bounds[0] = avgs[i] - num_std_away * stds[i]
-                            bounds[1] = avgs[i] + num_std_away * stds[i]
+                            bounds[0].append(avgs[i] - num_std_away * stds[i])
+                            bounds[1].append(avgs[i] + num_std_away * stds[i])
 
                         math_query = genre_query.filter(
                             popularity__gte=bounds[0][0],
