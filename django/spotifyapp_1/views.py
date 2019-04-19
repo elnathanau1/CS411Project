@@ -616,6 +616,7 @@ def make_suggestions_req(request):
 
             i = 0
             while i < len(chosen_genres):
+                i += 1  # cant forget the counter
                 genre = chosen_genres[i]
                 # flag for adding song to suggestions
                 found_song = False
