@@ -689,7 +689,7 @@ def make_suggestions_req(request):
                     energy.append(song.energy)
 
                 else:
-                    chosen_genres.append(np.random.choice(genres_list, 1, replace=True, p=weights_list))
+                    chosen_genres = np.append(chosen_genres, np.random.choice(genres_list, 1, replace=True, p=weights_list))
 
 
 
