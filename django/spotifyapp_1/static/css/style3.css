@@ -252,6 +252,7 @@ td {
   color: #45A29E;
   border-bottom:2px solid #c5c6c7;
   border-collapse: collapse;
+  word-break: break-word;
 }
 
 #songs_table {
