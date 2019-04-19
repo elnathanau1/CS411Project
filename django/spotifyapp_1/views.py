@@ -236,6 +236,10 @@ def group_view(request, group_id):
             genres_list = []
             weights_list = []
 
+        genre_weight_dict = {}
+        for i in range(0, len(genres_list)):
+            genre_weight_dict[genres_list[i]] = weights_list[i]
+
         # create graph
         G = nx.Graph()
 
@@ -253,6 +257,7 @@ def group_view(request, group_id):
             G.add_node(genre)
             G.nodes[genre]['node_type'] = "genre"
             G.nodes[genre]['name'] = genre
+            G.nodes[genre]['weight'] = genre_weight_dict[genre]
 
             # find connections
             for user in User.objects.raw('SELECT * FROM users WHERE genres -> \'{0}\' IS NOT NULL'.format(genre)):
@@ -270,9 +275,9 @@ def group_view(request, group_id):
                     x_range=Range1d(-1.1, 1.1), y_range=Range1d(-1.1, 1.1))
         plot.title.text = "Common Genre Graph"
 
-        mapper = linear_cmap(field_name='weights_list', palette=Spectral4 ,low=min(weights_list, default=0) ,high=max(weights_list, default=0))
+        mapper = linear_cmap(field_name='weights_list', palette=Spectral4 ,low=min(G.nodes() ,high=max(G.nodes()))
 
-        node_hover_tool = HoverTool(tooltips=[("node_type", "@node_type"), ("name", "@name")])
+        node_hover_tool = HoverTool(tooltips=[("node_type", "@node_type"), ("name", "@name"), ("weight", "@weight")])
         tap_callback = CustomJS(code="""
 
 // JavaScript code goes here
