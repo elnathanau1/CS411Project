@@ -49,7 +49,6 @@ $(document).ready(function() {
     });
 
     $('.leave-group').click(function(){
-        console.log("clicked")
         $.ajax({
             type: "POST",
             url: "/ajax/leave_group/",
@@ -62,17 +61,23 @@ $(document).ready(function() {
     });
 
     $('.make-suggestions').click(function(){
-        $.ajax({
-            type: "POST",
-            url: "/ajax/make_suggestions/",
-            dataType: "json",
-            success: function(data) {
-              $('#suggestions_table').empty();
-              for(i = 0; i < data.names.length; i++){
-                  $('#suggestions_table').append('<tr><td>'+data.names[i]+'</td><td>'+data.artists[i]+'</td><td>'+data.genres[i]+'</td></tr>');
+        var num_suggestions = prompt("Number of songs:", "100");
+        if(num_suggestions != null){
+          if(num_suggestions.length != 0){
+            $.ajax({
+                type: "POST",
+                url: "/ajax/make_suggestions/",
+                dataType: "json",
+                data: { "num_suggestions": num_suggestions },
+                success: function(data) {
+                  $('#suggestions_table').empty();
+                  for(i = 0; i < data.names.length; i++){
+                      $('#suggestions_table').append('<tr><td>'+data.names[i]+'</td><td>'+data.artists[i]+'</td><td>'+data.genres[i]+'</td></tr>');
+                  }
               }
+            });
           }
-        });
+        }
     });
 
     $('.clear-suggestions').click(function(){

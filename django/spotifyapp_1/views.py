@@ -335,7 +335,7 @@ def songs(request):
     return render(request, 'songs.html', context)
 
 # Button functions
-@csrf_exempt
+# @csrf_exempt
 def logout_req(request):
     if request.is_ajax():
         # should log them out
@@ -362,7 +362,7 @@ def top_artists_req(request):
     else:
         raise Http404
 
-@csrf_exempt
+# @csrf_exempt
 def create_group_req(request):
     if request.is_ajax() and request.POST:
         new_id = request.POST.get('new_id')
@@ -407,7 +407,7 @@ def list_groups_req(request):
     else:
         raise Http404
 
-@csrf_exempt
+# @csrf_exempt
 def join_group_req(request):
     if request.is_ajax() and request.POST:
         join_id = request.POST.get('join_id')
@@ -434,7 +434,7 @@ def join_group_req(request):
     else:
         raise Http404
 
-@csrf_exempt
+# @csrf_exempt
 def leave_group_req(request):
     if request.is_ajax():
         leave_id = request.session['group_id']
@@ -458,7 +458,7 @@ def leave_group_req(request):
     else:
         raise Http404
 
-@csrf_exempt
+# @csrf_exempt
 def change_group_name_req(request):
     if request.is_ajax():
         group_id = request.session['group_id']
@@ -505,7 +505,7 @@ def get_songs_req(request):
     else:
         raise Http404
 
-@csrf_exempt
+# @csrf_exempt
 def add_song_req(request):
     if request.is_ajax():
         spotify = spotipy.Spotify(auth=request.session['access_token'])
@@ -572,9 +572,10 @@ def list_suggestions_req(request):
     else:
         raise Http404
 
-@csrf_exempt
+# @csrf_exempt
 def make_suggestions_req(request):
-    if request.is_ajax():
+    if request.is_ajax() and request.POST:
+        new_name = int(request.POST.get('num_songs'))
         group_id = request.session['group_id']
         group = Group.objects.filter(group_id=group_id).first()
         if group != None:
@@ -618,8 +619,6 @@ def make_suggestions_req(request):
             total_values = sum(weights_list)
             for i in range(0, len(weights_list)):
                 weights_list[i] = weights_list[i]/total_values
-
-            num_songs = 100
 
             # vars to hold songs
             names = []
@@ -726,7 +725,7 @@ def make_suggestions_req(request):
     else:
         raise Http404
 
-@csrf_exempt
+# # @csrf_exempt
 def clear_suggestions_req(request):
     if request.is_ajax():
         group_id = request.session['group_id']
@@ -740,7 +739,7 @@ def clear_suggestions_req(request):
     else:
         raise Http404
 
-@csrf_exempt
+# @csrf_exempt
 def create_playlist_req(request):
     if request.is_ajax() and request.POST:
         spotify = spotipy.Spotify(auth=request.session['access_token'])
