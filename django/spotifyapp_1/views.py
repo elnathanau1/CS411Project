@@ -273,9 +273,11 @@ def group_view(request, group_id):
         mapper = linear_cmap(field_name='weights_list', palette=Spectral4 ,low=min(weights_list, default=0) ,high=max(weights_list, default=0))
 
         node_hover_tool = HoverTool(tooltips=[("node_type", "@node_type"), ("name", "@name")])
-        tap_callback = CustomJS(args=cb_data.source.selected['1d'].indices , code="""
+        tap_callback = CustomJS(args=dict(source=source), code="""
 
 // JavaScript code goes here
+console.log(cb_obj);
+console.log(cb_data);
 alert(cb_data.source.selected['id'].indices);
 $('#search_val').val(cb_data.source['1d'].indices);
 """)
