@@ -321,6 +321,7 @@ td {
 }
 
 .button_hous {
+  display: contents;
   margin-left: auto;
   margin-right: auto;
   width: 320px;
