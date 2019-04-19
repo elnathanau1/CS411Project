@@ -546,7 +546,7 @@ def make_suggestions_req(request):
             for genre in commonGenres:
                 weight = 0.0
                 for dict in userGenreDicts:
-                    weight += float(dict[genre])
+                    weight += float(dict.get(key, 0.0))
                 commonGenresWeighted[genre] = weight
 
             sorted_genres = sorted(commonGenresWeighted.items(), key=operator.itemgetter(1))
