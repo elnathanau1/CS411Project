@@ -664,6 +664,7 @@ def make_suggestions_req(request):
 
                 # add song to suggestions
                 if found_song:
+                    print(song.name)
                     suggestions.append(song.song_id)
                     names.append(song.name)
                     artists.append(song.artist_name)
