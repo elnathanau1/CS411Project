@@ -589,7 +589,7 @@ def make_suggestions_req(request):
             for i in range(0, len(weights_list)):
                 weights_list[i] = weights_list[i]/total_values
 
-            num_songs = 50
+            num_songs = 100
 
             # vars to hold songs
             names = []
@@ -670,18 +670,19 @@ def make_suggestions_req(request):
 
                 # add song to suggestions
                 if found_song:
-                    print(song.name)
-                    suggestions.append(song.song_id)
-                    names.append(song.name)
-                    artists.append(song.artist_name)
-                    genres.append(song.genre)
+                    # make sure song wasnt already recommended
+                    if song.song_id not in suggestions:
+                        suggestions.append(song.song_id)
+                        names.append(song.name)
+                        artists.append(song.artist_name)
+                        genres.append(song.genre)
 
-                    # add song to math-y stuff
-                    popularity.append(float(song.popularity))
-                    mode.append(float(song.mode))
-                    acousticness.append(song.acousticness)
-                    danceability.append(song.danceability)
-                    energy.append(song.energy)
+                        # add song to math-y stuff
+                        popularity.append(float(song.popularity))
+                        mode.append(float(song.mode))
+                        acousticness.append(song.acousticness)
+                        danceability.append(song.danceability)
+                        energy.append(song.energy)
 
 
             group.suggestions = suggestions
