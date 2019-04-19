@@ -176,12 +176,12 @@ def dash(request):
             if user_id not in users:
                 users.add(user_id)
                 G.add_node(user_id)
-                G.nodes[user_id]['name'] = User.objects.get(spotify_id=user_id).name
+                G.nodes[user_id]['name'] = User.objects.get(spotify_id=str(user_id)).name
 
             if group_id not in groups:
                 groups.add(group_id)
                 G.add_node(group_id)
-                G.nodes[group_id]['name'] = Group.objects.get(group_id=group_id).name
+                G.nodes[group_id]['name'] = Group.objects.get(group_id=str(group_id)).name
 
             G.add_edge(user_id, group_id)
 
