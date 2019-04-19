@@ -662,6 +662,7 @@ def make_suggestions_req(request):
                             index = random.randint(0, len(math_query)-1)
                             song = math_query[index]
                             found_song = True
+                            break
 
                         else:
                             num_std_away += 1
