@@ -644,7 +644,7 @@ def make_suggestions_req(request):
 
                     num_std_away = 1
                     while num_std_away <= 5:
-                        print(num_std_away)
+                        # print(num_std_away)
                         bounds = [[], []]
                         for i in range(0, len(avgs)):
                             bounds[0].append(avgs[i] - num_std_away * stds[i])
