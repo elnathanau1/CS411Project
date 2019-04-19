@@ -691,7 +691,10 @@ def make_suggestions_req(request):
                                 if song.song_id not in suggestions:
                                     found_song = True
                                     break
-                            break
+                            if found_song:
+                                break
+                            else:
+                                num_std_away += 1
 
                         else:
                             num_std_away += 1
