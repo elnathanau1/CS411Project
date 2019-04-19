@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
 from django.db import connections
+from django.views.decorators.csrf import csrf_exempt
 
 from spotifyapp_1.models import *
 
@@ -334,6 +335,7 @@ def songs(request):
     return render(request, 'songs.html', context)
 
 # Button functions
+@csrf_exempt
 def logout_req(request):
     if request.is_ajax():
         # should log them out
@@ -360,6 +362,7 @@ def top_artists_req(request):
     else:
         raise Http404
 
+@csrf_exempt
 def create_group_req(request):
     if request.is_ajax() and request.POST:
         new_id = request.POST.get('new_id')
@@ -404,6 +407,7 @@ def list_groups_req(request):
     else:
         raise Http404
 
+@csrf_exempt
 def join_group_req(request):
     if request.is_ajax() and request.POST:
         join_id = request.POST.get('join_id')
@@ -430,6 +434,7 @@ def join_group_req(request):
     else:
         raise Http404
 
+@csrf_exempt
 def leave_group_req(request):
     if request.is_ajax():
         leave_id = request.session['group_id']
@@ -453,6 +458,7 @@ def leave_group_req(request):
     else:
         raise Http404
 
+@csrf_exempt
 def change_group_name_req(request):
     if request.is_ajax():
         group_id = request.session['group_id']
@@ -499,6 +505,7 @@ def get_songs_req(request):
     else:
         raise Http404
 
+@csrf_exempt
 def add_song_req(request):
     if request.is_ajax():
         spotify = spotipy.Spotify(auth=request.session['access_token'])
@@ -565,6 +572,7 @@ def list_suggestions_req(request):
     else:
         raise Http404
 
+@csrf_exempt
 def make_suggestions_req(request):
     if request.is_ajax():
         group_id = request.session['group_id']
@@ -715,6 +723,7 @@ def make_suggestions_req(request):
     else:
         raise Http404
 
+@csrf_exempt
 def clear_suggestions_req(request):
     if request.is_ajax():
         group_id = request.session['group_id']
@@ -728,6 +737,7 @@ def clear_suggestions_req(request):
     else:
         raise Http404
 
+@csrf_exempt
 def create_playlist_req(request):
     if request.is_ajax() and request.POST:
         spotify = spotipy.Spotify(auth=request.session['access_token'])
