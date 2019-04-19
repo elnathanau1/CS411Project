@@ -112,7 +112,7 @@ ul li a:focus{
   width: 600px;
   float: none;
   margin: auto;
-  height: 600px
+  height: 45vh
 }
 
 .center {
@@ -373,7 +373,7 @@ input {
   background-color: rgba(0,0,0,0);
   border-radius: 5px;
   text-align: center;
-  width: 300px;
+  width: 15vw;
 }
 
 /* Songs */
