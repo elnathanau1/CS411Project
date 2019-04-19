@@ -205,6 +205,27 @@ def group_view(request, group_id):
                 else:
                     common_genres.add(key)
 
+        # add the weights
+        common_genres_weighted = {}
+        for genre in common_genres:
+            weight = 0.0
+            for dict in user_genre_dicts:
+                weight += float(dict.get(genre, 0.0))
+            common_genres_weighted[genre] = weight
+
+        # sort the genres by weight
+        sorted_genres = sorted(common_genres_weighted.items(), key=operator.itemgetter(1), reverse=True)
+        # split to two lists
+        genres_tuple, weights_tuple = zip(*sorted_genres)
+
+        genres_list = list(genres_tuple)
+        weights_list = list(weights_tuple)
+
+        # get probability distribution
+        total_values = sum(weights_list)
+        for i in range(0, len(weights_list)):
+            weights_list[i] = weights_list[i]/total_values
+
         # create graph
         G = nx.Graph()
 
@@ -606,8 +627,8 @@ def make_suggestions_req(request):
                     # calculate mean and standard deviations for each category
                     calc_list = [popularity, mode, acousticness, danceability, energy]
                     for i in range(0, len(calc_list)):
-                        avgs[i] = np.mean(list[i])
-                        stds[i] = np.std(list[i])
+                        avgs[i] = np.mean(calc_list[i])
+                        stds[i] = np.std(calc_list[i])
 
                     num_std_away = 1
                     while num_std_away <= 5:
