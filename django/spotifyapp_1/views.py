@@ -550,6 +550,7 @@ def make_suggestions_req(request):
                 commonGenresWeighted[genre] = weight
 
             sorted_genres = sorted(commonGenresWeighted.items(), key=operator.itemgetter(1), reverse=True)
+            print(sorted_genres)
 
             # just to test
             names = []
