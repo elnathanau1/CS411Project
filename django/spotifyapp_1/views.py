@@ -615,7 +615,7 @@ def make_suggestions_req(request):
             count = 0
 
             i = 0
-            while i < len(chosen_genres):
+            while i < len(chosen_genres) and i < 150:   # hard cap
                 i += 1  # cant forget the counter
                 genre = chosen_genres[i]
                 # flag for adding song to suggestions
@@ -639,8 +639,8 @@ def make_suggestions_req(request):
                         avgs[i] = np.mean(calc_list[i])
                         stds[i] = np.std(calc_list[i])
 
-                    print(avgs)
-                    print(stds)
+                    # print(avgs)
+                    # print(stds)
 
                     num_std_away = 1
                     while num_std_away <= 5:
