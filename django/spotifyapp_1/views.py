@@ -15,6 +15,7 @@ from bokeh.io import show, output_file
 from bokeh.models import Plot, Range1d, MultiLine, Circle, HoverTool, BoxZoomTool, ResetTool, PanTool, TapTool, BoxSelectTool
 from bokeh.models.graphs import from_networkx, NodesAndLinkedEdges, EdgesAndLinkedNodes, NodesOnly
 from bokeh.palettes import Spectral4
+from bokeh.transform import linear_cmap
 
 import os
 from os import listdir
@@ -196,9 +197,11 @@ def group_view(request, group_id):
         # get other info
         genreSet = set()
         common_genres = set()        # common genres aka our genre nodes
+        user_genre_dicts = []
         for i in range(0, len(members)):
             (tempName, tempId) = members[i]
             user = User.objects.get(spotify_id=tempId)
+            user_genre_dicts.append(user.genres)
             for key in user.genres:
                 if key not in genreSet:
                     genreSet.add(key)
@@ -259,6 +262,8 @@ def group_view(request, group_id):
         plot = Plot(plot_width=400, plot_height=400,
                     x_range=Range1d(-1.1, 1.1), y_range=Range1d(-1.1, 1.1))
         plot.title.text = "Common Genre Graph"
+
+        mapper = linear_cmap(field_name='weights_list', palette=Spectral4 ,low=min(weights_list) ,high=max(weights_list))
 
         node_hover_tool = HoverTool(tooltips=[("node_type", "@node_type"), ("name", "@name")])
         plot.add_tools(node_hover_tool, TapTool(), BoxZoomTool(), ResetTool())
