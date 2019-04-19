@@ -324,7 +324,7 @@ padding-left: 5px;
   border-radius: 10px;
   padding-top: 1%;
   padding-bottom: 1%;
-  padding-right: 1%;
+  padding-right: 2%;
   padding-left: 2%;
 }
 
@@ -352,7 +352,7 @@ button {
   background-color: rgba(180, 255, 255, .11);
   border-radius: 5px;
   text-align: center;
-  width: 15vw;
+  width: 100%;
 }
 
 button:hover {
@@ -373,7 +373,7 @@ input {
   background-color: rgba(0,0,0,0);
   border-radius: 5px;
   text-align: center;
-  width: 15vw;
+  width: 100%;
 }
 
 /* Songs */
