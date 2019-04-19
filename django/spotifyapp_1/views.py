@@ -612,7 +612,7 @@ def make_suggestions_req(request):
             print(chosen_genres)
 
             # need a basis to generate future
-            n = 5
+            n = 2
             count = 0
 
             for genre in chosen_genres:
