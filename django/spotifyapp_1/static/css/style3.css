@@ -419,3 +419,8 @@ object {
     margin-left: 10vw;
     margin-top: 10vh;
 }
+
+#groups {
+    margin-left: 15vw;
+    width: 70vw;
+}
