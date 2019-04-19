@@ -278,8 +278,7 @@ def group_view(request, group_id):
 // JavaScript code goes here
 console.log(cb_obj);
 console.log(cb_data);
-alert(cb_data.source.selected['id'].indices);
-$('#search_val').val(cb_data.source['1d'].indices);
+document.getElementById('search_val').textContent = 'Goodbye!';
 """)
 
         custom_tap_tool = TapTool(callback=tap_callback)
