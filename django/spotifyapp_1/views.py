@@ -24,6 +24,7 @@ from django.contrib.staticfiles.templatetags.staticfiles import static
 import json
 
 import random
+import operator
 
 # technically we should hide these, but oh well
 CLIENT_ID = 'c7c0e5450e374d8581a809b81ad3cb43'
@@ -529,14 +530,28 @@ def make_suggestions_req(request):
             # get other info
             genreSet = set()
             commonGenres = set()        # common genres aka our genre nodes
+            userGenreDicts = []
             for i in range(0, len(members)):
                 (tempName, tempId) = members[i]
                 user = User.objects.get(spotify_id=tempId)
+                userGenreDicts.append(user.genres)
                 for key in user.genres:
                     if key not in genreSet:
                         genreSet.add(key)
                     else:
                         commonGenres.add(key)
+
+            # add the weights
+            commonGenresWeighted = {}
+            for genre in commonGenres:
+                weight = 0
+                for dict in userGenreDicts:
+                    weight += dict[genre]
+                commonGenresWeighted[genre] = weight
+
+            sorted_genres = sorted(commonGenresWeighted.items(), key=operator.itemgetter(1))
+
+            print(sorted_genres)
 
             # just to test
             names = []
