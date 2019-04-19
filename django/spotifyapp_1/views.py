@@ -575,7 +575,7 @@ def list_suggestions_req(request):
 # @csrf_exempt
 def make_suggestions_req(request):
     if request.is_ajax() and request.POST:
-        new_name = int(request.POST.get('num_suggestions'))
+        num_songs = int(request.POST.get('num_suggestions'))
         group_id = request.session['group_id']
         group = Group.objects.filter(group_id=group_id).first()
         if group != None:
