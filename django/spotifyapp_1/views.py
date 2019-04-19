@@ -273,7 +273,7 @@ def group_view(request, group_id):
         mapper = linear_cmap(field_name='weights_list', palette=Spectral4 ,low=min(weights_list, default=0) ,high=max(weights_list, default=0))
 
         node_hover_tool = HoverTool(tooltips=[("node_type", "@node_type"), ("name", "@name")])
-        tap_callback = CustomJS(args=cb_data, code="""
+        tap_callback = CustomJS(code="""
 
 // JavaScript code goes here
 console.log(cb_obj);
