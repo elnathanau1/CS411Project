@@ -16,6 +16,7 @@ from bokeh.models import Plot, Range1d, MultiLine, Circle, HoverTool, BoxZoomToo
 from bokeh.models.graphs import from_networkx, NodesAndLinkedEdges, EdgesAndLinkedNodes, NodesOnly
 from bokeh.palettes import Spectral4
 from bokeh.transform import linear_cmap
+from bokeh.models.callbacks import CustomJS
 
 import os
 from os import listdir
@@ -272,7 +273,15 @@ def group_view(request, group_id):
         mapper = linear_cmap(field_name='weights_list', palette=Spectral4 ,low=min(weights_list, default=0) ,high=max(weights_list, default=0))
 
         node_hover_tool = HoverTool(tooltips=[("node_type", "@node_type"), ("name", "@name")])
-        plot.add_tools(node_hover_tool, TapTool(), BoxZoomTool(), ResetTool())
+        tap_callback = CustomJS(args=cb_data.source.selected['1d'].indices , code="""
+
+// JavaScript code goes here
+alert(cb_data.source.selected['id'].indices);
+$('#search_val').val(cb_data.source['1d'].indices);
+""")
+
+        custom_tap_tool = TapTool(callback=tap_callback)
+        plot.add_tools(node_hover_tool, custom_tap_tool, BoxZoomTool(), ResetTool())
 
         # play around with layouts to see which works best
         graph_renderer = from_networkx(G, nx.circular_layout, scale=1, center=(0, 0))
@@ -287,6 +296,7 @@ def group_view(request, group_id):
 
         graph_renderer.selection_policy = NodesAndLinkedEdges()
         graph_renderer.inspection_policy = NodesOnly()
+
 
         plot.renderers.append(graph_renderer)
 
