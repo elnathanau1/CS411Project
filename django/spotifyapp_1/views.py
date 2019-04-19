@@ -287,7 +287,7 @@ document.getElementById('search_val').value = 'success';
         # play around with layouts to see which works best
         graph_renderer = from_networkx(G, nx.circular_layout, scale=1, center=(0, 0))
 
-        graph_renderer.node_renderer.glyph = Circle(size=15, fill_color=Spectral4[0])
+        graph_renderer.node_renderer.glyph = Circle(size=15, fill_color=mapper)
         graph_renderer.node_renderer.selection_glyph = Circle(size=15, fill_color=Spectral4[2])
         graph_renderer.node_renderer.hover_glyph = Circle(size=15, fill_color=Spectral4[1])
 
