@@ -194,31 +194,32 @@ def group_view(request, group_id):
         for q in members_q:
             members.append((q.m_user.name, q.m_user.spotify_id))
 
-        if len(members) > 1:
-            # get other info
-            genreSet = set()
-            common_genres = set()        # common genres aka our genre nodes
-            user_genre_dicts = []
-            for i in range(0, len(members)):
-                (tempName, tempId) = members[i]
-                user = User.objects.get(spotify_id=tempId)
-                user_genre_dicts.append(user.genres)
-                for key in user.genres:
-                    if key not in genreSet:
-                        genreSet.add(key)
-                    else:
-                        common_genres.add(key)
+        # get other info
+        genreSet = set()
+        common_genres = set()        # common genres aka our genre nodes
+        user_genre_dicts = []
+        for i in range(0, len(members)):
+            (tempName, tempId) = members[i]
+            user = User.objects.get(spotify_id=tempId)
+            user_genre_dicts.append(user.genres)
+            for key in user.genres:
+                if key not in genreSet:
+                    genreSet.add(key)
+                else:
+                    common_genres.add(key)
 
-            # add the weights
-            common_genres_weighted = {}
-            for genre in common_genres:
-                weight = 0.0
-                for dict in user_genre_dicts:
-                    weight += float(dict.get(genre, 0.0))
-                common_genres_weighted[genre] = weight
+        # add the weights
+        common_genres_weighted = {}
+        for genre in common_genres:
+            weight = 0.0
+            for dict in user_genre_dicts:
+                weight += float(dict.get(genre, 0.0))
+            common_genres_weighted[genre] = weight
 
-            # sort the genres by weight
-            sorted_genres = sorted(common_genres_weighted.items(), key=operator.itemgetter(1), reverse=True)
+        # sort the genres by weight
+        sorted_genres = sorted(common_genres_weighted.items(), key=operator.itemgetter(1), reverse=True)
+
+        if len(sorted_genres) > 0: #more than one member
             # split to two lists
             genres_tuple, weights_tuple = zip(*sorted_genres)
 
@@ -229,6 +230,10 @@ def group_view(request, group_id):
             total_values = sum(weights_list)
             for i in range(0, len(weights_list)):
                 weights_list[i] = weights_list[i]/total_values
+
+        else:
+            genres_list = []
+            weights_list = []
 
         # create graph
         G = nx.Graph()
