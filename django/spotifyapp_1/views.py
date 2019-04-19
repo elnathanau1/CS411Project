@@ -26,6 +26,8 @@ import json
 import random
 import operator
 
+import numpy as np
+
 # technically we should hide these, but oh well
 CLIENT_ID = 'c7c0e5450e374d8581a809b81ad3cb43'
 CLIENT_SECRET = '9e40af53e60b4e77be9465a1beab1ffd'
@@ -193,7 +195,7 @@ def group_view(request, group_id):
 
         # get other info
         genreSet = set()
-        commonGenres = set()        # common genres aka our genre nodes
+        common_genres = set()        # common genres aka our genre nodes
         for i in range(0, len(members)):
             (tempName, tempId) = members[i]
             user = User.objects.get(spotify_id=tempId)
@@ -201,7 +203,7 @@ def group_view(request, group_id):
                 if key not in genreSet:
                     genreSet.add(key)
                 else:
-                    commonGenres.add(key)
+                    common_genres.add(key)
 
         # create graph
         G = nx.Graph()
@@ -215,7 +217,7 @@ def group_view(request, group_id):
             G.nodes[member_id]['spotify_id'] = member_id
 
         # genre nodes and connect edges
-        for genre in commonGenres:
+        for genre in common_genres:
             # add node
             G.add_node(genre)
             G.nodes[genre]['node_type'] = "genre"
@@ -529,35 +531,46 @@ def make_suggestions_req(request):
 
             # get other info
             genreSet = set()
-            commonGenres = set()        # common genres aka our genre nodes
-            userGenreDicts = []
+            common_genres = set()        # common genres aka our genre nodes
+            user_genre_dicts = []
             for i in range(0, len(members)):
                 (tempName, tempId) = members[i]
                 user = User.objects.get(spotify_id=tempId)
-                userGenreDicts.append(user.genres)
+                user_genre_dicts.append(user.genres)
                 for key in user.genres:
                     if key not in genreSet:
                         genreSet.add(key)
                     else:
-                        commonGenres.add(key)
+                        common_genres.add(key)
 
             # add the weights
-            commonGenresWeighted = {}
-            for genre in commonGenres:
+            common_genres_weighted = {}
+            for genre in common_genres:
                 weight = 0.0
-                for dict in userGenreDicts:
+                for dict in user_genre_dicts:
                     weight += float(dict.get(genre, 0.0))
-                commonGenresWeighted[genre] = weight
+                common_genres_weighted[genre] = weight
 
-            sorted_genres = sorted(commonGenresWeighted.items(), key=operator.itemgetter(1), reverse=True)
-            print(sorted_genres)
+            # sort the genres by weight
+            sorted_genres = sorted(common_genres_weighted.items(), key=operator.itemgetter(1), reverse=True)
+            # split to two lists
+            genres, weights = zip(*sorted_genres)
+
+            # get probability distribution
+            total_values = sum(weights)
+            for i in range(0, len(weights)):
+                weights[i] = weights[i]/total_values
+
+            print(np.random.choice(genres, 10, weights))
+
+
 
             # just to test
             names = []
             artists = []
             genres = []
             suggestions = []
-            randomSample = random.sample(commonGenres, 5)
+            randomSample = random.sample(common_genres, 5)
             for genre in randomSample:
                 query = Song.objects.filter(genre__contains=[genre])
                 for song in query:
