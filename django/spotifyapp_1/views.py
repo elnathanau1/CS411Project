@@ -275,7 +275,7 @@ def group_view(request, group_id):
                     x_range=Range1d(-1.1, 1.1), y_range=Range1d(-1.1, 1.1))
         plot.title.text = "Common Genre Graph"
 
-        mapper = linear_cmap(field_name='weights_list', palette=Spectral4 ,low=min(G.nodes()) ,high=max(G.nodes()))
+        # mapper = linear_cmap(field_name='weights_list', palette=Spectral4 ,low=min(G.nodes()) ,high=max(G.nodes()))
 
         node_hover_tool = HoverTool(tooltips=[("node_type", "@node_type"), ("name", "@name"), ("weight", "@weight")])
         tap_callback = CustomJS(code="""
@@ -292,7 +292,7 @@ document.getElementById('search_val').value = 'success';
         # play around with layouts to see which works best
         graph_renderer = from_networkx(G, nx.circular_layout, scale=1, center=(0, 0))
 
-        graph_renderer.node_renderer.glyph = Circle(size=15, fill_color=mapper)
+        graph_renderer.node_renderer.glyph = Circle(size=15, fill_color=Spectral4[0])
         graph_renderer.node_renderer.selection_glyph = Circle(size=15, fill_color=Spectral4[2])
         graph_renderer.node_renderer.hover_glyph = Circle(size=15, fill_color=Spectral4[1])
 
