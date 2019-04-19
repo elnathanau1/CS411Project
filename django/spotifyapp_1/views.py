@@ -556,13 +556,13 @@ def make_suggestions_req(request):
             # split to two lists
             genres_tuple, weights_tuple = zip(*sorted_genres)
 
-            genres = list(genres_tuple)
-            weights = list(weights_tuple)
+            genres_list = list(genres_tuple)
+            weights_list = list(weights_tuple)
 
             # get probability distribution
-            total_values = sum(weights)
+            total_values = sum(weights_list)
             for i in range(0, len(weights)):
-                weights[i] = weights[i]/total_values
+                weights_list[i] = weights_list[i]/total_values
 
             num_songs = 100
 
@@ -582,7 +582,7 @@ def make_suggestions_req(request):
             avgs = []
             stds = []
 
-            chosen_genres = np.random.choice(a=genres, size=num_songs, replace=True, p=weights)
+            chosen_genres = np.random.choice(genres_list, num_songs, replace=True, p=weights)
 
             # need a basis to generate future
             n = 5
