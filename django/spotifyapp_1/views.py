@@ -669,7 +669,7 @@ def make_suggestions_req(request):
 
                 # add song to suggestions
                 if found_song:
-                    print(song.song_name)
+                    print(song.name)
                     # make sure song wasnt already recommended
                     if song.song_id not in suggestions:
                         suggestions.append(song.song_id)
