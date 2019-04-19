@@ -3,44 +3,44 @@
 
 {% block content %}
 <p id="name_header">{{group_name}} ({{group_id}})</p>
-
-<div class="column">
+<div class="space"></div>
+<div class="left">
   <object width="700" height="700" data="{% static 'spotifyapp_1/test.html' %}">
     Applet broke.
   </object>
+  <div class="button_hous">
+    <button style="float:left" class="btn change-group-name">Change name</button>
+    <button style="float:right" id="leave" class="btn leave-group">Leave Group</button>
+  </div>
   <table class="table" style="width:100%" id="group_members_table">
     <tr>
       <th>Members</th>
     </tr>
   </table>
-  <div class="button_hous">
-      <button class="btn change-group-name">Change name</button>
-      <button class="btn leave-group">Leave Group</button>
-  </div>
 </div>
 
-<div class="column">
+<div class="right">
   <div class="button_hous">
-      <input class="playlist_name" type="text" placeholder="playlist name">
-      <button class="btn create-playlist">Create Playlist</button>
+    <button class="btn clear-suggestions">Clear Suggestions</button>
+    <button class="btn make-suggestions">Make Suggestions</button>
+    <input id="search_val" style="width:22vw" type="text" placeholder="Search...">
   </div>
-  <input id="search_val" type="text" placeholder="Search...">
-  <table class="table" style="width:100%; height:80%">
+  <table class="table" style="width:100%; height:30vw">
     <tr>
       <th>Suggestions</th>
     </tr>
     <tr style="height:100%">
       <td>
         <div class="items">
-          <table id="suggestions_table" style="height:100%">
+          <table id="suggestions_table" style="height:100vh">
           </table>
         </div>
       </td>
     </tr>
   </table>
   <div class="button_hous">
-      <button class="btn make-suggestions">Make Suggestions</button>
-      <button class="btn clear-suggestions">Clear Suggestions</button>
+    <button class="btn create-playlist">Create Playlist</button>
+    <input style="width:38vw" class="playlist_name" type="text" placeholder="playlist name">
   </div>
 </div>
 
@@ -49,4 +49,5 @@
 
 <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
 <script src="{% static 'spotifyapp_1/group_view.js' %}"></script>
+
 {% endblock %}
