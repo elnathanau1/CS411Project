@@ -116,6 +116,7 @@ ul li a:focus{
 }
 
 .center {
+  font-size: 3vh;
   word-wrap: break-word;
   text-align: center;
   display: block;
@@ -171,7 +172,7 @@ ul li a:focus{
 p2 {
   top: 0px;
   color: #c5c6c7;
-  font-size: 20px;
+  font-size: 3vh;
   text-align: center;
 }
 /* home */
