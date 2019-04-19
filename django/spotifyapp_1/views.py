@@ -275,7 +275,7 @@ def group_view(request, group_id):
                     x_range=Range1d(-1.1, 1.1), y_range=Range1d(-1.1, 1.1))
         plot.title.text = "Common Genre Graph"
 
-        mapper = linear_cmap(field_name='weights_list', palette=Spectral4 ,low=min(G.nodes() ,high=max(G.nodes()))
+        mapper = linear_cmap(field_name='weights_list', palette=Spectral4 ,low=min(G.nodes()) ,high=max(G.nodes()))
 
         node_hover_tool = HoverTool(tooltips=[("node_type", "@node_type"), ("name", "@name"), ("weight", "@weight")])
         tap_callback = CustomJS(code="""
