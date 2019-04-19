@@ -285,7 +285,6 @@ def songs(request):
     context = {}
     return render(request, 'songs.html', context)
 
-
 # Button functions
 def logout_req(request):
     if request.is_ajax():
@@ -561,7 +560,7 @@ def make_suggestions_req(request):
 
             # get probability distribution
             total_values = sum(weights_list)
-            for i in range(0, len(weights)):
+            for i in range(0, len(weights_list)):
                 weights_list[i] = weights_list[i]/total_values
 
             num_songs = 100
